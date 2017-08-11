@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<title></title>
+<meta name="author" content="(Tim McIver)"/>
+<style type="text/css">
+.underline { text-decoration: underline; }
+</style>
+<link rel="stylesheet" href="file:///Users/timmciver/Workspace/reveal.js/css/reveal.css"/>
+
+<link rel="stylesheet" href="file:///Users/timmciver/Workspace/reveal.js/css/theme/night.css" id="theme"/>
+
+
+<!-- If the query includes 'print-pdf', include the PDF print sheet -->
+<script>
+    if( window.location.search.match( /print-pdf/gi ) ) {
+        var link = document.createElement( 'link' );
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = 'file:///Users/timmciver/Workspace/reveal.js/css/print/pdf.css';
+        document.getElementsByTagName( 'head' )[0].appendChild( link );
+    }
+</script>
+</head>
+<body>
+<div class="reveal">
+<div class="slides">
+<section id="sec-title-slide"><h2 class="author">Tim McIver</h2><p class="date">Created: 2017-08-10 Thu 16:28</p>
+</section>
+<section id="table-of-contents">
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#/slide-org83e2b77">The Problem Statement</a></li>
+<li><a href="#/slide-orgc6f2f33">Pattern Matching: What Is It?</a></li>
+<li><a href="#/slide-org90564f1">Review of Some Fundamentals</a></li>
+<li><a href="#/slide-org4d54c3d">Simulating ADTs in OO</a></li>
+<li><a href="#/slide-org08d8288">The Visitor Pattern to the Rescue!</a></li>
+</ul>
+</div>
+</div>
+</section>
+
+<section>
+<section id="slide-org83e2b77">
+<h2 id="org83e2b77">The Problem Statement</h2>
+<div class="outline-text-2" id="text-org83e2b77">
+</div></section>
+<section id="slide-org840ed09">
+<h3 id="org840ed09">Can we attain the same level of generalized dispatch on values of a type using an Object-Oriented language that our colleagues using functional languages enjoy?</h3>
+<p class="fragment appear">
+Answer: Yes!
+</p>
+<p class="fragment appear">
+Well, almost.
+</p>
+
+</section>
+</section>
+<section>
+<section id="slide-orgc6f2f33">
+<h2 id="orgc6f2f33">Pattern Matching: What Is It?</h2>
+<div class="outline-text-2" id="text-orgc6f2f33">
+</div></section>
+<section id="slide-orgcb450bd">
+<h3 id="orgcb450bd">Pattern Matching 101</h3>
+<p>
+"pattern matching is the act of checking a given sequence of tokens for the presence of the constituents of some pattern." - Wikipedia
+</p>
+
+
+
+</section>
+</section>
+<section>
+<section id="slide-org90564f1">
+<h2 id="org90564f1">Review of Some Fundamentals</h2>
+<div class="outline-text-2" id="text-org90564f1">
+</div></section>
+<section id="slide-org8c1a639">
+<h3 id="org8c1a639">What is a type?</h3>
+
+</section>
+<section id="slide-org8cc09fc">
+<h3 id="org8cc09fc">Dynamic Dispatch</h3>
+
+</section>
+<section id="slide-org90bcfeb">
+<h3 id="org90bcfeb">Algebraic Data Types</h3>
+
+
+
+</section>
+</section>
+<section>
+<section id="slide-org4d54c3d">
+<h2 id="org4d54c3d">Simulating ADTs in OO</h2>
+<div class="outline-text-2" id="text-org4d54c3d">
+</div></section>
+<section id="slide-org32e00f7">
+<h3 id="org32e00f7">Can We Have Algebraic Data Types in an OO Language? Yes!</h3>
+
+
+
+</section>
+</section>
+<section>
+<section id="slide-org08d8288">
+<h2 id="org08d8288">The Visitor Pattern to the Rescue!</h2>
+</section>
+</section>
+</div>
+</div>
+<script src="file:///Users/timmciver/Workspace/reveal.js/lib/js/head.min.js"></script>
+<script src="file:///Users/timmciver/Workspace/reveal.js/js/reveal.js"></script>
+
+<script>
+// Full list of configuration options available here:
+// https://github.com/hakimel/reveal.js#configuration
+Reveal.initialize({
+
+controls: true,
+progress: true,
+history: false,
+center: true,
+slideNumber: 'c',
+rollingLinks: false,
+keyboard: true,
+overview: true,
+
+theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
+transitionSpeed: 'default',
+multiplex: {
+    secret: '', // null if client
+    id: '', // id, obtained from socket.io server
+    url: '' // Location of socket.io server
+},
+
+// Optional libraries used to extend on reveal.js
+dependencies: [
+ { src: 'file:///Users/timmciver/Workspace/reveal.js/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+ { src: 'file:///Users/timmciver/Workspace/reveal.js/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+ { src: 'file:///Users/timmciver/Workspace/reveal.js/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+ { src: 'file:///Users/timmciver/Workspace/reveal.js/plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+ { src: 'file:///Users/timmciver/Workspace/reveal.js/plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }]
+});
+</script>
+</body>
+</html>

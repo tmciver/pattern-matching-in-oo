@@ -1,0 +1,48 @@
+#+REVEAL_THEME: night
+#+OPTIONS: toc:1, num:nil, f:t
+#+REVEAL_ROOT: file:///Users/timmciver/Workspace/reveal.js
+
+
+
+* The Problem Statement
+
+** Can we attain the same level of generalized dispatch on values of a type using an Object-Oriented language that our friends using functional languages enjoy?
+#+ATTR_REVEAL: :frag appear
+Answer: Yes!
+#+ATTR_REVEAL: :frag appear
+Well, almost.
+
+
+
+* Review of Some Fundamentals
+
+** What is a type?
+
+A type is simply a set of values.
+
+For example:
+- booleans can have a value of "true" or "false"
+- integers can be any integer, usually within some range.
+
+** Dynamic Dispatch
+
+** Algebraic Data Types
+
+
+* Example of the Problem
+
+* Pattern Matching: What Is It?
+
+** Pattern Matching 101
+"pattern matching is the act of checking a given sequence of tokens for the presence of the constituents of some pattern." - Wikipedia
+
+
+
+
+* Simulating ADTs in OO
+
+** Can We Have Algebraic Data Types in an OO Language? Yes!
+
+
+
+* The Visitor Pattern to the Rescue!
