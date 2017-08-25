@@ -13,6 +13,44 @@ Answer: Yes!
 Well, almost.
 
 
+* An Example
+
+** Dispatching on Values in Scala
+#+BEGIN_SRC scala
+object Payroll {
+
+  sealed trait Frequency
+  case object class Weekly
+  case object class Monthy
+  case object class Annually
+
+  def timesPerYear(freq: Frequency) = freq match {
+    case Weekly => 52
+    case Monthy => 12
+    case Annually => 1
+  }
+}
+#+END_SRC
+
+** Dispatching on Values in PHP
+#+BEGIN_SRC php
+interface Frequency {
+  function timesPerYear()
+}
+
+class Weekly implements Frequency {
+  public function timesPerYear() { return 52; }
+}
+
+class Monthly implements Frequency {
+  public function timesPerYear() { return 12; }
+}
+
+class Annually implements Frequency {
+  public function timesPerYear() { return 1; }
+}
+#+END_SRC
+
 
 * Review of Some Fundamentals
 

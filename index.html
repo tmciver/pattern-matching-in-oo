@@ -26,30 +26,34 @@
 <body>
 <div class="reveal">
 <div class="slides">
-<section id="sec-title-slide"><h2 class="author">Tim McIver</h2><p class="date">Created: 2017-08-10 Thu 16:28</p>
+<section id="sec-title-slide"><h2 class="author">Tim McIver</h2><p class="date">Created: 2017-08-25 Fri 17:29</p>
 </section>
 <section id="table-of-contents">
 <div id="table-of-contents">
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#/slide-org83e2b77">The Problem Statement</a></li>
-<li><a href="#/slide-orgc6f2f33">Pattern Matching: What Is It?</a></li>
-<li><a href="#/slide-org90564f1">Review of Some Fundamentals</a></li>
-<li><a href="#/slide-org4d54c3d">Simulating ADTs in OO</a></li>
-<li><a href="#/slide-org08d8288">The Visitor Pattern to the Rescue!</a></li>
+<li><a href="#/slide-org518a975">The Problem Statement</a></li>
+<li><a href="#/slide-org2506d10">An Example</a></li>
+<li><a href="#/slide-org53df6a4">Review of Some Fundamentals</a></li>
+<li><a href="#/slide-orgc206a34">Example of the Problem</a></li>
+<li><a href="#/slide-orge1c82a3">Pattern Matching: What Is It?</a></li>
+<li><a href="#/slide-orgcaf053f">Simulating ADTs in OO</a></li>
+<li><a href="#/slide-org2280fc9">The Visitor Pattern to the Rescue!</a></li>
 </ul>
 </div>
 </div>
 </section>
 
+
+
 <section>
-<section id="slide-org83e2b77">
-<h2 id="org83e2b77">The Problem Statement</h2>
-<div class="outline-text-2" id="text-org83e2b77">
+<section id="slide-org518a975">
+<h2 id="org518a975">The Problem Statement</h2>
+<div class="outline-text-2" id="text-org518a975">
 </div></section>
-<section id="slide-org840ed09">
-<h3 id="org840ed09">Can we attain the same level of generalized dispatch on values of a type using an Object-Oriented language that our colleagues using functional languages enjoy?</h3>
+<section id="slide-org43bdbca">
+<h3 id="org43bdbca">Can we attain the same level of generalized dispatch on values of a type using an Object-Oriented language that our friends using functional languages enjoy?</h3>
 <p class="fragment appear">
 Answer: Yes!
 </p>
@@ -57,58 +61,128 @@ Answer: Yes!
 Well, almost.
 </p>
 
+
 </section>
 </section>
 <section>
-<section id="slide-orgc6f2f33">
-<h2 id="orgc6f2f33">Pattern Matching: What Is It?</h2>
-<div class="outline-text-2" id="text-orgc6f2f33">
+<section id="slide-org2506d10">
+<h2 id="org2506d10">An Example</h2>
+<div class="outline-text-2" id="text-org2506d10">
 </div></section>
-<section id="slide-orgcb450bd">
-<h3 id="orgcb450bd">Pattern Matching 101</h3>
+<section id="slide-org98b4fd2">
+<h3 id="org98b4fd2">Dispatching on Values in Scala</h3>
+<div class="org-src-container">
+
+<pre  class="src src-scala"><span style="color: #b4fa70;">object</span> <span style="color: #e9b2e3;">Payroll</span> {
+
+  <span style="color: #e090d7;">sealed</span> <span style="color: #b4fa70;">trait</span> <span style="color: #8cc4ff;">Frequency</span>
+  <span style="color: #b4fa70;">case</span> <span style="color: #b4fa70;">object</span> <span style="color: #b4fa70;">class</span> <span style="color: #8cc4ff;">Weekly</span>
+  <span style="color: #b4fa70;">case</span> <span style="color: #b4fa70;">object</span> <span style="color: #b4fa70;">class</span> <span style="color: #8cc4ff;">Monthy</span>
+  <span style="color: #b4fa70;">case</span> <span style="color: #b4fa70;">object</span> <span style="color: #b4fa70;">class</span> <span style="color: #8cc4ff;">Annually</span>
+
+  <span style="color: #b4fa70;">def</span> <span style="color: #fce94f;">timesPerYear</span>(freq<span style="color: #b4fa70;">:</span> <span style="color: #8cc4ff;">Frequency</span>) <span style="color: #b4fa70;">=</span> freq <span style="color: #b4fa70;">match</span> {
+    <span style="color: #b4fa70;">case</span> <span style="color: #e9b2e3;">Weekly</span> <span style="color: #b4fa70;">=&gt;</span> <span style="color: #e9b2e3;">52</span>
+    <span style="color: #b4fa70;">case</span> <span style="color: #e9b2e3;">Monthy</span> <span style="color: #b4fa70;">=&gt;</span> <span style="color: #e9b2e3;">12</span>
+    <span style="color: #b4fa70;">case</span> <span style="color: #e9b2e3;">Annually</span> <span style="color: #b4fa70;">=&gt;</span> <span style="color: #e9b2e3;">1</span>
+  }
+}
+</pre>
+</div>
+
+</section>
+<section id="slide-org76a6b88">
+<h3 id="org76a6b88">Dispatching on Values in OO</h3>
+<div class="org-src-container">
+
+<pre  class="src src-php"><span style="color: #b4fa70;">interface</span> <span style="color: #8cc4ff;">Frequency</span> {
+  <span style="color: #b4fa70;">function</span> <span style="color: #fce94f;">timesPerYear</span>()
+}
+
+<span style="color: #b4fa70;">class</span> <span style="color: #8cc4ff;">Weekly</span> <span style="color: #b4fa70;">implements</span> <span style="color: #8cc4ff;">Frequency</span> {
+  <span style="color: #b4fa70;">public</span> <span style="color: #b4fa70;">function</span> <span style="color: #fce94f;">timesPerYear</span>() { <span style="color: #b4fa70;">return</span> <span style="color: #eeeeec; background-color: #2e3436;">52</span>; }
+}
+
+<span style="color: #b4fa70;">class</span> <span style="color: #8cc4ff;">Monthly</span> <span style="color: #b4fa70;">implements</span> <span style="color: #8cc4ff;">Frequency</span> {
+  <span style="color: #b4fa70;">public</span> <span style="color: #b4fa70;">function</span> <span style="color: #fce94f;">timesPerYear</span>() { <span style="color: #b4fa70;">return</span> <span style="color: #eeeeec; background-color: #2e3436;">12</span>; }
+}
+
+<span style="color: #b4fa70;">class</span> <span style="color: #8cc4ff;">Annually</span> <span style="color: #b4fa70;">implements</span> <span style="color: #8cc4ff;">Frequency</span> {
+  <span style="color: #b4fa70;">public</span> <span style="color: #b4fa70;">function</span> <span style="color: #fce94f;">timesPerYear</span>() { <span style="color: #b4fa70;">return</span> <span style="color: #eeeeec; background-color: #2e3436;">1</span>; }
+}
+</pre>
+</div>
+
+
+</section>
+</section>
+<section>
+<section id="slide-org53df6a4">
+<h2 id="org53df6a4">Review of Some Fundamentals</h2>
+<div class="outline-text-2" id="text-org53df6a4">
+</div></section>
+<section id="slide-orga4a3d41">
+<h3 id="orga4a3d41">What is a type?</h3>
+<p>
+A type is simply a set of values.
+</p>
+
+<p>
+For example:
+</p>
+<ul>
+<li>booleans can have a value of "true" or "false"</li>
+<li>integers can be any integer, usually within some range.</li>
+
+</ul>
+
+</section>
+<section id="slide-orgf906f01">
+<h3 id="orgf906f01">Dynamic Dispatch</h3>
+
+</section>
+<section id="slide-orgdbcbf1b">
+<h3 id="orgdbcbf1b">Algebraic Data Types</h3>
+
+
+</section>
+</section>
+<section>
+<section id="slide-orgc206a34">
+<h2 id="orgc206a34">Example of the Problem</h2>
+
+</section>
+</section>
+<section>
+<section id="slide-orge1c82a3">
+<h2 id="orge1c82a3">Pattern Matching: What Is It?</h2>
+<div class="outline-text-2" id="text-orge1c82a3">
+</div></section>
+<section id="slide-org85dec56">
+<h3 id="org85dec56">Pattern Matching 101</h3>
 <p>
 "pattern matching is the act of checking a given sequence of tokens for the presence of the constituents of some pattern." - Wikipedia
 </p>
 
 
 
+
 </section>
 </section>
 <section>
-<section id="slide-org90564f1">
-<h2 id="org90564f1">Review of Some Fundamentals</h2>
-<div class="outline-text-2" id="text-org90564f1">
+<section id="slide-orgcaf053f">
+<h2 id="orgcaf053f">Simulating ADTs in OO</h2>
+<div class="outline-text-2" id="text-orgcaf053f">
 </div></section>
-<section id="slide-org8c1a639">
-<h3 id="org8c1a639">What is a type?</h3>
-
-</section>
-<section id="slide-org8cc09fc">
-<h3 id="org8cc09fc">Dynamic Dispatch</h3>
-
-</section>
-<section id="slide-org90bcfeb">
-<h3 id="org90bcfeb">Algebraic Data Types</h3>
+<section id="slide-orge91dde1">
+<h3 id="orge91dde1">Can We Have Algebraic Data Types in an OO Language? Yes!</h3>
 
 
 
 </section>
 </section>
 <section>
-<section id="slide-org4d54c3d">
-<h2 id="org4d54c3d">Simulating ADTs in OO</h2>
-<div class="outline-text-2" id="text-org4d54c3d">
-</div></section>
-<section id="slide-org32e00f7">
-<h3 id="org32e00f7">Can We Have Algebraic Data Types in an OO Language? Yes!</h3>
-
-
-
-</section>
-</section>
-<section>
-<section id="slide-org08d8288">
-<h2 id="org08d8288">The Visitor Pattern to the Rescue!</h2>
+<section id="slide-org2280fc9">
+<h2 id="org2280fc9">The Visitor Pattern to the Rescue!</h2>
 </section>
 </section>
 </div>
