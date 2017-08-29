@@ -17,37 +17,79 @@ Well, almost.
 
 ** Dispatching on Values in Scala
 #+BEGIN_SRC scala
-object Payroll {
+sealed trait Pet
 
-  sealed trait Frequency
-  case object class Weekly
-  case object class Monthy
-  case object class Annually
+object Pet {
 
-  def timesPerYear(freq: Frequency) = freq match {
-    case Weekly => 52
-    case Monthy => 12
-    case Annually => 1
+  case object class Dog extends Pet
+  case object class Cat extends Pet
+  case object class Goldfish extends Pet
+
+  def hasFur(pet: Pet) = pet match {
+    case Dog => true
+    case Cat => true
+    case Goldfish => false
   }
 }
 #+END_SRC
 
 ** Dispatching on Values in PHP
 #+BEGIN_SRC php
-interface Frequency {
-  function timesPerYear()
+interface Pet {
+  function hasFur();
 }
 
-class Weekly implements Frequency {
-  public function timesPerYear() { return 52; }
+class Dog implements Pet {
+  public function hasFur() { return true; }
 }
 
-class Monthly implements Frequency {
-  public function timesPerYear() { return 12; }
+class Cat implements Pet {
+  public function hasFur() { return true; }
 }
 
-class Annually implements Frequency {
-  public function timesPerYear() { return 1; }
+class Goldfish implements Pet {
+  public function hasFur() { return false; }
+}
+
+// caller doesn't necessarily know the runtime
+// type of $myPet - and shouldn't care.
+$myPet->hasFur();
+#+END_SRC
+
+** Use in a Pet Store Application (Scala)
+A part of the application needs to know what pets a given pet might attack.
+
+#+BEGIN_SRC scala
+object PetStore {
+
+  def mayAttack(pet: Pet): Seq[Pet] = pet match {
+    case Dog => List(Cat)
+    case Cat => List(Dog, Goldfish)
+    case Goldfish => List()
+  }
+}
+#+END_SRC
+
+** Use in a Pet Store Application (PHP)
+#+BEGIN_SRC php
+interface Pet {
+  function hasFur();
+  function mayAttack();
+}
+
+class Dog implements Pet {
+  public function hasFur() { return true; }
+  public function mayAttack() { return [new Cat()]; }
+}
+
+class Cat implements Pet {
+  public function hasFur() { return true; }
+  public function mayAttack() { return [new Dog(), new Goldfish()]; }
+}
+
+class Goldfish implements Pet {
+  public function hasFur() { return false; }
+  public function mayAttack() { return []; }
 }
 #+END_SRC
 
@@ -65,16 +107,6 @@ For example:
 ** Dynamic Dispatch
 
 ** Algebraic Data Types
-
-
-* Example of the Problem
-
-* Pattern Matching: What Is It?
-
-** Pattern Matching 101
-"pattern matching is the act of checking a given sequence of tokens for the presence of the constituents of some pattern." - Wikipedia
-
-
 
 
 * Simulating ADTs in OO

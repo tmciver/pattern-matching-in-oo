@@ -26,20 +26,18 @@
 <body>
 <div class="reveal">
 <div class="slides">
-<section id="sec-title-slide"><h2 class="author">Tim McIver</h2><p class="date">Created: 2017-08-25 Fri 17:29</p>
+<section id="sec-title-slide"><h2 class="author">Tim McIver</h2><p class="date">Created: 2017-08-29 Tue 14:17</p>
 </section>
 <section id="table-of-contents">
 <div id="table-of-contents">
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#/slide-org518a975">The Problem Statement</a></li>
-<li><a href="#/slide-org2506d10">An Example</a></li>
-<li><a href="#/slide-org53df6a4">Review of Some Fundamentals</a></li>
-<li><a href="#/slide-orgc206a34">Example of the Problem</a></li>
-<li><a href="#/slide-orge1c82a3">Pattern Matching: What Is It?</a></li>
-<li><a href="#/slide-orgcaf053f">Simulating ADTs in OO</a></li>
-<li><a href="#/slide-org2280fc9">The Visitor Pattern to the Rescue!</a></li>
+<li><a href="#/slide-org14e6308">The Problem Statement</a></li>
+<li><a href="#/slide-org3e0f552">An Example</a></li>
+<li><a href="#/slide-orgc0b9ac1">Review of Some Fundamentals</a></li>
+<li><a href="#/slide-orgf3e68b6">Simulating ADTs in OO</a></li>
+<li><a href="#/slide-org5eca3e5">The Visitor Pattern to the Rescue!</a></li>
 </ul>
 </div>
 </div>
@@ -48,12 +46,12 @@
 
 
 <section>
-<section id="slide-org518a975">
-<h2 id="org518a975">The Problem Statement</h2>
-<div class="outline-text-2" id="text-org518a975">
+<section id="slide-org14e6308">
+<h2 id="org14e6308">The Problem Statement</h2>
+<div class="outline-text-2" id="text-org14e6308">
 </div></section>
-<section id="slide-org43bdbca">
-<h3 id="org43bdbca">Can we attain the same level of generalized dispatch on values of a type using an Object-Oriented language that our friends using functional languages enjoy?</h3>
+<section id="slide-org304ea81">
+<h3 id="org304ea81">Can we attain the same level of generalized dispatch on values of a type using an Object-Oriented language that our friends using functional languages enjoy?</h3>
 <p class="fragment appear">
 Answer: Yes!
 </p>
@@ -65,49 +63,101 @@ Well, almost.
 </section>
 </section>
 <section>
-<section id="slide-org2506d10">
-<h2 id="org2506d10">An Example</h2>
-<div class="outline-text-2" id="text-org2506d10">
+<section id="slide-org3e0f552">
+<h2 id="org3e0f552">An Example</h2>
+<div class="outline-text-2" id="text-org3e0f552">
 </div></section>
-<section id="slide-org98b4fd2">
-<h3 id="org98b4fd2">Dispatching on Values in Scala</h3>
+<section id="slide-org7496590">
+<h3 id="org7496590">Dispatching on Values in Scala</h3>
 <div class="org-src-container">
 
-<pre  class="src src-scala"><span style="color: #b4fa70;">object</span> <span style="color: #e9b2e3;">Payroll</span> {
+<pre  class="src src-scala"><span style="color: #e090d7;">sealed</span> <span style="color: #b4fa70;">trait</span> <span style="color: #8cc4ff;">Pet</span>
 
-  <span style="color: #e090d7;">sealed</span> <span style="color: #b4fa70;">trait</span> <span style="color: #8cc4ff;">Frequency</span>
-  <span style="color: #b4fa70;">case</span> <span style="color: #b4fa70;">object</span> <span style="color: #b4fa70;">class</span> <span style="color: #8cc4ff;">Weekly</span>
-  <span style="color: #b4fa70;">case</span> <span style="color: #b4fa70;">object</span> <span style="color: #b4fa70;">class</span> <span style="color: #8cc4ff;">Monthy</span>
-  <span style="color: #b4fa70;">case</span> <span style="color: #b4fa70;">object</span> <span style="color: #b4fa70;">class</span> <span style="color: #8cc4ff;">Annually</span>
+<span style="color: #b4fa70;">object</span> <span style="color: #e9b2e3;">Pet</span> {
 
-  <span style="color: #b4fa70;">def</span> <span style="color: #fce94f;">timesPerYear</span>(freq<span style="color: #b4fa70;">:</span> <span style="color: #8cc4ff;">Frequency</span>) <span style="color: #b4fa70;">=</span> freq <span style="color: #b4fa70;">match</span> {
-    <span style="color: #b4fa70;">case</span> <span style="color: #e9b2e3;">Weekly</span> <span style="color: #b4fa70;">=&gt;</span> <span style="color: #e9b2e3;">52</span>
-    <span style="color: #b4fa70;">case</span> <span style="color: #e9b2e3;">Monthy</span> <span style="color: #b4fa70;">=&gt;</span> <span style="color: #e9b2e3;">12</span>
-    <span style="color: #b4fa70;">case</span> <span style="color: #e9b2e3;">Annually</span> <span style="color: #b4fa70;">=&gt;</span> <span style="color: #e9b2e3;">1</span>
+  <span style="color: #b4fa70;">case</span> <span style="color: #b4fa70;">object</span> <span style="color: #b4fa70;">class</span> <span style="color: #8cc4ff;">Dog</span> <span style="color: #b4fa70;">extends</span> <span style="color: #8cc4ff;">Pet</span>
+  <span style="color: #b4fa70;">case</span> <span style="color: #b4fa70;">object</span> <span style="color: #b4fa70;">class</span> <span style="color: #8cc4ff;">Cat</span> <span style="color: #b4fa70;">extends</span> <span style="color: #8cc4ff;">Pet</span>
+  <span style="color: #b4fa70;">case</span> <span style="color: #b4fa70;">object</span> <span style="color: #b4fa70;">class</span> <span style="color: #8cc4ff;">Goldfish</span> <span style="color: #b4fa70;">extends</span> <span style="color: #8cc4ff;">Pet</span>
+
+  <span style="color: #b4fa70;">def</span> <span style="color: #fce94f;">hasFur</span>(pet<span style="color: #b4fa70;">:</span> <span style="color: #8cc4ff;">Pet</span>) <span style="color: #b4fa70;">=</span> pet <span style="color: #b4fa70;">match</span> {
+    <span style="color: #b4fa70;">case</span> <span style="color: #e9b2e3;">Dog</span> <span style="color: #b4fa70;">=&gt;</span> <span style="color: #e9b2e3;">true</span>
+    <span style="color: #b4fa70;">case</span> <span style="color: #e9b2e3;">Cat</span> <span style="color: #b4fa70;">=&gt;</span> <span style="color: #e9b2e3;">true</span>
+    <span style="color: #b4fa70;">case</span> <span style="color: #e9b2e3;">Goldfish</span> <span style="color: #b4fa70;">=&gt;</span> <span style="color: #e9b2e3;">false</span>
   }
 }
 </pre>
 </div>
 
 </section>
-<section id="slide-org76a6b88">
-<h3 id="org76a6b88">Dispatching on Values in OO</h3>
+<section id="slide-org6675fd6">
+<h3 id="org6675fd6">Dispatching on Values in PHP</h3>
 <div class="org-src-container">
 
-<pre  class="src src-php"><span style="color: #b4fa70;">interface</span> <span style="color: #8cc4ff;">Frequency</span> {
-  <span style="color: #b4fa70;">function</span> <span style="color: #fce94f;">timesPerYear</span>()
+<pre  class="src src-php"><span style="color: #b4fa70;">interface</span> <span style="color: #8cc4ff;">Pet</span> {
+  <span style="color: #b4fa70;">function</span> <span style="color: #fce94f;">hasFur</span>();
 }
 
-<span style="color: #b4fa70;">class</span> <span style="color: #8cc4ff;">Weekly</span> <span style="color: #b4fa70;">implements</span> <span style="color: #8cc4ff;">Frequency</span> {
-  <span style="color: #b4fa70;">public</span> <span style="color: #b4fa70;">function</span> <span style="color: #fce94f;">timesPerYear</span>() { <span style="color: #b4fa70;">return</span> <span style="color: #eeeeec; background-color: #2e3436;">52</span>; }
+<span style="color: #b4fa70;">class</span> <span style="color: #8cc4ff;">Dog</span> <span style="color: #b4fa70;">implements</span> <span style="color: #8cc4ff;">Pet</span> {
+  <span style="color: #b4fa70;">public</span> <span style="color: #b4fa70;">function</span> <span style="color: #fce94f;">hasFur</span>() { <span style="color: #b4fa70;">return</span> <span style="color: #e9b2e3;">true</span>; }
 }
 
-<span style="color: #b4fa70;">class</span> <span style="color: #8cc4ff;">Monthly</span> <span style="color: #b4fa70;">implements</span> <span style="color: #8cc4ff;">Frequency</span> {
-  <span style="color: #b4fa70;">public</span> <span style="color: #b4fa70;">function</span> <span style="color: #fce94f;">timesPerYear</span>() { <span style="color: #b4fa70;">return</span> <span style="color: #eeeeec; background-color: #2e3436;">12</span>; }
+<span style="color: #b4fa70;">class</span> <span style="color: #8cc4ff;">Cat</span> <span style="color: #b4fa70;">implements</span> <span style="color: #8cc4ff;">Pet</span> {
+  <span style="color: #b4fa70;">public</span> <span style="color: #b4fa70;">function</span> <span style="color: #fce94f;">hasFur</span>() { <span style="color: #b4fa70;">return</span> <span style="color: #e9b2e3;">true</span>; }
 }
 
-<span style="color: #b4fa70;">class</span> <span style="color: #8cc4ff;">Annually</span> <span style="color: #b4fa70;">implements</span> <span style="color: #8cc4ff;">Frequency</span> {
-  <span style="color: #b4fa70;">public</span> <span style="color: #b4fa70;">function</span> <span style="color: #fce94f;">timesPerYear</span>() { <span style="color: #b4fa70;">return</span> <span style="color: #eeeeec; background-color: #2e3436;">1</span>; }
+<span style="color: #b4fa70;">class</span> <span style="color: #8cc4ff;">Goldfish</span> <span style="color: #b4fa70;">implements</span> <span style="color: #8cc4ff;">Pet</span> {
+  <span style="color: #b4fa70;">public</span> <span style="color: #b4fa70;">function</span> <span style="color: #fce94f;">hasFur</span>() { <span style="color: #b4fa70;">return</span> <span style="color: #e9b2e3;">false</span>; }
+}
+
+<span style="color: #73d216;">// </span><span style="color: #73d216;">caller doesn't necessarily know the runtime</span>
+<span style="color: #73d216;">// </span><span style="color: #73d216;">type of $myPet - and shouldn't care.</span>
+$<span style="color: #fcaf3e;">myPet</span>-&gt;<span style="color: #eeeeec; background-color: #2e3436;">hasFur</span>();
+</pre>
+</div>
+
+</section>
+<section id="slide-org4c36681">
+<h3 id="org4c36681">Use in a Pet Store Application (Scala)</h3>
+<p>
+A part of the application needs to know what pets a given pet might attack.
+</p>
+
+<div class="org-src-container">
+
+<pre  class="src src-scala"><span style="color: #b4fa70;">object</span> <span style="color: #e9b2e3;">PetStore</span> {
+
+  <span style="color: #b4fa70;">def</span> <span style="color: #fce94f;">mayAttack</span>(pet<span style="color: #b4fa70;">:</span> <span style="color: #8cc4ff;">Pet</span>)<span style="color: #b4fa70;">:</span> <span style="color: #8cc4ff;">Seq</span>[<span style="color: #e9b2e3;">Pet</span>] <span style="color: #b4fa70;">=</span> pet <span style="color: #b4fa70;">match</span> {
+    <span style="color: #b4fa70;">case</span> <span style="color: #e9b2e3;">Dog</span> <span style="color: #b4fa70;">=&gt;</span> <span style="color: #e9b2e3;">List</span>(<span style="color: #e9b2e3;">Cat</span>)
+    <span style="color: #b4fa70;">case</span> <span style="color: #e9b2e3;">Cat</span> <span style="color: #b4fa70;">=&gt;</span> <span style="color: #e9b2e3;">List</span>(<span style="color: #e9b2e3;">Dog</span>, <span style="color: #e9b2e3;">Goldfish</span>)
+    <span style="color: #b4fa70;">case</span> <span style="color: #e9b2e3;">Goldfish</span> <span style="color: #b4fa70;">=&gt;</span> <span style="color: #e9b2e3;">List</span>()
+  }
+}
+</pre>
+</div>
+
+</section>
+<section id="slide-orgeee5db2">
+<h3 id="orgeee5db2">Use in a Pet Store Application (PHP)</h3>
+<div class="org-src-container">
+
+<pre  class="src src-php"><span style="color: #b4fa70;">interface</span> <span style="color: #8cc4ff;">Pet</span> {
+  <span style="color: #b4fa70;">function</span> <span style="color: #fce94f;">hasFur</span>();
+  <span style="color: #b4fa70;">function</span> <span style="color: #fce94f;">mayAttack</span>();
+}
+
+<span style="color: #b4fa70;">class</span> <span style="color: #8cc4ff;">Dog</span> <span style="color: #b4fa70;">implements</span> <span style="color: #8cc4ff;">Pet</span> {
+  <span style="color: #b4fa70;">public</span> <span style="color: #b4fa70;">function</span> <span style="color: #fce94f;">hasFur</span>() { <span style="color: #b4fa70;">return</span> <span style="color: #e9b2e3;">true</span>; }
+  <span style="color: #b4fa70;">public</span> <span style="color: #b4fa70;">function</span> <span style="color: #fce94f;">mayAttack</span>() { <span style="color: #b4fa70;">return</span> [<span style="color: #b4fa70;">new</span> <span style="color: #8cc4ff;">Cat</span>()]; }
+}
+
+<span style="color: #b4fa70;">class</span> <span style="color: #8cc4ff;">Cat</span> <span style="color: #b4fa70;">implements</span> <span style="color: #8cc4ff;">Pet</span> {
+  <span style="color: #b4fa70;">public</span> <span style="color: #b4fa70;">function</span> <span style="color: #fce94f;">hasFur</span>() { <span style="color: #b4fa70;">return</span> <span style="color: #e9b2e3;">true</span>; }
+  <span style="color: #b4fa70;">public</span> <span style="color: #b4fa70;">function</span> <span style="color: #fce94f;">mayAttack</span>() { <span style="color: #b4fa70;">return</span> [<span style="color: #b4fa70;">new</span> <span style="color: #8cc4ff;">Dog</span>(), <span style="color: #b4fa70;">new</span> <span style="color: #8cc4ff;">Goldfish</span>()]; }
+}
+
+<span style="color: #b4fa70;">class</span> <span style="color: #8cc4ff;">Goldfish</span> <span style="color: #b4fa70;">implements</span> <span style="color: #8cc4ff;">Pet</span> {
+  <span style="color: #b4fa70;">public</span> <span style="color: #b4fa70;">function</span> <span style="color: #fce94f;">hasFur</span>() { <span style="color: #b4fa70;">return</span> <span style="color: #e9b2e3;">false</span>; }
+  <span style="color: #b4fa70;">public</span> <span style="color: #b4fa70;">function</span> <span style="color: #fce94f;">mayAttack</span>() { <span style="color: #b4fa70;">return</span> []; }
 }
 </pre>
 </div>
@@ -116,12 +166,12 @@ Well, almost.
 </section>
 </section>
 <section>
-<section id="slide-org53df6a4">
-<h2 id="org53df6a4">Review of Some Fundamentals</h2>
-<div class="outline-text-2" id="text-org53df6a4">
+<section id="slide-orgc0b9ac1">
+<h2 id="orgc0b9ac1">Review of Some Fundamentals</h2>
+<div class="outline-text-2" id="text-orgc0b9ac1">
 </div></section>
-<section id="slide-orga4a3d41">
-<h3 id="orga4a3d41">What is a type?</h3>
+<section id="slide-org28dc390">
+<h3 id="org28dc390">What is a type?</h3>
 <p>
 A type is simply a set of values.
 </p>
@@ -136,53 +186,31 @@ For example:
 </ul>
 
 </section>
-<section id="slide-orgf906f01">
-<h3 id="orgf906f01">Dynamic Dispatch</h3>
+<section id="slide-org0fa8075">
+<h3 id="org0fa8075">Dynamic Dispatch</h3>
 
 </section>
-<section id="slide-orgdbcbf1b">
-<h3 id="orgdbcbf1b">Algebraic Data Types</h3>
+<section id="slide-orge502f27">
+<h3 id="orge502f27">Algebraic Data Types</h3>
 
-
-</section>
-</section>
-<section>
-<section id="slide-orgc206a34">
-<h2 id="orgc206a34">Example of the Problem</h2>
 
 </section>
 </section>
 <section>
-<section id="slide-orge1c82a3">
-<h2 id="orge1c82a3">Pattern Matching: What Is It?</h2>
-<div class="outline-text-2" id="text-orge1c82a3">
+<section id="slide-orgf3e68b6">
+<h2 id="orgf3e68b6">Simulating ADTs in OO</h2>
+<div class="outline-text-2" id="text-orgf3e68b6">
 </div></section>
-<section id="slide-org85dec56">
-<h3 id="org85dec56">Pattern Matching 101</h3>
-<p>
-"pattern matching is the act of checking a given sequence of tokens for the presence of the constituents of some pattern." - Wikipedia
-</p>
-
+<section id="slide-org619c8f1">
+<h3 id="org619c8f1">Can We Have Algebraic Data Types in an OO Language? Yes!</h3>
 
 
 
 </section>
 </section>
 <section>
-<section id="slide-orgcaf053f">
-<h2 id="orgcaf053f">Simulating ADTs in OO</h2>
-<div class="outline-text-2" id="text-orgcaf053f">
-</div></section>
-<section id="slide-orge91dde1">
-<h3 id="orge91dde1">Can We Have Algebraic Data Types in an OO Language? Yes!</h3>
-
-
-
-</section>
-</section>
-<section>
-<section id="slide-org2280fc9">
-<h2 id="org2280fc9">The Visitor Pattern to the Rescue!</h2>
+<section id="slide-org5eca3e5">
+<h2 id="org5eca3e5">The Visitor Pattern to the Rescue!</h2>
 </section>
 </section>
 </div>
