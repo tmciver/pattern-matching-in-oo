@@ -26,18 +26,18 @@
 <body>
 <div class="reveal">
 <div class="slides">
-<section id="sec-title-slide"><h2 class="author">Tim McIver</h2><p class="date">Created: 2017-08-29 Tue 14:17</p>
+<section id="sec-title-slide"><h2 class="author">Tim McIver</h2><p class="date">Created: 2017-08-31 Thu 09:15</p>
 </section>
 <section id="table-of-contents">
 <div id="table-of-contents">
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#/slide-org14e6308">The Problem Statement</a></li>
-<li><a href="#/slide-org3e0f552">An Example</a></li>
-<li><a href="#/slide-orgc0b9ac1">Review of Some Fundamentals</a></li>
-<li><a href="#/slide-orgf3e68b6">Simulating ADTs in OO</a></li>
-<li><a href="#/slide-org5eca3e5">The Visitor Pattern to the Rescue!</a></li>
+<li><a href="#/slide-org4966f14">The Problem Statement</a></li>
+<li><a href="#/slide-org8c359a6">An Example</a></li>
+<li><a href="#/slide-org5856b88">Review of Some Fundamentals</a></li>
+<li><a href="#/slide-org551f555">Simulating ADTs in OO</a></li>
+<li><a href="#/slide-orgc0d0018">The Visitor Pattern to the Rescue!</a></li>
 </ul>
 </div>
 </div>
@@ -46,12 +46,12 @@
 
 
 <section>
-<section id="slide-org14e6308">
-<h2 id="org14e6308">The Problem Statement</h2>
-<div class="outline-text-2" id="text-org14e6308">
+<section id="slide-org4966f14">
+<h2 id="org4966f14">The Problem Statement</h2>
+<div class="outline-text-2" id="text-org4966f14">
 </div></section>
-<section id="slide-org304ea81">
-<h3 id="org304ea81">Can we attain the same level of generalized dispatch on values of a type using an Object-Oriented language that our friends using functional languages enjoy?</h3>
+<section id="slide-orge1f7de6">
+<h3 id="orge1f7de6">Can we attain the same level of generalized dispatch on values of a type using an Object-Oriented language that our friends using functional languages enjoy?</h3>
 <p class="fragment appear">
 Answer: Yes!
 </p>
@@ -63,12 +63,12 @@ Well, almost.
 </section>
 </section>
 <section>
-<section id="slide-org3e0f552">
-<h2 id="org3e0f552">An Example</h2>
-<div class="outline-text-2" id="text-org3e0f552">
+<section id="slide-org8c359a6">
+<h2 id="org8c359a6">An Example</h2>
+<div class="outline-text-2" id="text-org8c359a6">
 </div></section>
-<section id="slide-org7496590">
-<h3 id="org7496590">Dispatching on Values in Scala</h3>
+<section id="slide-org4c8ddbb">
+<h3 id="org4c8ddbb">Dispatching on Values in Scala</h3>
 <div class="org-src-container">
 
 <pre  class="src src-scala"><span style="color: #e090d7;">sealed</span> <span style="color: #b4fa70;">trait</span> <span style="color: #8cc4ff;">Pet</span>
@@ -89,8 +89,8 @@ Well, almost.
 </div>
 
 </section>
-<section id="slide-org6675fd6">
-<h3 id="org6675fd6">Dispatching on Values in PHP</h3>
+<section id="slide-org1a343eb">
+<h3 id="org1a343eb">Dispatching on Values in PHP</h3>
 <div class="org-src-container">
 
 <pre  class="src src-php"><span style="color: #b4fa70;">interface</span> <span style="color: #8cc4ff;">Pet</span> {
@@ -116,8 +116,8 @@ $<span style="color: #fcaf3e;">myPet</span>-&gt;<span style="color: #eeeeec; bac
 </div>
 
 </section>
-<section id="slide-org4c36681">
-<h3 id="org4c36681">Use in a Pet Store Application (Scala)</h3>
+<section id="slide-org69f09b6">
+<h3 id="org69f09b6">Use in a Pet Store Application (Scala)</h3>
 <p>
 A part of the application needs to know what pets a given pet might attack.
 </p>
@@ -136,8 +136,8 @@ A part of the application needs to know what pets a given pet might attack.
 </div>
 
 </section>
-<section id="slide-orgeee5db2">
-<h3 id="orgeee5db2">Use in a Pet Store Application (PHP)</h3>
+<section id="slide-orgfa25e59">
+<h3 id="orgfa25e59">Use in a Pet Store Application (PHP)</h3>
 <div class="org-src-container">
 
 <pre  class="src src-php"><span style="color: #b4fa70;">interface</span> <span style="color: #8cc4ff;">Pet</span> {
@@ -162,16 +162,52 @@ A part of the application needs to know what pets a given pet might attack.
 </pre>
 </div>
 
+</section>
+<section id="slide-orgdb9f919">
+<h3 id="orgdb9f919">But if you could, should you?</h3>
+<p>
+Doing this in an OO language has several drawbacks:
+</p>
+<ul>
+<li class="fragment appear">Requires you to modify the existing classes</li>
+<li class="fragment appear">Adds bloat to those classes</li>
+<li class="fragment appear">Places logic far from the module in which it is used</li>
+
+</ul>
+
+</section>
+<section id="slide-orga483f17">
+<h3 id="orga483f17">Sometimes you can't, even if you want to</h3>
+<p>
+If you don't control the classes you wish to dispatch on, you have to resort to using `instanceof`:
+</p>
+<div class="org-src-container">
+
+<pre  class="src src-php"><span style="color: #b4fa70;">class</span> <span style="color: #8cc4ff;">PetStore</span> {
+
+  <span style="color: #b4fa70;">function</span> <span style="color: #fce94f;">mayAttack</span>($<span style="color: #fcaf3e;">pet</span>) {
+    $<span style="color: #fcaf3e;">mayAttack</span> = [];
+    <span style="color: #b4fa70;">if</span> ($<span style="color: #fcaf3e;">pet</span> <span style="color: #b4fa70;">instanceof</span> <span style="color: #ff4b4b;">Dog</span>) {
+      $<span style="color: #fcaf3e;">mayAttack</span> = [<span style="color: #b4fa70;">new</span> <span style="color: #8cc4ff;">Cat</span>()];
+    } <span style="color: #b4fa70;">else</span> <span style="color: #b4fa70;">if</span> ($<span style="color: #fcaf3e;">pet</span> <span style="color: #b4fa70;">instanceof</span> <span style="color: #ff4b4b;">Cat</span>) {
+      $<span style="color: #fcaf3e;">mayAttack</span> = [<span style="color: #b4fa70;">new</span> <span style="color: #8cc4ff;">Dog</span>(), <span style="color: #b4fa70;">new</span> <span style="color: #8cc4ff;">Goldfish</span>()];
+    }
+
+    <span style="color: #b4fa70;">return</span> $<span style="color: #fcaf3e;">mayAttack</span>;
+  }
+}
+</pre>
+</div>
 
 </section>
 </section>
 <section>
-<section id="slide-orgc0b9ac1">
-<h2 id="orgc0b9ac1">Review of Some Fundamentals</h2>
-<div class="outline-text-2" id="text-orgc0b9ac1">
+<section id="slide-org5856b88">
+<h2 id="org5856b88">Review of Some Fundamentals</h2>
+<div class="outline-text-2" id="text-org5856b88">
 </div></section>
-<section id="slide-org28dc390">
-<h3 id="org28dc390">What is a type?</h3>
+<section id="slide-org444cc53">
+<h3 id="org444cc53">What is a type?</h3>
 <p>
 A type is simply a set of values.
 </p>
@@ -186,31 +222,31 @@ For example:
 </ul>
 
 </section>
-<section id="slide-org0fa8075">
-<h3 id="org0fa8075">Dynamic Dispatch</h3>
+<section id="slide-org12d7a56">
+<h3 id="org12d7a56">Dynamic Dispatch</h3>
 
 </section>
-<section id="slide-orge502f27">
-<h3 id="orge502f27">Algebraic Data Types</h3>
+<section id="slide-org2f4333b">
+<h3 id="org2f4333b">Algebraic Data Types</h3>
 
 
 </section>
 </section>
 <section>
-<section id="slide-orgf3e68b6">
-<h2 id="orgf3e68b6">Simulating ADTs in OO</h2>
-<div class="outline-text-2" id="text-orgf3e68b6">
+<section id="slide-org551f555">
+<h2 id="org551f555">Simulating ADTs in OO</h2>
+<div class="outline-text-2" id="text-org551f555">
 </div></section>
-<section id="slide-org619c8f1">
-<h3 id="org619c8f1">Can We Have Algebraic Data Types in an OO Language? Yes!</h3>
+<section id="slide-org1b8b734">
+<h3 id="org1b8b734">Can We Have Algebraic Data Types in an OO Language? Yes!</h3>
 
 
 
 </section>
 </section>
 <section>
-<section id="slide-org5eca3e5">
-<h2 id="org5eca3e5">The Visitor Pattern to the Rescue!</h2>
+<section id="slide-orgc0d0018">
+<h2 id="orgc0d0018">The Visitor Pattern to the Rescue!</h2>
 </section>
 </section>
 </div>

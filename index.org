@@ -93,6 +93,30 @@ class Goldfish implements Pet {
 }
 #+END_SRC
 
+** But if you could, should you?
+Doing this in an OO language has several drawbacks:
+#+ATTR_REVEAL: :frag (appear)
+- Requires you to modify the existing classes
+- Adds bloat to those classes
+- Places logic far from the module in which it is used
+
+** Sometimes you can't, even if you want to
+If you don't control the classes you wish to dispatch on, you have to resort to using `instanceof`:
+#+BEGIN_SRC php
+class PetStore {
+
+  function mayAttack($pet) {
+    $mayAttack = [];
+    if ($pet instanceof Dog) {
+      $mayAttack = [new Cat()];
+    } else if ($pet instanceof Cat) {
+      $mayAttack = [new Dog(), new Goldfish()];
+    }
+
+    return $mayAttack;
+  }
+}
+#+END_SRC
 
 * Review of Some Fundamentals
 
