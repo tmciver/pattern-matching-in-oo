@@ -101,7 +101,7 @@ Doing this in an OO language has several drawbacks:
 - Places logic far from the module in which it is used
 
 ** Sometimes you can't, even if you want to
-If you don't control the classes you wish to dispatch on, you have to resort to using `instanceof`:
+If you don't control the classes you wish to dispatch on, you have to resort to using ~instanceof~:
 #+BEGIN_SRC php
 class PetStore {
 
@@ -117,6 +117,33 @@ class PetStore {
   }
 }
 #+END_SRC
+
+** A Solution
+What if ~Pet~ looked like the following?
+#+BEGIN_SRC php
+interface Pet {
+  function callYourFunction($functionMap);
+}
+
+class Dog implements Pet {
+  function callYourFunction($functionMap) {
+    return call_user_func($functionMap['Dog'], [$this]);
+  }
+}
+
+class Cat implements Pet {
+  function callYourFunction($functionMap) {
+    return call_user_func($functionMap['Cat'], [$this]);
+  }
+}
+
+class Goldfish implements Pet {
+  function callYourFunction($functionMap) {
+    return call_user_func($functionMap['Goldfish'], [$this]);
+  }
+}
+#+END_SRC
+
 
 * Review of Some Fundamentals
 
