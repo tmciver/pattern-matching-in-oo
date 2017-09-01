@@ -144,6 +144,23 @@ class Goldfish implements Pet {
 }
 #+END_SRC
 
+** Define and Use a Function Map
+#+BEGIN_SRC php
+$hasFurFunctionMap = [
+  'Dog' => function($dog) {
+             return true;
+           }
+  'Cat' => function($dog) {
+             return true;
+           }
+  'Goldfish' => function($dog) {
+                  return false;
+                }
+];
+
+$hasFur = $pet->callYourFunction($hasFurFunctionMap);
+#+END_SRC
+
 
 * Review of Some Fundamentals
 
