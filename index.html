@@ -26,18 +26,18 @@
 <body>
 <div class="reveal">
 <div class="slides">
-<section id="sec-title-slide"><h2 class="author">Tim McIver</h2><p class="date">Created: 2017-09-01 Fri 09:02</p>
+<section id="sec-title-slide"><h2 class="author">Tim McIver</h2><p class="date">Created: 2017-09-01 Fri 20:39</p>
 </section>
 <section id="table-of-contents">
 <div id="table-of-contents">
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#/slide-org3b99b0d">The Problem Statement</a></li>
-<li><a href="#/slide-org85e3de6">An Example</a></li>
-<li><a href="#/slide-orgd503089">Review of Some Fundamentals</a></li>
-<li><a href="#/slide-org7524879">Simulating ADTs in OO</a></li>
-<li><a href="#/slide-org3c95ae5">The Visitor Pattern to the Rescue!</a></li>
+<li><a href="#/slide-orgba8ef8c">The Problem Statement</a></li>
+<li><a href="#/slide-org7d178f6">An Example</a></li>
+<li><a href="#/slide-orge199f92">Review of Some Fundamentals</a></li>
+<li><a href="#/slide-org22db9ea">Simulating ADTs in OO</a></li>
+<li><a href="#/slide-org20c9514">The Visitor Pattern to the Rescue!</a></li>
 </ul>
 </div>
 </div>
@@ -46,12 +46,12 @@
 
 
 <section>
-<section id="slide-org3b99b0d">
-<h2 id="org3b99b0d">The Problem Statement</h2>
-<div class="outline-text-2" id="text-org3b99b0d">
+<section id="slide-orgba8ef8c">
+<h2 id="orgba8ef8c">The Problem Statement</h2>
+<div class="outline-text-2" id="text-orgba8ef8c">
 </div></section>
-<section id="slide-org53910c8">
-<h3 id="org53910c8">Can we attain the same level of generalized dispatch on values of a type using an Object-Oriented language that our friends using functional languages enjoy?</h3>
+<section id="slide-org427cb58">
+<h3 id="org427cb58">Can we attain the same level of generalized dispatch on values of a type using an Object-Oriented language that our friends using functional languages enjoy?</h3>
 <p class="fragment appear">
 Answer: Yes!
 </p>
@@ -63,12 +63,12 @@ Well, almost.
 </section>
 </section>
 <section>
-<section id="slide-org85e3de6">
-<h2 id="org85e3de6">An Example</h2>
-<div class="outline-text-2" id="text-org85e3de6">
+<section id="slide-org7d178f6">
+<h2 id="org7d178f6">An Example</h2>
+<div class="outline-text-2" id="text-org7d178f6">
 </div></section>
-<section id="slide-orgbaa067e">
-<h3 id="orgbaa067e">Dispatching on Values in Scala</h3>
+<section id="slide-org5f61c14">
+<h3 id="org5f61c14">Dispatching on Values in Scala</h3>
 <div class="org-src-container">
 
 <pre  class="src src-scala"><span style="color: #e090d7;">sealed</span> <span style="color: #b4fa70;">trait</span> <span style="color: #8cc4ff;">Pet</span>
@@ -89,8 +89,8 @@ Well, almost.
 </div>
 
 </section>
-<section id="slide-org5874600">
-<h3 id="org5874600">Dispatching on Values in PHP</h3>
+<section id="slide-org0f37d6e">
+<h3 id="org0f37d6e">Dispatching on Values in PHP</h3>
 <div class="org-src-container">
 
 <pre  class="src src-php"><span style="color: #b4fa70;">interface</span> <span style="color: #8cc4ff;">Pet</span> {
@@ -116,8 +116,8 @@ $<span style="color: #fcaf3e;">myPet</span>-&gt;<span style="color: #eeeeec; bac
 </div>
 
 </section>
-<section id="slide-orgc07df8b">
-<h3 id="orgc07df8b">Use in a Pet Store Application (Scala)</h3>
+<section id="slide-org47e1a03">
+<h3 id="org47e1a03">Use in a Pet Store Application (Scala)</h3>
 <p>
 A part of the application needs to know what pets a given pet might attack.
 </p>
@@ -136,8 +136,8 @@ A part of the application needs to know what pets a given pet might attack.
 </div>
 
 </section>
-<section id="slide-org7c68827">
-<h3 id="org7c68827">Use in a Pet Store Application (PHP)</h3>
+<section id="slide-org9ae2f0f">
+<h3 id="org9ae2f0f">Use in a Pet Store Application (PHP)</h3>
 <div class="org-src-container">
 
 <pre  class="src src-php"><span style="color: #b4fa70;">interface</span> <span style="color: #8cc4ff;">Pet</span> {
@@ -163,8 +163,8 @@ A part of the application needs to know what pets a given pet might attack.
 </div>
 
 </section>
-<section id="slide-orgdf21e27">
-<h3 id="orgdf21e27">But if you could, should you?</h3>
+<section id="slide-org99d735a">
+<h3 id="org99d735a">But if you could, should you?</h3>
 <p>
 Doing this in an OO language has several drawbacks:
 </p>
@@ -176,8 +176,8 @@ Doing this in an OO language has several drawbacks:
 </ul>
 
 </section>
-<section id="slide-orgeacb2d6">
-<h3 id="orgeacb2d6">Sometimes you can't, even if you want to</h3>
+<section id="slide-org2a575a2">
+<h3 id="org2a575a2">Sometimes you can't, even if you want to</h3>
 <p>
 If you don't control the classes you wish to dispatch on, you have to resort to using <code>instanceof</code>:
 </p>
@@ -200,8 +200,8 @@ If you don't control the classes you wish to dispatch on, you have to resort to 
 </div>
 
 </section>
-<section id="slide-org0311fe1">
-<h3 id="org0311fe1">A Solution</h3>
+<section id="slide-org8e7cc66">
+<h3 id="org8e7cc66">A Solution</h3>
 <p>
 What if <code>Pet</code> looked like the following?
 </p>
@@ -232,8 +232,11 @@ What if <code>Pet</code> looked like the following?
 </div>
 
 </section>
-<section id="slide-org2e1f1ab">
-<h3 id="org2e1f1ab">Define and Use a Function Map</h3>
+<section id="slide-orgd108605">
+<h3 id="orgd108605">A Solution (Continued)</h3>
+<p>
+Define and Use a Function Map
+</p>
 <div class="org-src-container">
 
 <pre  class="src src-php">$<span style="color: #fcaf3e;">hasFurFunctionMap</span> = [
@@ -244,7 +247,7 @@ What if <code>Pet</code> looked like the following?
              <span style="color: #b4fa70;">return</span> <span style="color: #e9b2e3;">true</span>;
            }
   <span style="color: #e9b96e;">'Goldfish'</span> =&gt; <span style="color: #eeeeec; background-color: #2e3436;">function(</span>$<span style="color: #fcaf3e;">dog</span>) {
-                  <span style="color: #b4fa70;">return</span> <span style="color: #e9b2e3;">true</span>;
+                  <span style="color: #b4fa70;">return</span> <span style="color: #e9b2e3;">false</span>;
                 }
 ];
 
@@ -252,16 +255,89 @@ $<span style="color: #fcaf3e;">hasFur</span> = $<span style="color: #fcaf3e;">pe
 </pre>
 </div>
 
+</section>
+<section id="slide-org4306a1c">
+<h3 id="org4306a1c">Another Solution</h3>
+<p>
+Instead of a map, let's use an interface
+</p>
+<div class="org-src-container">
+
+<pre  class="src src-php"><span style="color: #b4fa70;">interface</span> <span style="color: #8cc4ff;">PetFunctions</span> {
+  <span style="color: #b4fa70;">function</span> <span style="color: #fce94f;">functionForDog</span>($<span style="color: #fcaf3e;">dog</span>);
+  <span style="color: #b4fa70;">function</span> <span style="color: #fce94f;">functionForCat</span>($<span style="color: #fcaf3e;">cat</span>);
+  <span style="color: #b4fa70;">function</span> <span style="color: #fce94f;">functionForGoldfish</span>($<span style="color: #fcaf3e;">goldfish</span>);
+}
+</pre>
+</div>
+
+<p class="fragment appear">
+And implement that interface:
+</p>
+<div class="org-src-container">
+
+<pre  class="fragment appear"><span style="color: #b4fa70;">class</span> <span style="color: #8cc4ff;">HasFurFunctions</span> <span style="color: #b4fa70;">implements</span> <span style="color: #8cc4ff;">PetFunctions</span> {
+  <span style="color: #b4fa70;">function</span> <span style="color: #fce94f;">functionForDog</span>($<span style="color: #fcaf3e;">dog</span>) { <span style="color: #b4fa70;">return</span> <span style="color: #e9b2e3;">true</span>; }
+  <span style="color: #b4fa70;">function</span> <span style="color: #fce94f;">functionForCat</span>($<span style="color: #fcaf3e;">cat</span>) { <span style="color: #b4fa70;">return</span> <span style="color: #e9b2e3;">true</span>; }
+  <span style="color: #b4fa70;">function</span> <span style="color: #fce94f;">functionForGoldfish</span>($<span style="color: #fcaf3e;">goldfish</span>) { <span style="color: #b4fa70;">return</span> <span style="color: #e9b2e3;">false</span>; }
+}
+</pre>
+</div>
+
+</section>
+<section id="slide-orged2a5d2">
+<h3 id="orged2a5d2">Another Solution (Continued)</h3>
+<p>
+And change <code>Pet</code> to the following:
+</p>
+<div class="org-src-container">
+
+<pre  class="src src-php"><span style="color: #b4fa70;">interface</span> <span style="color: #8cc4ff;">Pet</span> {
+  <span style="color: #b4fa70;">function</span> <span style="color: #fce94f;">callYourFunction</span>($<span style="color: #fcaf3e;">petFunctions</span>);
+}
+
+<span style="color: #b4fa70;">class</span> <span style="color: #8cc4ff;">Dog</span> <span style="color: #b4fa70;">implements</span> <span style="color: #8cc4ff;">Pet</span> {
+  <span style="color: #b4fa70;">function</span> <span style="color: #fce94f;">callYourFunction</span>($<span style="color: #fcaf3e;">petFunctions</span>) {
+    <span style="color: #b4fa70;">return</span> $<span style="color: #fcaf3e;">petFunctions</span>-&gt;<span style="color: #eeeeec; background-color: #2e3436;">functionForDog</span>($<span style="color: #e9b2e3;">this</span>);
+  }
+}
+
+<span style="color: #b4fa70;">class</span> <span style="color: #8cc4ff;">Cat</span> <span style="color: #b4fa70;">implements</span> <span style="color: #8cc4ff;">Pet</span> {
+  <span style="color: #b4fa70;">function</span> <span style="color: #fce94f;">callYourFunction</span>($<span style="color: #fcaf3e;">petFunctions</span>) {
+    <span style="color: #b4fa70;">return</span> $<span style="color: #fcaf3e;">petFunctions</span>-&gt;<span style="color: #eeeeec; background-color: #2e3436;">functionForCat</span>($<span style="color: #e9b2e3;">this</span>);
+  }
+}
+
+<span style="color: #b4fa70;">class</span> <span style="color: #8cc4ff;">Goldfish</span> <span style="color: #b4fa70;">implements</span> <span style="color: #8cc4ff;">Pet</span> {
+  <span style="color: #b4fa70;">function</span> <span style="color: #fce94f;">callYourFunction</span>($<span style="color: #fcaf3e;">petFunctions</span>) {
+    <span style="color: #b4fa70;">return</span> $<span style="color: #fcaf3e;">petFunctions</span>-&gt;<span style="color: #eeeeec; background-color: #2e3436;">functionForGoldfish</span>($<span style="color: #e9b2e3;">this</span>);
+  }
+}
+</pre>
+</div>
+
+</section>
+<section id="slide-orge68d6f3">
+<h3 id="orge68d6f3">Another Solution (Continued)</h3>
+<p>
+Finally, use the <code>HasFur</code> <code>PetFunctions</code>:
+</p>
+<div class="org-src-container">
+
+<pre  class="src src-php">$<span style="color: #fcaf3e;">hasFur</span> = $<span style="color: #fcaf3e;">pet</span>-&gt;<span style="color: #eeeeec; background-color: #2e3436;">callYourFunction</span>(<span style="color: #b4fa70;">new</span> <span style="color: #8cc4ff;">HasFurFunctions</span>());
+</pre>
+</div>
+
 
 </section>
 </section>
 <section>
-<section id="slide-orgd503089">
-<h2 id="orgd503089">Review of Some Fundamentals</h2>
-<div class="outline-text-2" id="text-orgd503089">
+<section id="slide-orge199f92">
+<h2 id="orge199f92">Review of Some Fundamentals</h2>
+<div class="outline-text-2" id="text-orge199f92">
 </div></section>
-<section id="slide-org528ee55">
-<h3 id="org528ee55">What is a type?</h3>
+<section id="slide-org7ef9f8c">
+<h3 id="org7ef9f8c">What is a type?</h3>
 <p>
 A type is simply a set of values.
 </p>
@@ -276,31 +352,31 @@ For example:
 </ul>
 
 </section>
-<section id="slide-orge542994">
-<h3 id="orge542994">Dynamic Dispatch</h3>
+<section id="slide-org0f2760a">
+<h3 id="org0f2760a">Dynamic Dispatch</h3>
 
 </section>
-<section id="slide-orga5e5c15">
-<h3 id="orga5e5c15">Algebraic Data Types</h3>
+<section id="slide-org76ee481">
+<h3 id="org76ee481">Algebraic Data Types</h3>
 
 
 </section>
 </section>
 <section>
-<section id="slide-org7524879">
-<h2 id="org7524879">Simulating ADTs in OO</h2>
-<div class="outline-text-2" id="text-org7524879">
+<section id="slide-org22db9ea">
+<h2 id="org22db9ea">Simulating ADTs in OO</h2>
+<div class="outline-text-2" id="text-org22db9ea">
 </div></section>
-<section id="slide-org664d531">
-<h3 id="org664d531">Can We Have Algebraic Data Types in an OO Language? Yes!</h3>
+<section id="slide-org00a8979">
+<h3 id="org00a8979">Can We Have Algebraic Data Types in an OO Language? Yes!</h3>
 
 
 
 </section>
 </section>
 <section>
-<section id="slide-org3c95ae5">
-<h2 id="org3c95ae5">The Visitor Pattern to the Rescue!</h2>
+<section id="slide-org20c9514">
+<h2 id="org20c9514">The Visitor Pattern to the Rescue!</h2>
 </section>
 </section>
 </div>

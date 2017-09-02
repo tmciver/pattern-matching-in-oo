@@ -144,7 +144,8 @@ class Goldfish implements Pet {
 }
 #+END_SRC
 
-** Define and Use a Function Map
+** A Solution (Continued)
+Define and Use a Function Map
 #+BEGIN_SRC php
 $hasFurFunctionMap = [
   'Dog' => function($dog) {
@@ -159,6 +160,59 @@ $hasFurFunctionMap = [
 ];
 
 $hasFur = $pet->callYourFunction($hasFurFunctionMap);
+#+END_SRC
+
+** Another Solution
+Instead of a map, let's use an interface
+#+BEGIN_SRC php
+interface PetFunctions {
+  function functionForDog($dog);
+  function functionForCat($cat);
+  function functionForGoldfish($goldfish);
+}
+#+END_SRC
+
+#+ATTR_REVEAL: :frag appear
+And implement that interface:
+#+ATTR_REVEAL: :frag appear
+#+BEGIN_SRC php
+class HasFurFunctions implements PetFunctions {
+  function functionForDog($dog) { return true; }
+  function functionForCat($cat) { return true; }
+  function functionForGoldfish($goldfish) { return false; }
+}
+#+END_SRC
+
+** Another Solution (Continued)
+And change ~Pet~ to the following:
+#+BEGIN_SRC php
+interface Pet {
+  function callYourFunction($petFunctions);
+}
+
+class Dog implements Pet {
+  function callYourFunction($petFunctions) {
+    return $petFunctions->functionForDog($this);
+  }
+}
+
+class Cat implements Pet {
+  function callYourFunction($petFunctions) {
+    return $petFunctions->functionForCat($this);
+  }
+}
+
+class Goldfish implements Pet {
+  function callYourFunction($petFunctions) {
+    return $petFunctions->functionForGoldfish($this);
+  }
+}
+#+END_SRC
+
+** Another Solution (Continued)
+Finally, use the ~HasFur~ ~PetFunctions~:
+#+BEGIN_SRC php
+$hasFur = $pet->callYourFunction(new HasFurFunctions());
 #+END_SRC
 
 
