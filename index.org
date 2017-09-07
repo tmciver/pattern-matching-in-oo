@@ -171,7 +171,10 @@ No choice but to resort to using ~instanceof~
 #+ATTR_REVEAL: :frag appear
 OK, that's not so bad but if new versions of the ~shape~ library add shapes with corners, this code will be broken.
 
-** A Solution
+
+* Solutions
+
+** First Solution
 What if ~Shape~ looked like the following?
 #+BEGIN_SRC php
 interface Shape {
@@ -197,31 +200,31 @@ class Triangle implements Shape {
 }
 #+END_SRC
 
-** A Solution (Continued)
-Define and Use a Function Map
+** First Solution
+Then we define and use a function map:
 #+BEGIN_SRC php
-$areaFunctionMap = [
-  'Circle' => function($dog) {
-             return true;
-           }
-  'Square' => function($dog) {
-             return true;
-           }
-  'Triangle' => function($dog) {
-                  return false;
-                }
-];
+  $hasCornersFunctionMap = [
+    'Circle' => function($circle) {
+      return false;
+    }
+    'Square' => function($square) {
+      return true;
+    }
+    'Triangle' => function($triangle) {
+      return true;
+    }
+  ];
 
-$area = $shape->callYourFunction($areaFunctionMap);
+  $hasCorners = $shape->callYourFunction($hasCornersFunctionMap);
 #+END_SRC
 
-** Another Solution
+** Second Solution
 Instead of a map, let's use an interface
 #+BEGIN_SRC php
 interface ShapeFunctions {
-  function functionForCircle($dog);
-  function functionForSquare($cat);
-  function functionForTriangle($goldfish);
+  function functionForCircle($circle);
+  function functionForSquare($square);
+  function functionForTriangle($triangle);
 }
 #+END_SRC
 
@@ -229,14 +232,14 @@ interface ShapeFunctions {
 And implement that interface:
 #+ATTR_REVEAL: :frag appear
 #+BEGIN_SRC php
-class HasFurFunctions implements ShapeFunctions {
-  function functionForCircle($dog) { return true; }
-  function functionForSquare($cat) { return true; }
-  function functionForTriangle($goldfish) { return false; }
+class HasCornersFunctions implements ShapeFunctions {
+  function functionForCircle($circle) { return false; }
+  function functionForSquare($square) { return true; }
+  function functionForTriangle($triangle) { return true; }
 }
 #+END_SRC
 
-** Another Solution (Continued)
+** Second Solution (Continued)
 And change ~Shape~ to the following:
 #+BEGIN_SRC php
 interface Shape {
@@ -262,8 +265,8 @@ class Triangle implements Shape {
 }
 #+END_SRC
 
-** Another Solution (Continued)
-Finally, use the ~HasFur~ ~ShapeFunctions~:
+** Second Solution (Continued)
+Finally, use ~HasCornersFunctions~:
 #+BEGIN_SRC php
-$area = $shape->callYourFunction(new HasFurFunctions());
+$hasCorners = $shape->callYourFunction(new HasCornersFunctions());
 #+END_SRC

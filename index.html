@@ -26,16 +26,17 @@
 <body>
 <div class="reveal">
 <div class="slides">
-<section id="sec-title-slide"><h2 class="author">Tim McIver</h2><p class="date">Created: 2017-09-07 Thu 13:58</p>
+<section id="sec-title-slide"><h2 class="author">Tim McIver</h2><p class="date">Created: 2017-09-07 Thu 16:59</p>
 </section>
 <section id="table-of-contents">
 <div id="table-of-contents">
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#/slide-orgae5a38a">The Problem Statement</a></li>
-<li><a href="#/slide-org5bc4828">What is Pattern Matching?</a></li>
-<li><a href="#/slide-orgbeb15f2">Dispatching in OOP</a></li>
+<li><a href="#/slide-orgbff1715">The Problem Statement</a></li>
+<li><a href="#/slide-orgccd20f3">What is Pattern Matching?</a></li>
+<li><a href="#/slide-orgbdbfb86">Dispatching in OOP</a></li>
+<li><a href="#/slide-orgf629f50">Solutions</a></li>
 </ul>
 </div>
 </div>
@@ -44,12 +45,12 @@
 
 
 <section>
-<section id="slide-orgae5a38a">
-<h2 id="orgae5a38a">The Problem Statement</h2>
-<div class="outline-text-2" id="text-orgae5a38a">
+<section id="slide-orgbff1715">
+<h2 id="orgbff1715">The Problem Statement</h2>
+<div class="outline-text-2" id="text-orgbff1715">
 </div></section>
-<section id="slide-org4be6cd0">
-<h3 id="org4be6cd0">Can we attain the same level of generalized dispatch on values of a type using an Object-Oriented language that our friends using functional languages enjoy?</h3>
+<section id="slide-org35ef3e8">
+<h3 id="org35ef3e8">Can we attain the same level of generalized dispatch on values of a type using an Object-Oriented language that our friends using functional languages enjoy?</h3>
 <p class="fragment appear">
 Answer: Yes!
 </p>
@@ -61,12 +62,12 @@ Well, almost.
 </section>
 </section>
 <section>
-<section id="slide-org5bc4828">
-<h2 id="org5bc4828">What is Pattern Matching?</h2>
-<div class="outline-text-2" id="text-org5bc4828">
+<section id="slide-orgccd20f3">
+<h2 id="orgccd20f3">What is Pattern Matching?</h2>
+<div class="outline-text-2" id="text-orgccd20f3">
 </div></section>
-<section id="slide-org06fe955">
-<h3 id="org06fe955"></h3>
+<section id="slide-org1df5223">
+<h3 id="org1df5223"></h3>
 <p>
 Given the following Scala code:
 </p>
@@ -99,8 +100,8 @@ You can use pattern matching to implement the <code>area</code> function:
 </div>
 
 </section>
-<section id="slide-org0517e79">
-<h3 id="org0517e79"></h3>
+<section id="slide-org1bd2897">
+<h3 id="org1bd2897"></h3>
 <p>
 Underscore matches anything:
 </p>
@@ -117,8 +118,8 @@ Underscore matches anything:
 </div>
 
 </section>
-<section id="slide-org2ba9055">
-<h3 id="org2ba9055"></h3>
+<section id="slide-org3947a20">
+<h3 id="org3947a20"></h3>
 <p>
 You can match on type:
 </p>
@@ -136,8 +137,8 @@ You can match on type:
 </div>
 
 </section>
-<section id="slide-org751746f">
-<h3 id="org751746f"></h3>
+<section id="slide-org2654edd">
+<h3 id="org2654edd"></h3>
 <p>
 It's recursive:
 </p>
@@ -155,8 +156,8 @@ It's recursive:
 </div>
 
 </section>
-<section id="slide-org948e4b0">
-<h3 id="org948e4b0"></h3>
+<section id="slide-org661e904">
+<h3 id="org661e904"></h3>
 <p>
 And exhaustive.  The following gives a warning:
 </p>
@@ -177,12 +178,12 @@ And exhaustive.  The following gives a warning:
 </section>
 </section>
 <section>
-<section id="slide-orgbeb15f2">
-<h2 id="orgbeb15f2">Dispatching in OOP</h2>
-<div class="outline-text-2" id="text-orgbeb15f2">
+<section id="slide-orgbdbfb86">
+<h2 id="orgbdbfb86">Dispatching in OOP</h2>
+<div class="outline-text-2" id="text-orgbdbfb86">
 </div></section>
-<section id="slide-org1c1a7fd">
-<h3 id="org1c1a7fd">Dispatching on Values in PHP</h3>
+<section id="slide-org859a508">
+<h3 id="org859a508">Dispatching on Values in PHP</h3>
 <div class="org-src-container">
 
 <pre  class="src src-php"><span style="color: #b4fa70;">interface</span> <span style="color: #8cc4ff;">Shape</span> {
@@ -211,8 +212,8 @@ $<span style="color: #fcaf3e;">myShape</span>-&gt;<span style="color: #eeeeec; b
 </div>
 
 </section>
-<section id="slide-orgb47b27f">
-<h3 id="orgb47b27f"></h3>
+<section id="slide-orgd70b326">
+<h3 id="orgd70b326"></h3>
 <p>
 Similarly for the <code>hasCorners</code> method:
 </p>
@@ -244,8 +245,8 @@ Similarly for the <code>hasCorners</code> method:
 </div>
 
 </section>
-<section id="slide-org65bf6e7">
-<h3 id="org65bf6e7">But if you could, should you?</h3>
+<section id="slide-org06f6b0e">
+<h3 id="org06f6b0e">But if you could, should you?</h3>
 <p>
 Doing this in an OO language has several drawbacks:
 </p>
@@ -257,8 +258,8 @@ Doing this in an OO language has several drawbacks:
 </ul>
 
 </section>
-<section id="slide-org8fa8b36">
-<h3 id="org8fa8b36">Use in a Client Application</h3>
+<section id="slide-org7f94324">
+<h3 id="org7f94324">Use in a Client Application</h3>
 <p>
 But what if you can't? How can you implement the <code>hasCorners</code> function if you can't modify the <code>shapes</code> library?
 </p>
@@ -281,9 +282,16 @@ No choice but to resort to using <code>instanceof</code>
 OK, that's not so bad but if new versions of the <code>shape</code> library add shapes with corners, this code will be broken.
 </p>
 
+
 </section>
-<section id="slide-org581970d">
-<h3 id="org581970d">A Solution</h3>
+</section>
+<section>
+<section id="slide-orgf629f50">
+<h2 id="orgf629f50">Solutions</h2>
+<div class="outline-text-2" id="text-orgf629f50">
+</div></section>
+<section id="slide-org3296cf1">
+<h3 id="org3296cf1">First Solution</h3>
 <p>
 What if <code>Shape</code> looked like the following?
 </p>
@@ -314,41 +322,41 @@ What if <code>Shape</code> looked like the following?
 </div>
 
 </section>
-<section id="slide-org85c332d">
-<h3 id="org85c332d">A Solution (Continued)</h3>
+<section id="slide-orgdbb8c18">
+<h3 id="orgdbb8c18">First Solution</h3>
 <p>
-Define and Use a Function Map
+Then we define and use a function map:
 </p>
 <div class="org-src-container">
 
-<pre  class="src src-php">$<span style="color: #fcaf3e;">areaFunctionMap</span> = [
-  <span style="color: #e9b96e;">'Circle'</span> =&gt; <span style="color: #eeeeec; background-color: #2e3436;">function(</span>$<span style="color: #fcaf3e;">dog</span>) {
-             <span style="color: #b4fa70;">return</span> <span style="color: #e9b2e3;">true</span>;
-           }
-  <span style="color: #e9b96e;">'Square'</span> =&gt; <span style="color: #eeeeec; background-color: #2e3436;">function(</span>$<span style="color: #fcaf3e;">dog</span>) {
-             <span style="color: #b4fa70;">return</span> <span style="color: #e9b2e3;">true</span>;
-           }
-  <span style="color: #e9b96e;">'Triangle'</span> =&gt; <span style="color: #eeeeec; background-color: #2e3436;">function(</span>$<span style="color: #fcaf3e;">dog</span>) {
-                  <span style="color: #b4fa70;">return</span> <span style="color: #e9b2e3;">false</span>;
-                }
+<pre  class="src src-php">$<span style="color: #fcaf3e;">hasCornersFunctionMap</span> = [
+  <span style="color: #e9b96e;">'Circle'</span> =&gt; <span style="color: #eeeeec; background-color: #2e3436;">function(</span>$<span style="color: #fcaf3e;">circle</span>) {
+    <span style="color: #b4fa70;">return</span> <span style="color: #e9b2e3;">false</span>;
+  }
+  <span style="color: #e9b96e;">'Square'</span> =&gt; <span style="color: #eeeeec; background-color: #2e3436;">function(</span>$<span style="color: #fcaf3e;">square</span>) {
+    <span style="color: #b4fa70;">return</span> <span style="color: #e9b2e3;">true</span>;
+  }
+  <span style="color: #e9b96e;">'Triangle'</span> =&gt; <span style="color: #eeeeec; background-color: #2e3436;">function(</span>$<span style="color: #fcaf3e;">triangle</span>) {
+    <span style="color: #b4fa70;">return</span> <span style="color: #e9b2e3;">true</span>;
+  }
 ];
 
-$<span style="color: #fcaf3e;">area</span> = $<span style="color: #fcaf3e;">shape</span>-&gt;<span style="color: #eeeeec; background-color: #2e3436;">callYourFunction</span>($<span style="color: #fcaf3e;">areaFunctionMap</span>);
+$<span style="color: #fcaf3e;">hasCorners</span> = $<span style="color: #fcaf3e;">shape</span>-&gt;<span style="color: #eeeeec; background-color: #2e3436;">callYourFunction</span>($<span style="color: #fcaf3e;">hasCornersFunctionMap</span>);
 </pre>
 </div>
 
 </section>
-<section id="slide-org0e0e8c7">
-<h3 id="org0e0e8c7">Another Solution</h3>
+<section id="slide-orgc126b33">
+<h3 id="orgc126b33">Second Solution</h3>
 <p>
 Instead of a map, let's use an interface
 </p>
 <div class="org-src-container">
 
 <pre  class="src src-php"><span style="color: #b4fa70;">interface</span> <span style="color: #8cc4ff;">ShapeFunctions</span> {
-  <span style="color: #b4fa70;">function</span> <span style="color: #fce94f;">functionForCircle</span>($<span style="color: #fcaf3e;">dog</span>);
-  <span style="color: #b4fa70;">function</span> <span style="color: #fce94f;">functionForSquare</span>($<span style="color: #fcaf3e;">cat</span>);
-  <span style="color: #b4fa70;">function</span> <span style="color: #fce94f;">functionForTriangle</span>($<span style="color: #fcaf3e;">goldfish</span>);
+  <span style="color: #b4fa70;">function</span> <span style="color: #fce94f;">functionForCircle</span>($<span style="color: #fcaf3e;">circle</span>);
+  <span style="color: #b4fa70;">function</span> <span style="color: #fce94f;">functionForSquare</span>($<span style="color: #fcaf3e;">square</span>);
+  <span style="color: #b4fa70;">function</span> <span style="color: #fce94f;">functionForTriangle</span>($<span style="color: #fcaf3e;">triangle</span>);
 }
 </pre>
 </div>
@@ -358,17 +366,17 @@ And implement that interface:
 </p>
 <div class="org-src-container">
 
-<pre  class="fragment appear"><span style="color: #b4fa70;">class</span> <span style="color: #8cc4ff;">HasFurFunctions</span> <span style="color: #b4fa70;">implements</span> <span style="color: #8cc4ff;">ShapeFunctions</span> {
-  <span style="color: #b4fa70;">function</span> <span style="color: #fce94f;">functionForCircle</span>($<span style="color: #fcaf3e;">dog</span>) { <span style="color: #b4fa70;">return</span> <span style="color: #e9b2e3;">true</span>; }
-  <span style="color: #b4fa70;">function</span> <span style="color: #fce94f;">functionForSquare</span>($<span style="color: #fcaf3e;">cat</span>) { <span style="color: #b4fa70;">return</span> <span style="color: #e9b2e3;">true</span>; }
-  <span style="color: #b4fa70;">function</span> <span style="color: #fce94f;">functionForTriangle</span>($<span style="color: #fcaf3e;">goldfish</span>) { <span style="color: #b4fa70;">return</span> <span style="color: #e9b2e3;">false</span>; }
+<pre  class="fragment appear"><span style="color: #b4fa70;">class</span> <span style="color: #8cc4ff;">HasCornersFunctions</span> <span style="color: #b4fa70;">implements</span> <span style="color: #8cc4ff;">ShapeFunctions</span> {
+  <span style="color: #b4fa70;">function</span> <span style="color: #fce94f;">functionForCircle</span>($<span style="color: #fcaf3e;">circle</span>) { <span style="color: #b4fa70;">return</span> <span style="color: #e9b2e3;">false</span>; }
+  <span style="color: #b4fa70;">function</span> <span style="color: #fce94f;">functionForSquare</span>($<span style="color: #fcaf3e;">square</span>) { <span style="color: #b4fa70;">return</span> <span style="color: #e9b2e3;">true</span>; }
+  <span style="color: #b4fa70;">function</span> <span style="color: #fce94f;">functionForTriangle</span>($<span style="color: #fcaf3e;">triangle</span>) { <span style="color: #b4fa70;">return</span> <span style="color: #e9b2e3;">true</span>; }
 }
 </pre>
 </div>
 
 </section>
-<section id="slide-orgdd0670d">
-<h3 id="orgdd0670d">Another Solution (Continued)</h3>
+<section id="slide-orgba06363">
+<h3 id="orgba06363">Second Solution (Continued)</h3>
 <p>
 And change <code>Shape</code> to the following:
 </p>
@@ -399,14 +407,14 @@ And change <code>Shape</code> to the following:
 </div>
 
 </section>
-<section id="slide-org6c25ea8">
-<h3 id="org6c25ea8">Another Solution (Continued)</h3>
+<section id="slide-org0e20b93">
+<h3 id="org0e20b93">Second Solution (Continued)</h3>
 <p>
-Finally, use the <code>HasFur</code> <code>ShapeFunctions</code>:
+Finally, use <code>HasCornersFunctions</code>:
 </p>
 <div class="org-src-container">
 
-<pre  class="src src-php">$<span style="color: #fcaf3e;">area</span> = $<span style="color: #fcaf3e;">shape</span>-&gt;<span style="color: #eeeeec; background-color: #2e3436;">callYourFunction</span>(<span style="color: #b4fa70;">new</span> <span style="color: #8cc4ff;">HasFurFunctions</span>());
+<pre  class="src src-php">$<span style="color: #fcaf3e;">hasCorners</span> = $<span style="color: #fcaf3e;">shape</span>-&gt;<span style="color: #eeeeec; background-color: #2e3436;">callYourFunction</span>(<span style="color: #b4fa70;">new</span> <span style="color: #8cc4ff;">HasCornersFunctions</span>());
 </pre>
 </div>
 </section>
