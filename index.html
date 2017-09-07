@@ -26,16 +26,16 @@
 <body>
 <div class="reveal">
 <div class="slides">
-<section id="sec-title-slide"><h2 class="author">Tim McIver</h2><p class="date">Created: 2017-09-06 Wed 23:41</p>
+<section id="sec-title-slide"><h2 class="author">Tim McIver</h2><p class="date">Created: 2017-09-07 Thu 13:58</p>
 </section>
 <section id="table-of-contents">
 <div id="table-of-contents">
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#/slide-orgfede90d">The Problem Statement</a></li>
-<li><a href="#/slide-org39b0c58">What is Pattern Matching?</a></li>
-<li><a href="#/slide-orgb8f371c">An Example</a></li>
+<li><a href="#/slide-orgae5a38a">The Problem Statement</a></li>
+<li><a href="#/slide-org5bc4828">What is Pattern Matching?</a></li>
+<li><a href="#/slide-orgbeb15f2">Dispatching in OOP</a></li>
 </ul>
 </div>
 </div>
@@ -44,12 +44,12 @@
 
 
 <section>
-<section id="slide-orgfede90d">
-<h2 id="orgfede90d">The Problem Statement</h2>
-<div class="outline-text-2" id="text-orgfede90d">
+<section id="slide-orgae5a38a">
+<h2 id="orgae5a38a">The Problem Statement</h2>
+<div class="outline-text-2" id="text-orgae5a38a">
 </div></section>
-<section id="slide-orgf86decd">
-<h3 id="orgf86decd">Can we attain the same level of generalized dispatch on values of a type using an Object-Oriented language that our friends using functional languages enjoy?</h3>
+<section id="slide-org4be6cd0">
+<h3 id="org4be6cd0">Can we attain the same level of generalized dispatch on values of a type using an Object-Oriented language that our friends using functional languages enjoy?</h3>
 <p class="fragment appear">
 Answer: Yes!
 </p>
@@ -61,12 +61,12 @@ Well, almost.
 </section>
 </section>
 <section>
-<section id="slide-org39b0c58">
-<h2 id="org39b0c58">What is Pattern Matching?</h2>
-<div class="outline-text-2" id="text-org39b0c58">
+<section id="slide-org5bc4828">
+<h2 id="org5bc4828">What is Pattern Matching?</h2>
+<div class="outline-text-2" id="text-org5bc4828">
 </div></section>
-<section id="slide-org6fd8eb8">
-<h3 id="org6fd8eb8"></h3>
+<section id="slide-org06fe955">
+<h3 id="org06fe955"></h3>
 <p>
 Given the following Scala code:
 </p>
@@ -99,8 +99,8 @@ You can use pattern matching to implement the <code>area</code> function:
 </div>
 
 </section>
-<section id="slide-org2a527ad">
-<h3 id="org2a527ad"></h3>
+<section id="slide-org0517e79">
+<h3 id="org0517e79"></h3>
 <p>
 Underscore matches anything:
 </p>
@@ -117,8 +117,8 @@ Underscore matches anything:
 </div>
 
 </section>
-<section id="slide-org7b0b299">
-<h3 id="org7b0b299"></h3>
+<section id="slide-org2ba9055">
+<h3 id="org2ba9055"></h3>
 <p>
 You can match on type:
 </p>
@@ -136,8 +136,8 @@ You can match on type:
 </div>
 
 </section>
-<section id="slide-orgd6217e7">
-<h3 id="orgd6217e7"></h3>
+<section id="slide-org751746f">
+<h3 id="org751746f"></h3>
 <p>
 It's recursive:
 </p>
@@ -155,8 +155,8 @@ It's recursive:
 </div>
 
 </section>
-<section id="slide-org5fd4315">
-<h3 id="org5fd4315"></h3>
+<section id="slide-org948e4b0">
+<h3 id="org948e4b0"></h3>
 <p>
 And exhaustive.  The following gives a warning:
 </p>
@@ -177,108 +177,75 @@ And exhaustive.  The following gives a warning:
 </section>
 </section>
 <section>
-<section id="slide-orgb8f371c">
-<h2 id="orgb8f371c">An Example</h2>
-<div class="outline-text-2" id="text-orgb8f371c">
+<section id="slide-orgbeb15f2">
+<h2 id="orgbeb15f2">Dispatching in OOP</h2>
+<div class="outline-text-2" id="text-orgbeb15f2">
 </div></section>
-<section id="slide-orga868190">
-<h3 id="orga868190">Dispatching on Values in Scala</h3>
+<section id="slide-org1c1a7fd">
+<h3 id="org1c1a7fd">Dispatching on Values in PHP</h3>
 <div class="org-src-container">
 
-<pre  class="src src-scala"><span style="color: #e090d7;">sealed</span> <span style="color: #b4fa70;">trait</span> <span style="color: #8cc4ff;">Pet</span>
-
-<span style="color: #b4fa70;">object</span> <span style="color: #e9b2e3;">Pet</span> {
-
-  <span style="color: #b4fa70;">case</span> <span style="color: #b4fa70;">object</span> <span style="color: #b4fa70;">class</span> <span style="color: #8cc4ff;">Dog</span> <span style="color: #b4fa70;">extends</span> <span style="color: #8cc4ff;">Pet</span>
-  <span style="color: #b4fa70;">case</span> <span style="color: #b4fa70;">object</span> <span style="color: #b4fa70;">class</span> <span style="color: #8cc4ff;">Cat</span> <span style="color: #b4fa70;">extends</span> <span style="color: #8cc4ff;">Pet</span>
-  <span style="color: #b4fa70;">case</span> <span style="color: #b4fa70;">object</span> <span style="color: #b4fa70;">class</span> <span style="color: #8cc4ff;">Goldfish</span> <span style="color: #b4fa70;">extends</span> <span style="color: #8cc4ff;">Pet</span>
-
-  <span style="color: #b4fa70;">def</span> <span style="color: #fce94f;">hasFur</span>(pet<span style="color: #b4fa70;">:</span> <span style="color: #8cc4ff;">Pet</span>) <span style="color: #b4fa70;">=</span> pet <span style="color: #b4fa70;">match</span> {
-    <span style="color: #b4fa70;">case</span> <span style="color: #e9b2e3;">Dog</span> <span style="color: #b4fa70;">=&gt;</span> <span style="color: #e9b2e3;">true</span>
-    <span style="color: #b4fa70;">case</span> <span style="color: #e9b2e3;">Cat</span> <span style="color: #b4fa70;">=&gt;</span> <span style="color: #e9b2e3;">true</span>
-    <span style="color: #b4fa70;">case</span> <span style="color: #e9b2e3;">Goldfish</span> <span style="color: #b4fa70;">=&gt;</span> <span style="color: #e9b2e3;">false</span>
-  }
-}
-</pre>
-</div>
-
-</section>
-<section id="slide-orgc936134">
-<h3 id="orgc936134">Dispatching on Values in PHP</h3>
-<div class="org-src-container">
-
-<pre  class="src src-php"><span style="color: #b4fa70;">interface</span> <span style="color: #8cc4ff;">Pet</span> {
-  <span style="color: #b4fa70;">function</span> <span style="color: #fce94f;">hasFur</span>();
+<pre  class="src src-php"><span style="color: #b4fa70;">interface</span> <span style="color: #8cc4ff;">Shape</span> {
+  <span style="color: #b4fa70;">function</span> <span style="color: #fce94f;">area</span>();
 }
 
-<span style="color: #b4fa70;">class</span> <span style="color: #8cc4ff;">Dog</span> <span style="color: #b4fa70;">implements</span> <span style="color: #8cc4ff;">Pet</span> {
-  <span style="color: #b4fa70;">public</span> <span style="color: #b4fa70;">function</span> <span style="color: #fce94f;">hasFur</span>() { <span style="color: #b4fa70;">return</span> <span style="color: #e9b2e3;">true</span>; }
+<span style="color: #b4fa70;">class</span> <span style="color: #8cc4ff;">Circle</span> <span style="color: #b4fa70;">implements</span> <span style="color: #8cc4ff;">Shape</span> {
+  <span style="color: #b4fa70;">private</span> $<span style="color: #fcaf3e;">radius</span>;
+  <span style="color: #b4fa70;">public</span> <span style="color: #b4fa70;">function</span> <span style="color: #fce94f;">area</span>() { <span style="color: #b4fa70;">return</span> <span style="color: #eeeeec; background-color: #2e3436;">3</span>.<span style="color: #eeeeec; background-color: #2e3436;">1416</span> * $<span style="color: #e9b2e3;">this</span>-&gt;<span style="color: #fcaf3e;">radius</span> * $<span style="color: #e9b2e3;">this</span>-&gt;<span style="color: #fcaf3e;">radius</span>; }
 }
 
-<span style="color: #b4fa70;">class</span> <span style="color: #8cc4ff;">Cat</span> <span style="color: #b4fa70;">implements</span> <span style="color: #8cc4ff;">Pet</span> {
-  <span style="color: #b4fa70;">public</span> <span style="color: #b4fa70;">function</span> <span style="color: #fce94f;">hasFur</span>() { <span style="color: #b4fa70;">return</span> <span style="color: #e9b2e3;">true</span>; }
+<span style="color: #b4fa70;">class</span> <span style="color: #8cc4ff;">Square</span> <span style="color: #b4fa70;">implements</span> <span style="color: #8cc4ff;">Shape</span> {
+  <span style="color: #b4fa70;">private</span> $<span style="color: #fcaf3e;">side</span>;
+  <span style="color: #b4fa70;">public</span> <span style="color: #b4fa70;">function</span> <span style="color: #fce94f;">area</span>() { <span style="color: #b4fa70;">return</span> $<span style="color: #e9b2e3;">this</span>-&gt;<span style="color: #fcaf3e;">side</span> * $<span style="color: #e9b2e3;">this</span>-&gt;<span style="color: #fcaf3e;">side</span>; }
 }
 
-<span style="color: #b4fa70;">class</span> <span style="color: #8cc4ff;">Goldfish</span> <span style="color: #b4fa70;">implements</span> <span style="color: #8cc4ff;">Pet</span> {
-  <span style="color: #b4fa70;">public</span> <span style="color: #b4fa70;">function</span> <span style="color: #fce94f;">hasFur</span>() { <span style="color: #b4fa70;">return</span> <span style="color: #e9b2e3;">false</span>; }
+<span style="color: #b4fa70;">class</span> <span style="color: #8cc4ff;">Triangle</span> <span style="color: #b4fa70;">implements</span> <span style="color: #8cc4ff;">Shape</span> {
+  <span style="color: #b4fa70;">private</span> $<span style="color: #fcaf3e;">p1</span>, $<span style="color: #fcaf3e;">p2</span>, $<span style="color: #fcaf3e;">p3</span>;
+  <span style="color: #b4fa70;">public</span> <span style="color: #b4fa70;">function</span> <span style="color: #fce94f;">area</span>() { <span style="color: #b4fa70;">return</span> <span style="color: #73d216;">/* </span><span style="color: #73d216;">something involving $p1, $p2 and $p3 :) </span><span style="color: #73d216;">*/</span>; }
 }
 
 <span style="color: #73d216;">// </span><span style="color: #73d216;">caller doesn't necessarily know the runtime</span>
-<span style="color: #73d216;">// </span><span style="color: #73d216;">type of $myPet - and shouldn't care.</span>
-$<span style="color: #fcaf3e;">myPet</span>-&gt;<span style="color: #eeeeec; background-color: #2e3436;">hasFur</span>();
+<span style="color: #73d216;">// </span><span style="color: #73d216;">type of $myShape - and shouldn't care.</span>
+$<span style="color: #fcaf3e;">myShape</span>-&gt;<span style="color: #eeeeec; background-color: #2e3436;">area</span>();
 </pre>
 </div>
 
 </section>
-<section id="slide-orgd8b01b4">
-<h3 id="orgd8b01b4">Use in a Pet Store Application (Scala)</h3>
+<section id="slide-orgb47b27f">
+<h3 id="orgb47b27f"></h3>
 <p>
-A part of the application needs to know what pets a given pet might attack.
+Similarly for the <code>hasCorners</code> method:
 </p>
-
 <div class="org-src-container">
 
-<pre  class="src src-scala"><span style="color: #b4fa70;">object</span> <span style="color: #e9b2e3;">PetStore</span> {
+<pre  class="src src-php"><span style="color: #b4fa70;">interface</span> <span style="color: #8cc4ff;">Shape</span> {
+  <span style="color: #b4fa70;">function</span> <span style="color: #fce94f;">area</span>();
+  <span style="color: #b4fa70;">function</span> <span style="color: #fce94f;">hasCorners</span>();
+}
 
-  <span style="color: #b4fa70;">def</span> <span style="color: #fce94f;">mayAttack</span>(pet<span style="color: #b4fa70;">:</span> <span style="color: #8cc4ff;">Pet</span>)<span style="color: #b4fa70;">:</span> <span style="color: #8cc4ff;">Seq</span>[<span style="color: #e9b2e3;">Pet</span>] <span style="color: #b4fa70;">=</span> pet <span style="color: #b4fa70;">match</span> {
-    <span style="color: #b4fa70;">case</span> <span style="color: #e9b2e3;">Dog</span> <span style="color: #b4fa70;">=&gt;</span> <span style="color: #e9b2e3;">List</span>(<span style="color: #e9b2e3;">Cat</span>)
-    <span style="color: #b4fa70;">case</span> <span style="color: #e9b2e3;">Cat</span> <span style="color: #b4fa70;">=&gt;</span> <span style="color: #e9b2e3;">List</span>(<span style="color: #e9b2e3;">Dog</span>, <span style="color: #e9b2e3;">Goldfish</span>)
-    <span style="color: #b4fa70;">case</span> <span style="color: #e9b2e3;">Goldfish</span> <span style="color: #b4fa70;">=&gt;</span> <span style="color: #e9b2e3;">List</span>()
-  }
+<span style="color: #b4fa70;">class</span> <span style="color: #8cc4ff;">Circle</span> <span style="color: #b4fa70;">implements</span> <span style="color: #8cc4ff;">Shape</span> {
+  <span style="color: #b4fa70;">private</span> $<span style="color: #fcaf3e;">radius</span>;
+  <span style="color: #b4fa70;">public</span> <span style="color: #b4fa70;">function</span> <span style="color: #fce94f;">area</span>() { <span style="color: #b4fa70;">return</span> <span style="color: #eeeeec; background-color: #2e3436;">3</span>.<span style="color: #eeeeec; background-color: #2e3436;">1416</span> * $<span style="color: #e9b2e3;">this</span>-&gt;<span style="color: #fcaf3e;">radius</span> * $<span style="color: #e9b2e3;">this</span>-&gt;<span style="color: #fcaf3e;">radius</span>; }
+  <span style="color: #b4fa70;">public</span> <span style="color: #b4fa70;">function</span> <span style="color: #fce94f;">hasCorners</span>() { <span style="color: #b4fa70;">return</span> <span style="color: #e9b2e3;">false</span>; }
+}
+
+<span style="color: #b4fa70;">class</span> <span style="color: #8cc4ff;">Square</span> <span style="color: #b4fa70;">implements</span> <span style="color: #8cc4ff;">Shape</span> {
+  <span style="color: #b4fa70;">private</span> $<span style="color: #fcaf3e;">side</span>;
+  <span style="color: #b4fa70;">public</span> <span style="color: #b4fa70;">function</span> <span style="color: #fce94f;">area</span>() { <span style="color: #b4fa70;">return</span> $<span style="color: #e9b2e3;">this</span>-&gt;<span style="color: #fcaf3e;">side</span> * $<span style="color: #e9b2e3;">this</span>-&gt;<span style="color: #fcaf3e;">side</span>; }
+  <span style="color: #b4fa70;">public</span> <span style="color: #b4fa70;">function</span> <span style="color: #fce94f;">hasCorners</span>() { <span style="color: #b4fa70;">return</span> <span style="color: #e9b2e3;">true</span>; }
+}
+
+<span style="color: #b4fa70;">class</span> <span style="color: #8cc4ff;">Triangle</span> <span style="color: #b4fa70;">implements</span> <span style="color: #8cc4ff;">Shape</span> {
+  <span style="color: #b4fa70;">private</span> $<span style="color: #fcaf3e;">p1</span>, $<span style="color: #fcaf3e;">p2</span>, $<span style="color: #fcaf3e;">p3</span>;
+  <span style="color: #b4fa70;">public</span> <span style="color: #b4fa70;">function</span> <span style="color: #fce94f;">area</span>() { <span style="color: #b4fa70;">return</span> <span style="color: #73d216;">/* </span><span style="color: #73d216;">something involving $p1, $p2 and $p3 :) </span><span style="color: #73d216;">*/</span>; }
+  <span style="color: #b4fa70;">public</span> <span style="color: #b4fa70;">function</span> <span style="color: #fce94f;">hasCorners</span>() { <span style="color: #b4fa70;">return</span> <span style="color: #e9b2e3;">true</span>; }
 }
 </pre>
 </div>
 
 </section>
-<section id="slide-org16a697a">
-<h3 id="org16a697a">Use in a Pet Store Application (PHP)</h3>
-<div class="org-src-container">
-
-<pre  class="src src-php"><span style="color: #b4fa70;">interface</span> <span style="color: #8cc4ff;">Pet</span> {
-  <span style="color: #b4fa70;">function</span> <span style="color: #fce94f;">hasFur</span>();
-  <span style="color: #b4fa70;">function</span> <span style="color: #fce94f;">mayAttack</span>();
-}
-
-<span style="color: #b4fa70;">class</span> <span style="color: #8cc4ff;">Dog</span> <span style="color: #b4fa70;">implements</span> <span style="color: #8cc4ff;">Pet</span> {
-  <span style="color: #b4fa70;">public</span> <span style="color: #b4fa70;">function</span> <span style="color: #fce94f;">hasFur</span>() { <span style="color: #b4fa70;">return</span> <span style="color: #e9b2e3;">true</span>; }
-  <span style="color: #b4fa70;">public</span> <span style="color: #b4fa70;">function</span> <span style="color: #fce94f;">mayAttack</span>() { <span style="color: #b4fa70;">return</span> [<span style="color: #b4fa70;">new</span> <span style="color: #8cc4ff;">Cat</span>()]; }
-}
-
-<span style="color: #b4fa70;">class</span> <span style="color: #8cc4ff;">Cat</span> <span style="color: #b4fa70;">implements</span> <span style="color: #8cc4ff;">Pet</span> {
-  <span style="color: #b4fa70;">public</span> <span style="color: #b4fa70;">function</span> <span style="color: #fce94f;">hasFur</span>() { <span style="color: #b4fa70;">return</span> <span style="color: #e9b2e3;">true</span>; }
-  <span style="color: #b4fa70;">public</span> <span style="color: #b4fa70;">function</span> <span style="color: #fce94f;">mayAttack</span>() { <span style="color: #b4fa70;">return</span> [<span style="color: #b4fa70;">new</span> <span style="color: #8cc4ff;">Dog</span>(), <span style="color: #b4fa70;">new</span> <span style="color: #8cc4ff;">Goldfish</span>()]; }
-}
-
-<span style="color: #b4fa70;">class</span> <span style="color: #8cc4ff;">Goldfish</span> <span style="color: #b4fa70;">implements</span> <span style="color: #8cc4ff;">Pet</span> {
-  <span style="color: #b4fa70;">public</span> <span style="color: #b4fa70;">function</span> <span style="color: #fce94f;">hasFur</span>() { <span style="color: #b4fa70;">return</span> <span style="color: #e9b2e3;">false</span>; }
-  <span style="color: #b4fa70;">public</span> <span style="color: #b4fa70;">function</span> <span style="color: #fce94f;">mayAttack</span>() { <span style="color: #b4fa70;">return</span> []; }
-}
-</pre>
-</div>
-
-</section>
-<section id="slide-orge8e534f">
-<h3 id="orge8e534f">But if you could, should you?</h3>
+<section id="slide-org65bf6e7">
+<h3 id="org65bf6e7">But if you could, should you?</h3>
 <p>
 Doing this in an OO language has several drawbacks:
 </p>
@@ -290,97 +257,98 @@ Doing this in an OO language has several drawbacks:
 </ul>
 
 </section>
-<section id="slide-org9b3c9eb">
-<h3 id="org9b3c9eb">Sometimes you can't, even if you want to</h3>
+<section id="slide-org8fa8b36">
+<h3 id="org8fa8b36">Use in a Client Application</h3>
 <p>
-If you don't control the classes you wish to dispatch on, you have to resort to using <code>instanceof</code>:
+But what if you can't? How can you implement the <code>hasCorners</code> function if you can't modify the <code>shapes</code> library?
+</p>
+<p class="fragment appear">
+No choice but to resort to using <code>instanceof</code>
 </p>
 <div class="org-src-container">
 
-<pre  class="src src-php"><span style="color: #b4fa70;">class</span> <span style="color: #8cc4ff;">PetStore</span> {
+<pre  class="fragment appear"><span style="color: #b4fa70;">class</span> <span style="color: #8cc4ff;">SomeShapeApp</span> {
 
-  <span style="color: #b4fa70;">function</span> <span style="color: #fce94f;">mayAttack</span>($<span style="color: #fcaf3e;">pet</span>) {
-    $<span style="color: #fcaf3e;">mayAttack</span> = [];
-    <span style="color: #b4fa70;">if</span> ($<span style="color: #fcaf3e;">pet</span> <span style="color: #b4fa70;">instanceof</span> <span style="color: #ff4b4b;">Dog</span>) {
-      $<span style="color: #fcaf3e;">mayAttack</span> = [<span style="color: #b4fa70;">new</span> <span style="color: #8cc4ff;">Cat</span>()];
-    } <span style="color: #b4fa70;">else</span> <span style="color: #b4fa70;">if</span> ($<span style="color: #fcaf3e;">pet</span> <span style="color: #b4fa70;">instanceof</span> <span style="color: #ff4b4b;">Cat</span>) {
-      $<span style="color: #fcaf3e;">mayAttack</span> = [<span style="color: #b4fa70;">new</span> <span style="color: #8cc4ff;">Dog</span>(), <span style="color: #b4fa70;">new</span> <span style="color: #8cc4ff;">Goldfish</span>()];
-    }
-
-    <span style="color: #b4fa70;">return</span> $<span style="color: #fcaf3e;">mayAttack</span>;
+  <span style="color: #b4fa70;">function</span> <span style="color: #fce94f;">hasCorners</span>($<span style="color: #fcaf3e;">shape</span>) {
+    <span style="color: #b4fa70;">return</span> $<span style="color: #fcaf3e;">shape</span> <span style="color: #b4fa70;">instanceof</span> <span style="color: #ff4b4b;">Square</span>
+        || $<span style="color: #fcaf3e;">shape</span> <span style="color: #b4fa70;">instanceof</span> <span style="color: #ff4b4b;">Triangle</span>;
   }
 }
 </pre>
 </div>
 
+<p class="fragment appear">
+OK, that's not so bad but if new versions of the <code>shape</code> library add shapes with corners, this code will be broken.
+</p>
+
 </section>
-<section id="slide-org35a9ca3">
-<h3 id="org35a9ca3">A Solution</h3>
+<section id="slide-org581970d">
+<h3 id="org581970d">A Solution</h3>
 <p>
-What if <code>Pet</code> looked like the following?
+What if <code>Shape</code> looked like the following?
 </p>
 <div class="org-src-container">
 
-<pre  class="src src-php"><span style="color: #b4fa70;">interface</span> <span style="color: #8cc4ff;">Pet</span> {
+<pre  class="src src-php"><span style="color: #b4fa70;">interface</span> <span style="color: #8cc4ff;">Shape</span> {
   <span style="color: #b4fa70;">function</span> <span style="color: #fce94f;">callYourFunction</span>($<span style="color: #fcaf3e;">functionMap</span>);
 }
 
-<span style="color: #b4fa70;">class</span> <span style="color: #8cc4ff;">Dog</span> <span style="color: #b4fa70;">implements</span> <span style="color: #8cc4ff;">Pet</span> {
+<span style="color: #b4fa70;">class</span> <span style="color: #8cc4ff;">Circle</span> <span style="color: #b4fa70;">implements</span> <span style="color: #8cc4ff;">Shape</span> {
   <span style="color: #b4fa70;">function</span> <span style="color: #fce94f;">callYourFunction</span>($<span style="color: #fcaf3e;">functionMap</span>) {
-    <span style="color: #b4fa70;">return</span> <span style="color: #eeeeec; background-color: #2e3436;">call_user_func(</span>$<span style="color: #fcaf3e;">functionMap</span>[<span style="color: #e9b96e;">'Dog'</span>], [$<span style="color: #e9b2e3;">this</span>]);
+    <span style="color: #b4fa70;">return</span> <span style="color: #eeeeec; background-color: #2e3436;">call_user_func(</span>$<span style="color: #fcaf3e;">functionMap</span>[<span style="color: #e9b96e;">'Circle'</span>], [$<span style="color: #e9b2e3;">this</span>]);
   }
 }
 
-<span style="color: #b4fa70;">class</span> <span style="color: #8cc4ff;">Cat</span> <span style="color: #b4fa70;">implements</span> <span style="color: #8cc4ff;">Pet</span> {
+<span style="color: #b4fa70;">class</span> <span style="color: #8cc4ff;">Square</span> <span style="color: #b4fa70;">implements</span> <span style="color: #8cc4ff;">Shape</span> {
   <span style="color: #b4fa70;">function</span> <span style="color: #fce94f;">callYourFunction</span>($<span style="color: #fcaf3e;">functionMap</span>) {
-    <span style="color: #b4fa70;">return</span> <span style="color: #eeeeec; background-color: #2e3436;">call_user_func(</span>$<span style="color: #fcaf3e;">functionMap</span>[<span style="color: #e9b96e;">'Cat'</span>], [$<span style="color: #e9b2e3;">this</span>]);
+    <span style="color: #b4fa70;">return</span> <span style="color: #eeeeec; background-color: #2e3436;">call_user_func(</span>$<span style="color: #fcaf3e;">functionMap</span>[<span style="color: #e9b96e;">'Square'</span>], [$<span style="color: #e9b2e3;">this</span>]);
   }
 }
 
-<span style="color: #b4fa70;">class</span> <span style="color: #8cc4ff;">Goldfish</span> <span style="color: #b4fa70;">implements</span> <span style="color: #8cc4ff;">Pet</span> {
+<span style="color: #b4fa70;">class</span> <span style="color: #8cc4ff;">Triangle</span> <span style="color: #b4fa70;">implements</span> <span style="color: #8cc4ff;">Shape</span> {
   <span style="color: #b4fa70;">function</span> <span style="color: #fce94f;">callYourFunction</span>($<span style="color: #fcaf3e;">functionMap</span>) {
-    <span style="color: #b4fa70;">return</span> <span style="color: #eeeeec; background-color: #2e3436;">call_user_func(</span>$<span style="color: #fcaf3e;">functionMap</span>[<span style="color: #e9b96e;">'Goldfish'</span>], [$<span style="color: #e9b2e3;">this</span>]);
+    <span style="color: #b4fa70;">return</span> <span style="color: #eeeeec; background-color: #2e3436;">call_user_func(</span>$<span style="color: #fcaf3e;">functionMap</span>[<span style="color: #e9b96e;">'Triangle'</span>], [$<span style="color: #e9b2e3;">this</span>]);
   }
 }
 </pre>
 </div>
 
 </section>
-<section id="slide-orgbeab0ac">
-<h3 id="orgbeab0ac">A Solution (Continued)</h3>
+<section id="slide-org85c332d">
+<h3 id="org85c332d">A Solution (Continued)</h3>
 <p>
 Define and Use a Function Map
 </p>
 <div class="org-src-container">
 
-<pre  class="src src-php">$<span style="color: #fcaf3e;">hasFurFunctionMap</span> = [
-  <span style="color: #e9b96e;">'Dog'</span> =&gt; <span style="color: #eeeeec; background-color: #2e3436;">function(</span>$<span style="color: #fcaf3e;">dog</span>) {
+<pre  class="src src-php">$<span style="color: #fcaf3e;">areaFunctionMap</span> = [
+  <span style="color: #e9b96e;">'Circle'</span> =&gt; <span style="color: #eeeeec; background-color: #2e3436;">function(</span>$<span style="color: #fcaf3e;">dog</span>) {
              <span style="color: #b4fa70;">return</span> <span style="color: #e9b2e3;">true</span>;
            }
-  <span style="color: #e9b96e;">'Cat'</span> =&gt; <span style="color: #eeeeec; background-color: #2e3436;">function(</span>$<span style="color: #fcaf3e;">dog</span>) {
+  <span style="color: #e9b96e;">'Square'</span> =&gt; <span style="color: #eeeeec; background-color: #2e3436;">function(</span>$<span style="color: #fcaf3e;">dog</span>) {
              <span style="color: #b4fa70;">return</span> <span style="color: #e9b2e3;">true</span>;
            }
-  <span style="color: #e9b96e;">'Goldfish'</span> =&gt; <span style="color: #eeeeec; background-color: #2e3436;">function(</span>$<span style="color: #fcaf3e;">dog</span>) {
+  <span style="color: #e9b96e;">'Triangle'</span> =&gt; <span style="color: #eeeeec; background-color: #2e3436;">function(</span>$<span style="color: #fcaf3e;">dog</span>) {
                   <span style="color: #b4fa70;">return</span> <span style="color: #e9b2e3;">false</span>;
                 }
 ];
 
-$<span style="color: #fcaf3e;">hasFur</span> = $<span style="color: #fcaf3e;">pet</span>-&gt;<span style="color: #eeeeec; background-color: #2e3436;">callYourFunction</span>($<span style="color: #fcaf3e;">hasFurFunctionMap</span>);
+$<span style="color: #fcaf3e;">area</span> = $<span style="color: #fcaf3e;">shape</span>-&gt;<span style="color: #eeeeec; background-color: #2e3436;">callYourFunction</span>($<span style="color: #fcaf3e;">areaFunctionMap</span>);
 </pre>
 </div>
 
 </section>
-<section id="slide-orgec9da0a">
-<h3 id="orgec9da0a">Another Solution</h3>
+<section id="slide-org0e0e8c7">
+<h3 id="org0e0e8c7">Another Solution</h3>
 <p>
 Instead of a map, let's use an interface
 </p>
 <div class="org-src-container">
 
-<pre  class="src src-php"><span style="color: #b4fa70;">interface</span> <span style="color: #8cc4ff;">PetFunctions</span> {
-  <span style="color: #b4fa70;">function</span> <span style="color: #fce94f;">functionForDog</span>($<span style="color: #fcaf3e;">dog</span>);
-  <span style="color: #b4fa70;">function</span> <span style="color: #fce94f;">functionForCat</span>($<span style="color: #fcaf3e;">cat</span>);
-  <span style="color: #b4fa70;">function</span> <span style="color: #fce94f;">functionForGoldfish</span>($<span style="color: #fcaf3e;">goldfish</span>);
+<pre  class="src src-php"><span style="color: #b4fa70;">interface</span> <span style="color: #8cc4ff;">ShapeFunctions</span> {
+  <span style="color: #b4fa70;">function</span> <span style="color: #fce94f;">functionForCircle</span>($<span style="color: #fcaf3e;">dog</span>);
+  <span style="color: #b4fa70;">function</span> <span style="color: #fce94f;">functionForSquare</span>($<span style="color: #fcaf3e;">cat</span>);
+  <span style="color: #b4fa70;">function</span> <span style="color: #fce94f;">functionForTriangle</span>($<span style="color: #fcaf3e;">goldfish</span>);
 }
 </pre>
 </div>
@@ -390,55 +358,55 @@ And implement that interface:
 </p>
 <div class="org-src-container">
 
-<pre  class="fragment appear"><span style="color: #b4fa70;">class</span> <span style="color: #8cc4ff;">HasFurFunctions</span> <span style="color: #b4fa70;">implements</span> <span style="color: #8cc4ff;">PetFunctions</span> {
-  <span style="color: #b4fa70;">function</span> <span style="color: #fce94f;">functionForDog</span>($<span style="color: #fcaf3e;">dog</span>) { <span style="color: #b4fa70;">return</span> <span style="color: #e9b2e3;">true</span>; }
-  <span style="color: #b4fa70;">function</span> <span style="color: #fce94f;">functionForCat</span>($<span style="color: #fcaf3e;">cat</span>) { <span style="color: #b4fa70;">return</span> <span style="color: #e9b2e3;">true</span>; }
-  <span style="color: #b4fa70;">function</span> <span style="color: #fce94f;">functionForGoldfish</span>($<span style="color: #fcaf3e;">goldfish</span>) { <span style="color: #b4fa70;">return</span> <span style="color: #e9b2e3;">false</span>; }
+<pre  class="fragment appear"><span style="color: #b4fa70;">class</span> <span style="color: #8cc4ff;">HasFurFunctions</span> <span style="color: #b4fa70;">implements</span> <span style="color: #8cc4ff;">ShapeFunctions</span> {
+  <span style="color: #b4fa70;">function</span> <span style="color: #fce94f;">functionForCircle</span>($<span style="color: #fcaf3e;">dog</span>) { <span style="color: #b4fa70;">return</span> <span style="color: #e9b2e3;">true</span>; }
+  <span style="color: #b4fa70;">function</span> <span style="color: #fce94f;">functionForSquare</span>($<span style="color: #fcaf3e;">cat</span>) { <span style="color: #b4fa70;">return</span> <span style="color: #e9b2e3;">true</span>; }
+  <span style="color: #b4fa70;">function</span> <span style="color: #fce94f;">functionForTriangle</span>($<span style="color: #fcaf3e;">goldfish</span>) { <span style="color: #b4fa70;">return</span> <span style="color: #e9b2e3;">false</span>; }
 }
 </pre>
 </div>
 
 </section>
-<section id="slide-orgb73f5cd">
-<h3 id="orgb73f5cd">Another Solution (Continued)</h3>
+<section id="slide-orgdd0670d">
+<h3 id="orgdd0670d">Another Solution (Continued)</h3>
 <p>
-And change <code>Pet</code> to the following:
+And change <code>Shape</code> to the following:
 </p>
 <div class="org-src-container">
 
-<pre  class="src src-php"><span style="color: #b4fa70;">interface</span> <span style="color: #8cc4ff;">Pet</span> {
-  <span style="color: #b4fa70;">function</span> <span style="color: #fce94f;">callYourFunction</span>($<span style="color: #fcaf3e;">petFunctions</span>);
+<pre  class="src src-php"><span style="color: #b4fa70;">interface</span> <span style="color: #8cc4ff;">Shape</span> {
+  <span style="color: #b4fa70;">function</span> <span style="color: #fce94f;">callYourFunction</span>($<span style="color: #fcaf3e;">shapeFunctions</span>);
 }
 
-<span style="color: #b4fa70;">class</span> <span style="color: #8cc4ff;">Dog</span> <span style="color: #b4fa70;">implements</span> <span style="color: #8cc4ff;">Pet</span> {
-  <span style="color: #b4fa70;">function</span> <span style="color: #fce94f;">callYourFunction</span>($<span style="color: #fcaf3e;">petFunctions</span>) {
-    <span style="color: #b4fa70;">return</span> $<span style="color: #fcaf3e;">petFunctions</span>-&gt;<span style="color: #eeeeec; background-color: #2e3436;">functionForDog</span>($<span style="color: #e9b2e3;">this</span>);
+<span style="color: #b4fa70;">class</span> <span style="color: #8cc4ff;">Circle</span> <span style="color: #b4fa70;">implements</span> <span style="color: #8cc4ff;">Shape</span> {
+  <span style="color: #b4fa70;">function</span> <span style="color: #fce94f;">callYourFunction</span>($<span style="color: #fcaf3e;">shapeFunctions</span>) {
+    <span style="color: #b4fa70;">return</span> $<span style="color: #fcaf3e;">shapeFunctions</span>-&gt;<span style="color: #eeeeec; background-color: #2e3436;">functionForCircle</span>($<span style="color: #e9b2e3;">this</span>);
   }
 }
 
-<span style="color: #b4fa70;">class</span> <span style="color: #8cc4ff;">Cat</span> <span style="color: #b4fa70;">implements</span> <span style="color: #8cc4ff;">Pet</span> {
-  <span style="color: #b4fa70;">function</span> <span style="color: #fce94f;">callYourFunction</span>($<span style="color: #fcaf3e;">petFunctions</span>) {
-    <span style="color: #b4fa70;">return</span> $<span style="color: #fcaf3e;">petFunctions</span>-&gt;<span style="color: #eeeeec; background-color: #2e3436;">functionForCat</span>($<span style="color: #e9b2e3;">this</span>);
+<span style="color: #b4fa70;">class</span> <span style="color: #8cc4ff;">Square</span> <span style="color: #b4fa70;">implements</span> <span style="color: #8cc4ff;">Shape</span> {
+  <span style="color: #b4fa70;">function</span> <span style="color: #fce94f;">callYourFunction</span>($<span style="color: #fcaf3e;">shapeFunctions</span>) {
+    <span style="color: #b4fa70;">return</span> $<span style="color: #fcaf3e;">shapeFunctions</span>-&gt;<span style="color: #eeeeec; background-color: #2e3436;">functionForSquare</span>($<span style="color: #e9b2e3;">this</span>);
   }
 }
 
-<span style="color: #b4fa70;">class</span> <span style="color: #8cc4ff;">Goldfish</span> <span style="color: #b4fa70;">implements</span> <span style="color: #8cc4ff;">Pet</span> {
-  <span style="color: #b4fa70;">function</span> <span style="color: #fce94f;">callYourFunction</span>($<span style="color: #fcaf3e;">petFunctions</span>) {
-    <span style="color: #b4fa70;">return</span> $<span style="color: #fcaf3e;">petFunctions</span>-&gt;<span style="color: #eeeeec; background-color: #2e3436;">functionForGoldfish</span>($<span style="color: #e9b2e3;">this</span>);
+<span style="color: #b4fa70;">class</span> <span style="color: #8cc4ff;">Triangle</span> <span style="color: #b4fa70;">implements</span> <span style="color: #8cc4ff;">Shape</span> {
+  <span style="color: #b4fa70;">function</span> <span style="color: #fce94f;">callYourFunction</span>($<span style="color: #fcaf3e;">shapeFunctions</span>) {
+    <span style="color: #b4fa70;">return</span> $<span style="color: #fcaf3e;">shapeFunctions</span>-&gt;<span style="color: #eeeeec; background-color: #2e3436;">functionForTriangle</span>($<span style="color: #e9b2e3;">this</span>);
   }
 }
 </pre>
 </div>
 
 </section>
-<section id="slide-org5a62b6a">
-<h3 id="org5a62b6a">Another Solution (Continued)</h3>
+<section id="slide-org6c25ea8">
+<h3 id="org6c25ea8">Another Solution (Continued)</h3>
 <p>
-Finally, use the <code>HasFur</code> <code>PetFunctions</code>:
+Finally, use the <code>HasFur</code> <code>ShapeFunctions</code>:
 </p>
 <div class="org-src-container">
 
-<pre  class="src src-php">$<span style="color: #fcaf3e;">hasFur</span> = $<span style="color: #fcaf3e;">pet</span>-&gt;<span style="color: #eeeeec; background-color: #2e3436;">callYourFunction</span>(<span style="color: #b4fa70;">new</span> <span style="color: #8cc4ff;">HasFurFunctions</span>());
+<pre  class="src src-php">$<span style="color: #fcaf3e;">area</span> = $<span style="color: #fcaf3e;">shape</span>-&gt;<span style="color: #eeeeec; background-color: #2e3436;">callYourFunction</span>(<span style="color: #b4fa70;">new</span> <span style="color: #8cc4ff;">HasFurFunctions</span>());
 </pre>
 </div>
 </section>

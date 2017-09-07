@@ -91,84 +91,59 @@ object MyShapeApp {
 #+END_SRC
 
 
-* An Example
-
-** Dispatching on Values in Scala
-#+BEGIN_SRC scala
-sealed trait Pet
-
-object Pet {
-
-  case object class Dog extends Pet
-  case object class Cat extends Pet
-  case object class Goldfish extends Pet
-
-  def hasFur(pet: Pet) = pet match {
-    case Dog => true
-    case Cat => true
-    case Goldfish => false
-  }
-}
-#+END_SRC
+* Dispatching in OOP
 
 ** Dispatching on Values in PHP
 #+BEGIN_SRC php
-interface Pet {
-  function hasFur();
-}
-
-class Dog implements Pet {
-  public function hasFur() { return true; }
-}
-
-class Cat implements Pet {
-  public function hasFur() { return true; }
-}
-
-class Goldfish implements Pet {
-  public function hasFur() { return false; }
-}
-
-// caller doesn't necessarily know the runtime
-// type of $myPet - and shouldn't care.
-$myPet->hasFur();
-#+END_SRC
-
-** Use in a Pet Store Application (Scala)
-A part of the application needs to know what pets a given pet might attack.
-
-#+BEGIN_SRC scala
-object PetStore {
-
-  def mayAttack(pet: Pet): Seq[Pet] = pet match {
-    case Dog => List(Cat)
-    case Cat => List(Dog, Goldfish)
-    case Goldfish => List()
+  interface Shape {
+    function area();
   }
-}
+
+  class Circle implements Shape {
+    private $radius;
+    public function area() { return 3.1416 * $this->radius * $this->radius; }
+  }
+
+  class Square implements Shape {
+    private $side;
+    public function area() { return $this->side * $this->side; }
+  }
+
+  class Triangle implements Shape {
+    private $p1, $p2, $p3;
+    public function area() { return /* something involving $p1, $p2 and $p3 :) */; }
+  }
+
+  // caller doesn't necessarily know the runtime
+  // type of $myShape - and shouldn't care.
+  $myShape->area();
 #+END_SRC
 
-** Use in a Pet Store Application (PHP)
+** 
+Similarly for the ~hasCorners~ method:
 #+BEGIN_SRC php
-interface Pet {
-  function hasFur();
-  function mayAttack();
-}
+  interface Shape {
+    function area();
+    function hasCorners();
+  }
 
-class Dog implements Pet {
-  public function hasFur() { return true; }
-  public function mayAttack() { return [new Cat()]; }
-}
+  class Circle implements Shape {
+    private $radius;
+    public function area() { return 3.1416 * $this->radius * $this->radius; }
+    public function hasCorners() { return false; }
+  }
 
-class Cat implements Pet {
-  public function hasFur() { return true; }
-  public function mayAttack() { return [new Dog(), new Goldfish()]; }
-}
+  class Square implements Shape {
+    private $side;
+    public function area() { return $this->side * $this->side; }
+    public function hasCorners() { return true; }
+  }
 
-class Goldfish implements Pet {
-  public function hasFur() { return false; }
-  public function mayAttack() { return []; }
-}
+  class Triangle implements Shape {
+    private $p1, $p2, $p3;
+    public function area() { return /* something involving $p1, $p2 and $p3 :) */; }
+    public function hasCorners() { return true; }
+  }
 #+END_SRC
 
 ** But if you could, should you?
@@ -178,46 +153,46 @@ Doing this in an OO language has several drawbacks:
 - Adds bloat to those classes
 - Places logic far from the module in which it is used
 
-** Sometimes you can't, even if you want to
-If you don't control the classes you wish to dispatch on, you have to resort to using ~instanceof~:
+** Use in a Client Application
+But what if you can't? How can you implement the ~hasCorners~ function if you can't modify the ~shapes~ library?
+#+ATTR_REVEAL: :frag appear
+No choice but to resort to using ~instanceof~
+#+ATTR_REVEAL: :frag appear
 #+BEGIN_SRC php
-class PetStore {
+  class SomeShapeApp {
 
-  function mayAttack($pet) {
-    $mayAttack = [];
-    if ($pet instanceof Dog) {
-      $mayAttack = [new Cat()];
-    } else if ($pet instanceof Cat) {
-      $mayAttack = [new Dog(), new Goldfish()];
+    function hasCorners($shape) {
+      return $shape instanceof Square
+	  || $shape instanceof Triangle;
     }
-
-    return $mayAttack;
   }
-}
 #+END_SRC
 
+#+ATTR_REVEAL: :frag appear
+OK, that's not so bad but if new versions of the ~shape~ library add shapes with corners, this code will be broken.
+
 ** A Solution
-What if ~Pet~ looked like the following?
+What if ~Shape~ looked like the following?
 #+BEGIN_SRC php
-interface Pet {
+interface Shape {
   function callYourFunction($functionMap);
 }
 
-class Dog implements Pet {
+class Circle implements Shape {
   function callYourFunction($functionMap) {
-    return call_user_func($functionMap['Dog'], [$this]);
+    return call_user_func($functionMap['Circle'], [$this]);
   }
 }
 
-class Cat implements Pet {
+class Square implements Shape {
   function callYourFunction($functionMap) {
-    return call_user_func($functionMap['Cat'], [$this]);
+    return call_user_func($functionMap['Square'], [$this]);
   }
 }
 
-class Goldfish implements Pet {
+class Triangle implements Shape {
   function callYourFunction($functionMap) {
-    return call_user_func($functionMap['Goldfish'], [$this]);
+    return call_user_func($functionMap['Triangle'], [$this]);
   }
 }
 #+END_SRC
@@ -225,28 +200,28 @@ class Goldfish implements Pet {
 ** A Solution (Continued)
 Define and Use a Function Map
 #+BEGIN_SRC php
-$hasFurFunctionMap = [
-  'Dog' => function($dog) {
+$areaFunctionMap = [
+  'Circle' => function($dog) {
              return true;
            }
-  'Cat' => function($dog) {
+  'Square' => function($dog) {
              return true;
            }
-  'Goldfish' => function($dog) {
+  'Triangle' => function($dog) {
                   return false;
                 }
 ];
 
-$hasFur = $pet->callYourFunction($hasFurFunctionMap);
+$area = $shape->callYourFunction($areaFunctionMap);
 #+END_SRC
 
 ** Another Solution
 Instead of a map, let's use an interface
 #+BEGIN_SRC php
-interface PetFunctions {
-  function functionForDog($dog);
-  function functionForCat($cat);
-  function functionForGoldfish($goldfish);
+interface ShapeFunctions {
+  function functionForCircle($dog);
+  function functionForSquare($cat);
+  function functionForTriangle($goldfish);
 }
 #+END_SRC
 
@@ -254,41 +229,41 @@ interface PetFunctions {
 And implement that interface:
 #+ATTR_REVEAL: :frag appear
 #+BEGIN_SRC php
-class HasFurFunctions implements PetFunctions {
-  function functionForDog($dog) { return true; }
-  function functionForCat($cat) { return true; }
-  function functionForGoldfish($goldfish) { return false; }
+class HasFurFunctions implements ShapeFunctions {
+  function functionForCircle($dog) { return true; }
+  function functionForSquare($cat) { return true; }
+  function functionForTriangle($goldfish) { return false; }
 }
 #+END_SRC
 
 ** Another Solution (Continued)
-And change ~Pet~ to the following:
+And change ~Shape~ to the following:
 #+BEGIN_SRC php
-interface Pet {
-  function callYourFunction($petFunctions);
+interface Shape {
+  function callYourFunction($shapeFunctions);
 }
 
-class Dog implements Pet {
-  function callYourFunction($petFunctions) {
-    return $petFunctions->functionForDog($this);
+class Circle implements Shape {
+  function callYourFunction($shapeFunctions) {
+    return $shapeFunctions->functionForCircle($this);
   }
 }
 
-class Cat implements Pet {
-  function callYourFunction($petFunctions) {
-    return $petFunctions->functionForCat($this);
+class Square implements Shape {
+  function callYourFunction($shapeFunctions) {
+    return $shapeFunctions->functionForSquare($this);
   }
 }
 
-class Goldfish implements Pet {
-  function callYourFunction($petFunctions) {
-    return $petFunctions->functionForGoldfish($this);
+class Triangle implements Shape {
+  function callYourFunction($shapeFunctions) {
+    return $shapeFunctions->functionForTriangle($this);
   }
 }
 #+END_SRC
 
 ** Another Solution (Continued)
-Finally, use the ~HasFur~ ~PetFunctions~:
+Finally, use the ~HasFur~ ~ShapeFunctions~:
 #+BEGIN_SRC php
-$hasFur = $pet->callYourFunction(new HasFurFunctions());
+$area = $shape->callYourFunction(new HasFurFunctions());
 #+END_SRC
