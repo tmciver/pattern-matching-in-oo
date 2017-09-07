@@ -26,19 +26,16 @@
 <body>
 <div class="reveal">
 <div class="slides">
-<section id="sec-title-slide"><h2 class="author">Tim McIver</h2><p class="date">Created: 2017-09-06 Wed 23:06</p>
+<section id="sec-title-slide"><h2 class="author">Tim McIver</h2><p class="date">Created: 2017-09-06 Wed 23:41</p>
 </section>
 <section id="table-of-contents">
 <div id="table-of-contents">
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#/slide-org946946e">The Problem Statement</a></li>
-<li><a href="#/slide-org1e429ab">What is Pattern Matching?</a></li>
-<li><a href="#/slide-org805d2f3">An Example</a></li>
-<li><a href="#/slide-org9b974e4">Review of Some Fundamentals</a></li>
-<li><a href="#/slide-org7d39c08">Simulating ADTs in OO</a></li>
-<li><a href="#/slide-org9432c64">The Visitor Pattern to the Rescue!</a></li>
+<li><a href="#/slide-orgfede90d">The Problem Statement</a></li>
+<li><a href="#/slide-org39b0c58">What is Pattern Matching?</a></li>
+<li><a href="#/slide-orgb8f371c">An Example</a></li>
 </ul>
 </div>
 </div>
@@ -47,12 +44,12 @@
 
 
 <section>
-<section id="slide-org946946e">
-<h2 id="org946946e">The Problem Statement</h2>
-<div class="outline-text-2" id="text-org946946e">
+<section id="slide-orgfede90d">
+<h2 id="orgfede90d">The Problem Statement</h2>
+<div class="outline-text-2" id="text-orgfede90d">
 </div></section>
-<section id="slide-org2e9502a">
-<h3 id="org2e9502a">Can we attain the same level of generalized dispatch on values of a type using an Object-Oriented language that our friends using functional languages enjoy?</h3>
+<section id="slide-orgf86decd">
+<h3 id="orgf86decd">Can we attain the same level of generalized dispatch on values of a type using an Object-Oriented language that our friends using functional languages enjoy?</h3>
 <p class="fragment appear">
 Answer: Yes!
 </p>
@@ -64,12 +61,12 @@ Well, almost.
 </section>
 </section>
 <section>
-<section id="slide-org1e429ab">
-<h2 id="org1e429ab">What is Pattern Matching?</h2>
-<div class="outline-text-2" id="text-org1e429ab">
+<section id="slide-org39b0c58">
+<h2 id="org39b0c58">What is Pattern Matching?</h2>
+<div class="outline-text-2" id="text-org39b0c58">
 </div></section>
-<section id="slide-org1ffe713">
-<h3 id="org1ffe713"></h3>
+<section id="slide-org6fd8eb8">
+<h3 id="org6fd8eb8"></h3>
 <p>
 Given the following Scala code:
 </p>
@@ -102,8 +99,8 @@ You can use pattern matching to implement the <code>area</code> function:
 </div>
 
 </section>
-<section id="slide-orgd03ddff">
-<h3 id="orgd03ddff"></h3>
+<section id="slide-org2a527ad">
+<h3 id="org2a527ad"></h3>
 <p>
 Underscore matches anything:
 </p>
@@ -120,8 +117,8 @@ Underscore matches anything:
 </div>
 
 </section>
-<section id="slide-org097de9f">
-<h3 id="org097de9f"></h3>
+<section id="slide-org7b0b299">
+<h3 id="org7b0b299"></h3>
 <p>
 You can match on type:
 </p>
@@ -139,8 +136,8 @@ You can match on type:
 </div>
 
 </section>
-<section id="slide-orgde3efba">
-<h3 id="orgde3efba"></h3>
+<section id="slide-orgd6217e7">
+<h3 id="orgd6217e7"></h3>
 <p>
 It's recursive:
 </p>
@@ -158,8 +155,8 @@ It's recursive:
 </div>
 
 </section>
-<section id="slide-org94faa0a">
-<h3 id="org94faa0a"></h3>
+<section id="slide-org5fd4315">
+<h3 id="org5fd4315"></h3>
 <p>
 And exhaustive.  The following gives a warning:
 </p>
@@ -180,12 +177,12 @@ And exhaustive.  The following gives a warning:
 </section>
 </section>
 <section>
-<section id="slide-org805d2f3">
-<h2 id="org805d2f3">An Example</h2>
-<div class="outline-text-2" id="text-org805d2f3">
+<section id="slide-orgb8f371c">
+<h2 id="orgb8f371c">An Example</h2>
+<div class="outline-text-2" id="text-orgb8f371c">
 </div></section>
-<section id="slide-orga0f01c1">
-<h3 id="orga0f01c1">Dispatching on Values in Scala</h3>
+<section id="slide-orga868190">
+<h3 id="orga868190">Dispatching on Values in Scala</h3>
 <div class="org-src-container">
 
 <pre  class="src src-scala"><span style="color: #e090d7;">sealed</span> <span style="color: #b4fa70;">trait</span> <span style="color: #8cc4ff;">Pet</span>
@@ -206,8 +203,8 @@ And exhaustive.  The following gives a warning:
 </div>
 
 </section>
-<section id="slide-orgd3068ae">
-<h3 id="orgd3068ae">Dispatching on Values in PHP</h3>
+<section id="slide-orgc936134">
+<h3 id="orgc936134">Dispatching on Values in PHP</h3>
 <div class="org-src-container">
 
 <pre  class="src src-php"><span style="color: #b4fa70;">interface</span> <span style="color: #8cc4ff;">Pet</span> {
@@ -233,8 +230,8 @@ $<span style="color: #fcaf3e;">myPet</span>-&gt;<span style="color: #eeeeec; bac
 </div>
 
 </section>
-<section id="slide-org7d93902">
-<h3 id="org7d93902">Use in a Pet Store Application (Scala)</h3>
+<section id="slide-orgd8b01b4">
+<h3 id="orgd8b01b4">Use in a Pet Store Application (Scala)</h3>
 <p>
 A part of the application needs to know what pets a given pet might attack.
 </p>
@@ -253,8 +250,8 @@ A part of the application needs to know what pets a given pet might attack.
 </div>
 
 </section>
-<section id="slide-org2ab7aa5">
-<h3 id="org2ab7aa5">Use in a Pet Store Application (PHP)</h3>
+<section id="slide-org16a697a">
+<h3 id="org16a697a">Use in a Pet Store Application (PHP)</h3>
 <div class="org-src-container">
 
 <pre  class="src src-php"><span style="color: #b4fa70;">interface</span> <span style="color: #8cc4ff;">Pet</span> {
@@ -280,8 +277,8 @@ A part of the application needs to know what pets a given pet might attack.
 </div>
 
 </section>
-<section id="slide-org260e48d">
-<h3 id="org260e48d">But if you could, should you?</h3>
+<section id="slide-orge8e534f">
+<h3 id="orge8e534f">But if you could, should you?</h3>
 <p>
 Doing this in an OO language has several drawbacks:
 </p>
@@ -293,8 +290,8 @@ Doing this in an OO language has several drawbacks:
 </ul>
 
 </section>
-<section id="slide-org24f731f">
-<h3 id="org24f731f">Sometimes you can't, even if you want to</h3>
+<section id="slide-org9b3c9eb">
+<h3 id="org9b3c9eb">Sometimes you can't, even if you want to</h3>
 <p>
 If you don't control the classes you wish to dispatch on, you have to resort to using <code>instanceof</code>:
 </p>
@@ -317,8 +314,8 @@ If you don't control the classes you wish to dispatch on, you have to resort to 
 </div>
 
 </section>
-<section id="slide-org6ab81e2">
-<h3 id="org6ab81e2">A Solution</h3>
+<section id="slide-org35a9ca3">
+<h3 id="org35a9ca3">A Solution</h3>
 <p>
 What if <code>Pet</code> looked like the following?
 </p>
@@ -349,8 +346,8 @@ What if <code>Pet</code> looked like the following?
 </div>
 
 </section>
-<section id="slide-org4315453">
-<h3 id="org4315453">A Solution (Continued)</h3>
+<section id="slide-orgbeab0ac">
+<h3 id="orgbeab0ac">A Solution (Continued)</h3>
 <p>
 Define and Use a Function Map
 </p>
@@ -373,8 +370,8 @@ $<span style="color: #fcaf3e;">hasFur</span> = $<span style="color: #fcaf3e;">pe
 </div>
 
 </section>
-<section id="slide-orge727249">
-<h3 id="orge727249">Another Solution</h3>
+<section id="slide-orgec9da0a">
+<h3 id="orgec9da0a">Another Solution</h3>
 <p>
 Instead of a map, let's use an interface
 </p>
@@ -402,8 +399,8 @@ And implement that interface:
 </div>
 
 </section>
-<section id="slide-orgb6d807c">
-<h3 id="orgb6d807c">Another Solution (Continued)</h3>
+<section id="slide-orgb73f5cd">
+<h3 id="orgb73f5cd">Another Solution (Continued)</h3>
 <p>
 And change <code>Pet</code> to the following:
 </p>
@@ -434,8 +431,8 @@ And change <code>Pet</code> to the following:
 </div>
 
 </section>
-<section id="slide-org0dbc87c">
-<h3 id="org0dbc87c">Another Solution (Continued)</h3>
+<section id="slide-org5a62b6a">
+<h3 id="org5a62b6a">Another Solution (Continued)</h3>
 <p>
 Finally, use the <code>HasFur</code> <code>PetFunctions</code>:
 </p>
@@ -444,56 +441,6 @@ Finally, use the <code>HasFur</code> <code>PetFunctions</code>:
 <pre  class="src src-php">$<span style="color: #fcaf3e;">hasFur</span> = $<span style="color: #fcaf3e;">pet</span>-&gt;<span style="color: #eeeeec; background-color: #2e3436;">callYourFunction</span>(<span style="color: #b4fa70;">new</span> <span style="color: #8cc4ff;">HasFurFunctions</span>());
 </pre>
 </div>
-
-
-</section>
-</section>
-<section>
-<section id="slide-org9b974e4">
-<h2 id="org9b974e4">Review of Some Fundamentals</h2>
-<div class="outline-text-2" id="text-org9b974e4">
-</div></section>
-<section id="slide-org53331b9">
-<h3 id="org53331b9">What is a type?</h3>
-<p>
-A type is simply a set of values.
-</p>
-
-<p>
-For example:
-</p>
-<ul>
-<li>booleans can have a value of "true" or "false"</li>
-<li>integers can be any integer, usually within some range.</li>
-
-</ul>
-
-</section>
-<section id="slide-orge30248f">
-<h3 id="orge30248f">Dynamic Dispatch</h3>
-
-</section>
-<section id="slide-orgcbe7eab">
-<h3 id="orgcbe7eab">Algebraic Data Types</h3>
-
-
-</section>
-</section>
-<section>
-<section id="slide-org7d39c08">
-<h2 id="org7d39c08">Simulating ADTs in OO</h2>
-<div class="outline-text-2" id="text-org7d39c08">
-</div></section>
-<section id="slide-org30d9071">
-<h3 id="org30d9071">Can We Have Algebraic Data Types in an OO Language? Yes!</h3>
-
-
-
-</section>
-</section>
-<section>
-<section id="slide-org9432c64">
-<h2 id="org9432c64">The Visitor Pattern to the Rescue!</h2>
 </section>
 </section>
 </div>

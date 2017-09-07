@@ -292,27 +292,3 @@ Finally, use the ~HasFur~ ~PetFunctions~:
 #+BEGIN_SRC php
 $hasFur = $pet->callYourFunction(new HasFurFunctions());
 #+END_SRC
-
-
-* Review of Some Fundamentals
-
-** What is a type?
-
-A type is simply a set of values.
-
-For example:
-- booleans can have a value of "true" or "false"
-- integers can be any integer, usually within some range.
-
-** Dynamic Dispatch
-
-** Algebraic Data Types
-
-
-* Simulating ADTs in OO
-
-** Can We Have Algebraic Data Types in an OO Language? Yes!
-
-
-
-* The Visitor Pattern to the Rescue!
