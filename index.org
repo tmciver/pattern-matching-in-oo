@@ -13,6 +13,84 @@ Answer: Yes!
 Well, almost.
 
 
+* What is Pattern Matching?
+
+** 
+Given the following Scala code:
+#+BEGIN_SRC scala
+case class Point(x: Double, y: Double)
+
+sealed trait Shape
+final case class Circle(radius: double) extends Shape
+final case class Square(side: double) extends Shape
+final case class Triangle(p1: Point, p2: Point, p3: Point) extends Shape
+#+END_SRC
+
+You can use pattern matching to implement the ~area~ function:
+
+#+BEGIN_SRC scala
+object Shape {
+
+  def area(shape: Shape) shape match {
+    case Circle(r) => Pi * r * r
+    case Square(side) => side * side
+    case Triangle(p1, p2, p3) => ??? // some calculation involving p1, p2 and p3 :)
+  }
+}
+#+END_SRC
+
+** 
+Underscore matches anything:
+#+BEGIN_SRC scala
+object MyShapeApp {
+
+  def hasCorners(shape: Shape) = shape match {
+    case Circle(_) => false
+    case _ => true
+  }
+}
+#+END_SRC
+
+** 
+You can match on type:
+#+BEGIN_SRC scala
+object MyShapeApp {
+
+  def circles(shapes: List[Shape]): List[Circle] = shapes match {
+    case List(c: Circle, rest) => c :: circles(rest)
+    case List(_, rest) => circles(rest)
+    case Nil => Nil
+  }
+}
+#+END_SRC
+
+** 
+It's recursive:
+#+BEGIN_SRC scala
+object MyShapeApp {
+
+  def countCircles(shapes: List[Shape]): Int = shapes match {
+    case List(Circle(_), rest) => 1 + countCircles(rest)
+    case List(_, rest) => countCircles(rest)
+    case Nil => 0
+  }
+}
+#+END_SRC
+
+** 
+And exhaustive.  The following gives a warning:
+#+BEGIN_SRC scala
+object MyShapeApp {
+
+  def area(shape: Shape) shape match {
+    case Circle(r) => Pi * r * r
+    case Square(side) => side * side
+    // what about Triangle?
+  }
+}
+#+END_SRC
+
+
 * An Example
 
 ** Dispatching on Values in Scala

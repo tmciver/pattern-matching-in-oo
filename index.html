@@ -26,18 +26,19 @@
 <body>
 <div class="reveal">
 <div class="slides">
-<section id="sec-title-slide"><h2 class="author">Tim McIver</h2><p class="date">Created: 2017-09-01 Fri 20:39</p>
+<section id="sec-title-slide"><h2 class="author">Tim McIver</h2><p class="date">Created: 2017-09-06 Wed 23:06</p>
 </section>
 <section id="table-of-contents">
 <div id="table-of-contents">
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#/slide-orgba8ef8c">The Problem Statement</a></li>
-<li><a href="#/slide-org7d178f6">An Example</a></li>
-<li><a href="#/slide-orge199f92">Review of Some Fundamentals</a></li>
-<li><a href="#/slide-org22db9ea">Simulating ADTs in OO</a></li>
-<li><a href="#/slide-org20c9514">The Visitor Pattern to the Rescue!</a></li>
+<li><a href="#/slide-org946946e">The Problem Statement</a></li>
+<li><a href="#/slide-org1e429ab">What is Pattern Matching?</a></li>
+<li><a href="#/slide-org805d2f3">An Example</a></li>
+<li><a href="#/slide-org9b974e4">Review of Some Fundamentals</a></li>
+<li><a href="#/slide-org7d39c08">Simulating ADTs in OO</a></li>
+<li><a href="#/slide-org9432c64">The Visitor Pattern to the Rescue!</a></li>
 </ul>
 </div>
 </div>
@@ -46,12 +47,12 @@
 
 
 <section>
-<section id="slide-orgba8ef8c">
-<h2 id="orgba8ef8c">The Problem Statement</h2>
-<div class="outline-text-2" id="text-orgba8ef8c">
+<section id="slide-org946946e">
+<h2 id="org946946e">The Problem Statement</h2>
+<div class="outline-text-2" id="text-org946946e">
 </div></section>
-<section id="slide-org427cb58">
-<h3 id="org427cb58">Can we attain the same level of generalized dispatch on values of a type using an Object-Oriented language that our friends using functional languages enjoy?</h3>
+<section id="slide-org2e9502a">
+<h3 id="org2e9502a">Can we attain the same level of generalized dispatch on values of a type using an Object-Oriented language that our friends using functional languages enjoy?</h3>
 <p class="fragment appear">
 Answer: Yes!
 </p>
@@ -63,12 +64,128 @@ Well, almost.
 </section>
 </section>
 <section>
-<section id="slide-org7d178f6">
-<h2 id="org7d178f6">An Example</h2>
-<div class="outline-text-2" id="text-org7d178f6">
+<section id="slide-org1e429ab">
+<h2 id="org1e429ab">What is Pattern Matching?</h2>
+<div class="outline-text-2" id="text-org1e429ab">
 </div></section>
-<section id="slide-org5f61c14">
-<h3 id="org5f61c14">Dispatching on Values in Scala</h3>
+<section id="slide-org1ffe713">
+<h3 id="org1ffe713"></h3>
+<p>
+Given the following Scala code:
+</p>
+<div class="org-src-container">
+
+<pre  class="src src-scala"><span style="color: #b4fa70;">case</span> <span style="color: #b4fa70;">class</span> <span style="color: #8cc4ff;">Point</span>(x<span style="color: #b4fa70;">:</span> <span style="color: #8cc4ff;">Double</span>, y<span style="color: #b4fa70;">:</span> <span style="color: #8cc4ff;">Double</span>)
+
+<span style="color: #e090d7;">sealed</span> <span style="color: #b4fa70;">trait</span> <span style="color: #8cc4ff;">Shape</span>
+<span style="color: #e090d7;">final</span> <span style="color: #b4fa70;">case</span> <span style="color: #b4fa70;">class</span> <span style="color: #8cc4ff;">Circle</span>(radius<span style="color: #b4fa70;">:</span> <span style="color: #8cc4ff;">double</span>) <span style="color: #b4fa70;">extends</span> <span style="color: #8cc4ff;">Shape</span>
+<span style="color: #e090d7;">final</span> <span style="color: #b4fa70;">case</span> <span style="color: #b4fa70;">class</span> <span style="color: #8cc4ff;">Square</span>(side<span style="color: #b4fa70;">:</span> <span style="color: #8cc4ff;">double</span>) <span style="color: #b4fa70;">extends</span> <span style="color: #8cc4ff;">Shape</span>
+<span style="color: #e090d7;">final</span> <span style="color: #b4fa70;">case</span> <span style="color: #b4fa70;">class</span> <span style="color: #8cc4ff;">Triangle</span>(p1<span style="color: #b4fa70;">:</span> <span style="color: #8cc4ff;">Point</span>, p2<span style="color: #b4fa70;">:</span> <span style="color: #8cc4ff;">Point</span>, p3<span style="color: #b4fa70;">:</span> <span style="color: #8cc4ff;">Point</span>) <span style="color: #b4fa70;">extends</span> <span style="color: #8cc4ff;">Shape</span>
+</pre>
+</div>
+
+<p>
+You can use pattern matching to implement the <code>area</code> function:
+</p>
+
+<div class="org-src-container">
+
+<pre  class="src src-scala"><span style="color: #b4fa70;">object</span> <span style="color: #e9b2e3;">Shape</span> {
+
+  <span style="color: #b4fa70;">def</span> <span style="color: #fce94f;">area</span>(shape<span style="color: #b4fa70;">:</span> <span style="color: #8cc4ff;">Shape</span>) shape <span style="color: #b4fa70;">match</span> {
+    <span style="color: #b4fa70;">case</span> <span style="color: #8cc4ff;">Circle</span>(<span style="color: #fcaf3e;">r</span>) <span style="color: #b4fa70;">=&gt;</span> <span style="color: #e9b2e3;">Pi</span> * r * r
+    <span style="color: #b4fa70;">case</span> <span style="color: #8cc4ff;">Square</span>(<span style="color: #fcaf3e;">side</span>) <span style="color: #b4fa70;">=&gt;</span> side * side
+    <span style="color: #b4fa70;">case</span> <span style="color: #8cc4ff;">Triangle</span>(<span style="color: #fcaf3e;">p1</span>, <span style="color: #fcaf3e;">p2</span>, <span style="color: #fcaf3e;">p3</span>) <span style="color: #b4fa70;">=&gt;</span> ??? <span style="color: #73d216;">// </span><span style="color: #73d216;">some calculation involving p1, p2 and p3 :)</span>
+  }
+}
+</pre>
+</div>
+
+</section>
+<section id="slide-orgd03ddff">
+<h3 id="orgd03ddff"></h3>
+<p>
+Underscore matches anything:
+</p>
+<div class="org-src-container">
+
+<pre  class="src src-scala"><span style="color: #b4fa70;">object</span> <span style="color: #e9b2e3;">MyShapeApp</span> {
+
+  <span style="color: #b4fa70;">def</span> <span style="color: #fce94f;">hasCorners</span>(shape<span style="color: #b4fa70;">:</span> <span style="color: #8cc4ff;">Shape</span>) <span style="color: #b4fa70;">=</span> shape <span style="color: #b4fa70;">match</span> {
+    <span style="color: #b4fa70;">case</span> <span style="color: #8cc4ff;">Circle</span>(<span style="color: #b4fa70;">_</span>) <span style="color: #b4fa70;">=&gt;</span> <span style="color: #e9b2e3;">false</span>
+    <span style="color: #b4fa70;">case</span> <span style="color: #b4fa70;">_</span> <span style="color: #b4fa70;">=&gt;</span> <span style="color: #e9b2e3;">true</span>
+  }
+}
+</pre>
+</div>
+
+</section>
+<section id="slide-org097de9f">
+<h3 id="org097de9f"></h3>
+<p>
+You can match on type:
+</p>
+<div class="org-src-container">
+
+<pre  class="src src-scala"><span style="color: #b4fa70;">object</span> <span style="color: #e9b2e3;">MyShapeApp</span> {
+
+  <span style="color: #b4fa70;">def</span> <span style="color: #fce94f;">circles</span>(shapes<span style="color: #b4fa70;">:</span> <span style="color: #8cc4ff;">List</span>[<span style="color: #e9b2e3;">Shape</span>])<span style="color: #b4fa70;">:</span> <span style="color: #8cc4ff;">List</span>[<span style="color: #e9b2e3;">Circle</span>] <span style="color: #b4fa70;">=</span> shapes <span style="color: #b4fa70;">match</span> {
+    <span style="color: #b4fa70;">case</span> <span style="color: #8cc4ff;">List</span>(<span style="color: #fcaf3e;">c</span><span style="color: #b4fa70;">:</span> <span style="color: #8cc4ff;">Circle</span>, <span style="color: #fcaf3e;">rest</span>) <span style="color: #b4fa70;">=&gt;</span> c :: circles(rest)
+    <span style="color: #b4fa70;">case</span> <span style="color: #8cc4ff;">List</span>(<span style="color: #b4fa70;">_</span>, <span style="color: #fcaf3e;">rest</span>) <span style="color: #b4fa70;">=&gt;</span> circles(rest)
+    <span style="color: #b4fa70;">case</span> <span style="color: #e9b2e3;">Nil</span> <span style="color: #b4fa70;">=&gt;</span> <span style="color: #e9b2e3;">Nil</span>
+  }
+}
+</pre>
+</div>
+
+</section>
+<section id="slide-orgde3efba">
+<h3 id="orgde3efba"></h3>
+<p>
+It's recursive:
+</p>
+<div class="org-src-container">
+
+<pre  class="src src-scala"><span style="color: #b4fa70;">object</span> <span style="color: #e9b2e3;">MyShapeApp</span> {
+
+  <span style="color: #b4fa70;">def</span> <span style="color: #fce94f;">countCircles</span>(shapes<span style="color: #b4fa70;">:</span> <span style="color: #8cc4ff;">List</span>[<span style="color: #e9b2e3;">Shape</span>])<span style="color: #b4fa70;">:</span> <span style="color: #8cc4ff;">Int</span> <span style="color: #b4fa70;">=</span> shapes <span style="color: #b4fa70;">match</span> {
+    <span style="color: #b4fa70;">case</span> <span style="color: #8cc4ff;">List</span>(<span style="color: #8cc4ff;">Circle</span>(<span style="color: #b4fa70;">_</span>), <span style="color: #fcaf3e;">rest</span>) <span style="color: #b4fa70;">=&gt;</span> <span style="color: #e9b2e3;">1</span> + countCircles(rest)
+    <span style="color: #b4fa70;">case</span> <span style="color: #8cc4ff;">List</span>(<span style="color: #b4fa70;">_</span>, <span style="color: #fcaf3e;">rest</span>) <span style="color: #b4fa70;">=&gt;</span> countCircles(rest)
+    <span style="color: #b4fa70;">case</span> <span style="color: #e9b2e3;">Nil</span> <span style="color: #b4fa70;">=&gt;</span> <span style="color: #e9b2e3;">0</span>
+  }
+}
+</pre>
+</div>
+
+</section>
+<section id="slide-org94faa0a">
+<h3 id="org94faa0a"></h3>
+<p>
+And exhaustive.  The following gives a warning:
+</p>
+<div class="org-src-container">
+
+<pre  class="src src-scala"><span style="color: #b4fa70;">object</span> <span style="color: #e9b2e3;">MyShapeApp</span> {
+
+  <span style="color: #b4fa70;">def</span> <span style="color: #fce94f;">area</span>(shape<span style="color: #b4fa70;">:</span> <span style="color: #8cc4ff;">Shape</span>) shape <span style="color: #b4fa70;">match</span> {
+    <span style="color: #b4fa70;">case</span> <span style="color: #8cc4ff;">Circle</span>(<span style="color: #fcaf3e;">r</span>) <span style="color: #b4fa70;">=&gt;</span> <span style="color: #e9b2e3;">Pi</span> * r * r
+    <span style="color: #b4fa70;">case</span> <span style="color: #8cc4ff;">Square</span>(<span style="color: #fcaf3e;">side</span>) <span style="color: #b4fa70;">=&gt;</span> side * side
+    <span style="color: #73d216;">// </span><span style="color: #73d216;">what about Triangle?</span>
+  }
+}
+</pre>
+</div>
+
+
+</section>
+</section>
+<section>
+<section id="slide-org805d2f3">
+<h2 id="org805d2f3">An Example</h2>
+<div class="outline-text-2" id="text-org805d2f3">
+</div></section>
+<section id="slide-orga0f01c1">
+<h3 id="orga0f01c1">Dispatching on Values in Scala</h3>
 <div class="org-src-container">
 
 <pre  class="src src-scala"><span style="color: #e090d7;">sealed</span> <span style="color: #b4fa70;">trait</span> <span style="color: #8cc4ff;">Pet</span>
@@ -89,8 +206,8 @@ Well, almost.
 </div>
 
 </section>
-<section id="slide-org0f37d6e">
-<h3 id="org0f37d6e">Dispatching on Values in PHP</h3>
+<section id="slide-orgd3068ae">
+<h3 id="orgd3068ae">Dispatching on Values in PHP</h3>
 <div class="org-src-container">
 
 <pre  class="src src-php"><span style="color: #b4fa70;">interface</span> <span style="color: #8cc4ff;">Pet</span> {
@@ -116,8 +233,8 @@ $<span style="color: #fcaf3e;">myPet</span>-&gt;<span style="color: #eeeeec; bac
 </div>
 
 </section>
-<section id="slide-org47e1a03">
-<h3 id="org47e1a03">Use in a Pet Store Application (Scala)</h3>
+<section id="slide-org7d93902">
+<h3 id="org7d93902">Use in a Pet Store Application (Scala)</h3>
 <p>
 A part of the application needs to know what pets a given pet might attack.
 </p>
@@ -136,8 +253,8 @@ A part of the application needs to know what pets a given pet might attack.
 </div>
 
 </section>
-<section id="slide-org9ae2f0f">
-<h3 id="org9ae2f0f">Use in a Pet Store Application (PHP)</h3>
+<section id="slide-org2ab7aa5">
+<h3 id="org2ab7aa5">Use in a Pet Store Application (PHP)</h3>
 <div class="org-src-container">
 
 <pre  class="src src-php"><span style="color: #b4fa70;">interface</span> <span style="color: #8cc4ff;">Pet</span> {
@@ -163,8 +280,8 @@ A part of the application needs to know what pets a given pet might attack.
 </div>
 
 </section>
-<section id="slide-org99d735a">
-<h3 id="org99d735a">But if you could, should you?</h3>
+<section id="slide-org260e48d">
+<h3 id="org260e48d">But if you could, should you?</h3>
 <p>
 Doing this in an OO language has several drawbacks:
 </p>
@@ -176,8 +293,8 @@ Doing this in an OO language has several drawbacks:
 </ul>
 
 </section>
-<section id="slide-org2a575a2">
-<h3 id="org2a575a2">Sometimes you can't, even if you want to</h3>
+<section id="slide-org24f731f">
+<h3 id="org24f731f">Sometimes you can't, even if you want to</h3>
 <p>
 If you don't control the classes you wish to dispatch on, you have to resort to using <code>instanceof</code>:
 </p>
@@ -200,8 +317,8 @@ If you don't control the classes you wish to dispatch on, you have to resort to 
 </div>
 
 </section>
-<section id="slide-org8e7cc66">
-<h3 id="org8e7cc66">A Solution</h3>
+<section id="slide-org6ab81e2">
+<h3 id="org6ab81e2">A Solution</h3>
 <p>
 What if <code>Pet</code> looked like the following?
 </p>
@@ -232,8 +349,8 @@ What if <code>Pet</code> looked like the following?
 </div>
 
 </section>
-<section id="slide-orgd108605">
-<h3 id="orgd108605">A Solution (Continued)</h3>
+<section id="slide-org4315453">
+<h3 id="org4315453">A Solution (Continued)</h3>
 <p>
 Define and Use a Function Map
 </p>
@@ -256,8 +373,8 @@ $<span style="color: #fcaf3e;">hasFur</span> = $<span style="color: #fcaf3e;">pe
 </div>
 
 </section>
-<section id="slide-org4306a1c">
-<h3 id="org4306a1c">Another Solution</h3>
+<section id="slide-orge727249">
+<h3 id="orge727249">Another Solution</h3>
 <p>
 Instead of a map, let's use an interface
 </p>
@@ -285,8 +402,8 @@ And implement that interface:
 </div>
 
 </section>
-<section id="slide-orged2a5d2">
-<h3 id="orged2a5d2">Another Solution (Continued)</h3>
+<section id="slide-orgb6d807c">
+<h3 id="orgb6d807c">Another Solution (Continued)</h3>
 <p>
 And change <code>Pet</code> to the following:
 </p>
@@ -317,8 +434,8 @@ And change <code>Pet</code> to the following:
 </div>
 
 </section>
-<section id="slide-orge68d6f3">
-<h3 id="orge68d6f3">Another Solution (Continued)</h3>
+<section id="slide-org0dbc87c">
+<h3 id="org0dbc87c">Another Solution (Continued)</h3>
 <p>
 Finally, use the <code>HasFur</code> <code>PetFunctions</code>:
 </p>
@@ -332,12 +449,12 @@ Finally, use the <code>HasFur</code> <code>PetFunctions</code>:
 </section>
 </section>
 <section>
-<section id="slide-orge199f92">
-<h2 id="orge199f92">Review of Some Fundamentals</h2>
-<div class="outline-text-2" id="text-orge199f92">
+<section id="slide-org9b974e4">
+<h2 id="org9b974e4">Review of Some Fundamentals</h2>
+<div class="outline-text-2" id="text-org9b974e4">
 </div></section>
-<section id="slide-org7ef9f8c">
-<h3 id="org7ef9f8c">What is a type?</h3>
+<section id="slide-org53331b9">
+<h3 id="org53331b9">What is a type?</h3>
 <p>
 A type is simply a set of values.
 </p>
@@ -352,31 +469,31 @@ For example:
 </ul>
 
 </section>
-<section id="slide-org0f2760a">
-<h3 id="org0f2760a">Dynamic Dispatch</h3>
+<section id="slide-orge30248f">
+<h3 id="orge30248f">Dynamic Dispatch</h3>
 
 </section>
-<section id="slide-org76ee481">
-<h3 id="org76ee481">Algebraic Data Types</h3>
+<section id="slide-orgcbe7eab">
+<h3 id="orgcbe7eab">Algebraic Data Types</h3>
 
 
 </section>
 </section>
 <section>
-<section id="slide-org22db9ea">
-<h2 id="org22db9ea">Simulating ADTs in OO</h2>
-<div class="outline-text-2" id="text-org22db9ea">
+<section id="slide-org7d39c08">
+<h2 id="org7d39c08">Simulating ADTs in OO</h2>
+<div class="outline-text-2" id="text-org7d39c08">
 </div></section>
-<section id="slide-org00a8979">
-<h3 id="org00a8979">Can We Have Algebraic Data Types in an OO Language? Yes!</h3>
+<section id="slide-org30d9071">
+<h3 id="org30d9071">Can We Have Algebraic Data Types in an OO Language? Yes!</h3>
 
 
 
 </section>
 </section>
 <section>
-<section id="slide-org20c9514">
-<h2 id="org20c9514">The Visitor Pattern to the Rescue!</h2>
+<section id="slide-org9432c64">
+<h2 id="org9432c64">The Visitor Pattern to the Rescue!</h2>
 </section>
 </section>
 </div>
