@@ -1,4 +1,4 @@
-#+REVEAL_THEME: league
+* #+REVEAL_THEME: league
 #+OPTIONS: toc:1, num:nil, f:t
 #+REVEAL_ROOT: file:///Users/timmciver/Workspace/reveal.js
 
@@ -461,3 +461,17 @@ object Shape {
 
 ** Mind, Blown!
 [[./img/mind-blown.gif]]
+
+* Summary
+#+ATTR_REVEAL: :frag (appear)
+- You _can_ get very close to FP-like pattern matching in an Object-Oriented language
+- Be nice to your users (you're one of them!) and add support for the Visitor Pattern to your class hierarchies - even if you don't immediately use it.
+
+** Questions?
+
+** Resources
+- [[https://en.wikipedia.org/wiki/Multiple_dispatch][Multiple Dispatch]]
+- [[https://en.wikipedia.org/wiki/Pattern_matching][Pattern Matching]]
+- [[https://en.wikipedia.org/wiki/Visitor_pattern][Visitor Pattern]]
+- [[https://www.amazon.com/Design-Patterns-Elements-Reusable-Object-Oriented/dp/0201633612/ref=sr_1_1][Design Patterns]]
+[[./img/design-pattern-book.jpg]]
