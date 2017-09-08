@@ -381,3 +381,83 @@ This suggests that we have some choices:
 - Implement all functionality using visitors; no public methods
 - Implement all functionality using only public methods; no visitors (has the drawbacks mentioned earlier)
 - Something in between (sweet spot!)
+
+** The End?
+Normally, that's the end of the story for Visitor Pattern.
+#+ATTR_REVEAL: :frag appear
+But let's try changing the names again:
+#+ATTR_REVEAL: :frag appear
+#+BEGIN_SRC php
+  interface Shape {
+    public function match($matcher);
+  }
+
+  class Circle implements Shape {
+    public function match($matcher) {
+      return $matcher->caseCircle($this);
+    }
+  }
+
+  class Square implements Shape {
+    public function match($matcher) {
+      return $matcher->caseSquare($this);
+    }
+  }
+
+  interface ShapeMatcher {
+    function caseCircle($circle);
+    function caseSquare($square);
+  }
+#+END_SRC
+
+** 
+The ~area~ implementation now looks like this:
+#+BEGIN_SRC php
+  class AreaMatcher implements ShapeMatcher {
+
+    public function caseCircle($circle) {
+      return 3.1416 * $circle->getRadius() * $circle->getRadius()
+    }
+
+    public function caseSquare($square) {
+      return $square->getSide() * $square->getSide();
+    }
+
+    public function caseTriangle($triangle) {
+      /* The correct implementation */
+    }
+  }
+
+  $shapeArea = $someShape->match(new AreaMatcher());
+#+END_SRC
+
+** 
+Or using PHP 7's anonymous classes:
+#+BEGIN_SRC php
+  $shapeArea = $someShape->match(new ShapeMatcher() {
+    public function caseCircle($circle) {
+      return 3.1416 * $circle->getRadius() * $circle->getRadius() }
+    public function caseSquare($square) {
+      return $square->getSide() * $square->getSide(); }
+    public function caseTriangle($triangle) {
+      /* The correct implementation */ }
+    }
+  );
+#+END_SRC
+
+#+ATTR_REVEAL: :frag appear
+Compare this to the original Scala version:
+#+ATTR_REVEAL: :frag appear
+#+BEGIN_SRC scala
+object Shape {
+
+  def area(shape: Shape) shape match {
+    case Circle(r) => Pi * r * r
+    case Square(side) => side * side
+    case Triangle(p1, p2, p3) => ??? // some calculation involving p1, p2 and p3 :)
+  }
+}
+#+END_SRC
+
+** Mind Blown!
+

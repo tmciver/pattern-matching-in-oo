@@ -26,18 +26,18 @@
 <body>
 <div class="reveal">
 <div class="slides">
-<section id="sec-title-slide"><h2 class="author">Tim McIver</h2><p class="date">Created: 2017-09-08 Fri 09:29</p>
+<section id="sec-title-slide"><h2 class="author">Tim McIver</h2><p class="date">Created: 2017-09-08 Fri 09:47</p>
 </section>
 <section id="table-of-contents">
 <div id="table-of-contents">
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#/slide-org464775c">The Question</a></li>
-<li><a href="#/slide-orgfff90a5">Dispatch in FP</a></li>
-<li><a href="#/slide-org8302a5e">Dispatch in OOP</a></li>
-<li><a href="#/slide-org8442abc">Possible Answers</a></li>
-<li><a href="#/slide-org4a27ecf">The Answer</a></li>
+<li><a href="#/slide-org22f8eef">The Question</a></li>
+<li><a href="#/slide-org0d39e2c">Dispatch in FP</a></li>
+<li><a href="#/slide-org65e5b09">Dispatch in OOP</a></li>
+<li><a href="#/slide-orgd6d01c9">Possible Answers</a></li>
+<li><a href="#/slide-org6c0431c">The Answer</a></li>
 </ul>
 </div>
 </div>
@@ -45,12 +45,12 @@
 
 
 <section>
-<section id="slide-org464775c">
-<h2 id="org464775c">The Question</h2>
-<div class="outline-text-2" id="text-org464775c">
+<section id="slide-org22f8eef">
+<h2 id="org22f8eef">The Question</h2>
+<div class="outline-text-2" id="text-org22f8eef">
 </div></section>
-<section id="slide-org644415e">
-<h3 id="org644415e">Can we attain the same level of generalized dispatch on values of a type using an Object-Oriented language that our friends using functional languages enjoy?</h3>
+<section id="slide-org7361ebd">
+<h3 id="org7361ebd">Can we attain the same level of generalized dispatch on values of a type using an Object-Oriented language that our friends using functional languages enjoy?</h3>
 <p class="fragment appear">
 Answer: Yes!
 </p>
@@ -62,12 +62,12 @@ Well, almost.
 </section>
 </section>
 <section>
-<section id="slide-orgfff90a5">
-<h2 id="orgfff90a5">Dispatch in FP</h2>
-<div class="outline-text-2" id="text-orgfff90a5">
+<section id="slide-org0d39e2c">
+<h2 id="org0d39e2c">Dispatch in FP</h2>
+<div class="outline-text-2" id="text-org0d39e2c">
 </div></section>
-<section id="slide-org87a125a">
-<h3 id="org87a125a"></h3>
+<section id="slide-orgeccde53">
+<h3 id="orgeccde53"></h3>
 <p>
 In Functional Programming there are several ways to achieve dispatch:
 </p>
@@ -83,8 +83,8 @@ We're only going to look at pattern matching here.
 </p>
 
 </section>
-<section id="slide-org7dd1d5c">
-<h3 id="org7dd1d5c">Pattern Matching 101</h3>
+<section id="slide-org2aca634">
+<h3 id="org2aca634">Pattern Matching 101</h3>
 <p>
 Given the following Scala code:
 </p>
@@ -117,8 +117,8 @@ You can use pattern matching to implement the <code>area</code> function:
 </div>
 
 </section>
-<section id="slide-org546fb1e">
-<h3 id="org546fb1e">Pattern Matching 101</h3>
+<section id="slide-org2d545ad">
+<h3 id="org2d545ad">Pattern Matching 101</h3>
 <p>
 Underscore matches anything:
 </p>
@@ -135,8 +135,8 @@ Underscore matches anything:
 </div>
 
 </section>
-<section id="slide-org3dc0768">
-<h3 id="org3dc0768">Pattern Matching 101</h3>
+<section id="slide-orgb867f73">
+<h3 id="orgb867f73">Pattern Matching 101</h3>
 <p>
 You can match on type:
 </p>
@@ -154,8 +154,8 @@ You can match on type:
 </div>
 
 </section>
-<section id="slide-org1a2160b">
-<h3 id="org1a2160b">Pattern Matching 101</h3>
+<section id="slide-org0b07f3f">
+<h3 id="org0b07f3f">Pattern Matching 101</h3>
 <p>
 It's recursive:
 </p>
@@ -173,8 +173,8 @@ It's recursive:
 </div>
 
 </section>
-<section id="slide-org0c9e56e">
-<h3 id="org0c9e56e">Pattern Matching 101</h3>
+<section id="slide-orgd93d6d7">
+<h3 id="orgd93d6d7">Pattern Matching 101</h3>
 <p>
 And exhaustive.  The following gives a warning:
 </p>
@@ -195,12 +195,12 @@ And exhaustive.  The following gives a warning:
 </section>
 </section>
 <section>
-<section id="slide-org8302a5e">
-<h2 id="org8302a5e">Dispatch in OOP</h2>
-<div class="outline-text-2" id="text-org8302a5e">
+<section id="slide-org65e5b09">
+<h2 id="org65e5b09">Dispatch in OOP</h2>
+<div class="outline-text-2" id="text-org65e5b09">
 </div></section>
-<section id="slide-org291ca39">
-<h3 id="org291ca39">Dispatching on Values in PHP</h3>
+<section id="slide-org6503d71">
+<h3 id="org6503d71">Dispatching on Values in PHP</h3>
 <div class="org-src-container">
 
 <pre  class="src src-php"><span style="color: #b4fa70;">interface</span> <span style="color: #8cc4ff;">Shape</span> {
@@ -229,8 +229,8 @@ $<span style="color: #fcaf3e;">myShape</span>-&gt;<span style="color: #eeeeec; b
 </div>
 
 </section>
-<section id="slide-org7b5d58b">
-<h3 id="org7b5d58b"></h3>
+<section id="slide-orga7a2001">
+<h3 id="orga7a2001"></h3>
 <p>
 Similarly for the <code>hasCorners</code> method:
 </p>
@@ -262,8 +262,8 @@ Similarly for the <code>hasCorners</code> method:
 </div>
 
 </section>
-<section id="slide-orgd8797bf">
-<h3 id="orgd8797bf">But if you could, should you?</h3>
+<section id="slide-orga0303c8">
+<h3 id="orga0303c8">But if you could, should you?</h3>
 <p>
 Doing this in an OO language has several drawbacks:
 </p>
@@ -275,8 +275,8 @@ Doing this in an OO language has several drawbacks:
 </ul>
 
 </section>
-<section id="slide-org081486b">
-<h3 id="org081486b">Use in a Client Application</h3>
+<section id="slide-orgf67b3db">
+<h3 id="orgf67b3db">Use in a Client Application</h3>
 <p>
 But what if you can't? How can you implement the <code>hasCorners</code> function if you can't modify the <code>shapes</code> library?
 </p>
@@ -303,12 +303,12 @@ OK, that's not so bad but if new versions of the <code>shape</code> library add 
 </section>
 </section>
 <section>
-<section id="slide-org8442abc">
-<h2 id="org8442abc">Possible Answers</h2>
-<div class="outline-text-2" id="text-org8442abc">
+<section id="slide-orgd6d01c9">
+<h2 id="orgd6d01c9">Possible Answers</h2>
+<div class="outline-text-2" id="text-orgd6d01c9">
 </div></section>
-<section id="slide-org567ab7f">
-<h3 id="org567ab7f">First Answer</h3>
+<section id="slide-org0eb614e">
+<h3 id="org0eb614e">First Answer</h3>
 <p>
 What if <code>Shape</code> looked like the following?
 </p>
@@ -339,8 +339,8 @@ What if <code>Shape</code> looked like the following?
 </div>
 
 </section>
-<section id="slide-orgf363e74">
-<h3 id="orgf363e74">First Answer (Continued)</h3>
+<section id="slide-org24ff3b9">
+<h3 id="org24ff3b9">First Answer (Continued)</h3>
 <p>
 Then we define and use a function map:
 </p>
@@ -363,8 +363,8 @@ $<span style="color: #fcaf3e;">hasCorners</span> = $<span style="color: #fcaf3e;
 </div>
 
 </section>
-<section id="slide-orgc33b6a3">
-<h3 id="orgc33b6a3">Second Answer</h3>
+<section id="slide-org71174d3">
+<h3 id="org71174d3">Second Answer</h3>
 <p>
 Instead of a map, let's use an interface
 </p>
@@ -392,8 +392,8 @@ And implement that interface:
 </div>
 
 </section>
-<section id="slide-orgf3bb387">
-<h3 id="orgf3bb387">Second Answer (Continued)</h3>
+<section id="slide-org985cdf7">
+<h3 id="org985cdf7">Second Answer (Continued)</h3>
 <p>
 And change <code>Shape</code> to the following:
 </p>
@@ -424,8 +424,8 @@ And change <code>Shape</code> to the following:
 </div>
 
 </section>
-<section id="slide-org9091869">
-<h3 id="org9091869">Second Answer (Continued)</h3>
+<section id="slide-org0452fe6">
+<h3 id="org0452fe6">Second Answer (Continued)</h3>
 <p>
 Finally, use <code>HasCornersFunctions</code>:
 </p>
@@ -438,19 +438,19 @@ Finally, use <code>HasCornersFunctions</code>:
 </section>
 </section>
 <section>
-<section id="slide-org4a27ecf">
-<h2 id="org4a27ecf">The Answer</h2>
-<div class="outline-text-2" id="text-org4a27ecf">
+<section id="slide-org6c0431c">
+<h2 id="org6c0431c">The Answer</h2>
+<div class="outline-text-2" id="text-org6c0431c">
 </div></section>
-<section id="slide-org2464b18">
-<h3 id="org2464b18">This is a Known Pattern</h3>
+<section id="slide-orge95cfb0">
+<h3 id="orge95cfb0">This is a Known Pattern</h3>
 <p class="fragment appear">
 It's the Visitor Pattern!
 </p>
 
 </section>
-<section id="slide-orgf6d077a">
-<h3 id="orgf6d077a"></h3>
+<section id="slide-org51e3c7f">
+<h3 id="org51e3c7f"></h3>
 <p>
 Usually the names are a little different:
 </p>
@@ -480,8 +480,8 @@ Usually the names are a little different:
 </div>
 
 </section>
-<section id="slide-org6a295dd">
-<h3 id="org6a295dd"></h3>
+<section id="slide-org2e78e09">
+<h3 id="org2e78e09"></h3>
 <p>
 For the case of the <code>shapes</code> library it looks like this:
 </p>
@@ -511,8 +511,8 @@ For the case of the <code>shapes</code> library it looks like this:
 </div>
 
 </section>
-<section id="slide-org7dd47d7">
-<h3 id="org7dd47d7"></h3>
+<section id="slide-orgf5581c7">
+<h3 id="orgf5581c7"></h3>
 <p>
 Now, the <code>area</code> implementation looks like this:
 </p>
@@ -538,8 +538,8 @@ $<span style="color: #fcaf3e;">shapeArea</span> = $<span style="color: #fcaf3e;"
 </div>
 
 </section>
-<section id="slide-org6dbb82e">
-<h3 id="org6dbb82e"></h3>
+<section id="slide-orgcc4026f">
+<h3 id="orgcc4026f"></h3>
 <p>
 Similarly for <code>hasCorners</code>:
 </p>
@@ -558,8 +558,8 @@ $<span style="color: #fcaf3e;">hasCorners</span> = $<span style="color: #fcaf3e;
 </div>
 
 </section>
-<section id="slide-org30cda46">
-<h3 id="org30cda46"></h3>
+<section id="slide-org8766ec1">
+<h3 id="org8766ec1"></h3>
 <p>
 Notice we implmented <span class="underline">both</span> <code>area</code> and <code>hasCorners</code> as visitors; <code>Shape</code> has only one public method: <code>accept</code>!
 </p>
@@ -575,6 +575,103 @@ This suggests that we have some choices:
 <li class="fragment appear">Something in between (sweet spot!)</li>
 
 </ul>
+
+</section>
+<section id="slide-org79e4661">
+<h3 id="org79e4661">The End?</h3>
+<p>
+Normally, that's the end of the story for Visitor Pattern.
+</p>
+<p class="fragment appear">
+But let's try changing the names again:
+</p>
+<div class="org-src-container">
+
+<pre  class="fragment appear"><span style="color: #b4fa70;">interface</span> <span style="color: #8cc4ff;">Shape</span> {
+  <span style="color: #b4fa70;">public</span> <span style="color: #b4fa70;">function</span> <span style="color: #fce94f;">match</span>($<span style="color: #fcaf3e;">matcher</span>);
+}
+
+<span style="color: #b4fa70;">class</span> <span style="color: #8cc4ff;">Circle</span> <span style="color: #b4fa70;">implements</span> <span style="color: #8cc4ff;">Shape</span> {
+  <span style="color: #b4fa70;">public</span> <span style="color: #b4fa70;">function</span> <span style="color: #fce94f;">match</span>($<span style="color: #fcaf3e;">matcher</span>) {
+    <span style="color: #b4fa70;">return</span> $<span style="color: #fcaf3e;">matcher</span>-&gt;<span style="color: #eeeeec; background-color: #2e3436;">caseCircle</span>($<span style="color: #e9b2e3;">this</span>);
+  }
+}
+
+<span style="color: #b4fa70;">class</span> <span style="color: #8cc4ff;">Square</span> <span style="color: #b4fa70;">implements</span> <span style="color: #8cc4ff;">Shape</span> {
+  <span style="color: #b4fa70;">public</span> <span style="color: #b4fa70;">function</span> <span style="color: #fce94f;">match</span>($<span style="color: #fcaf3e;">matcher</span>) {
+    <span style="color: #b4fa70;">return</span> $<span style="color: #fcaf3e;">matcher</span>-&gt;<span style="color: #eeeeec; background-color: #2e3436;">caseSquare</span>($<span style="color: #e9b2e3;">this</span>);
+  }
+}
+
+<span style="color: #b4fa70;">interface</span> <span style="color: #8cc4ff;">ShapeMatcher</span> {
+  <span style="color: #b4fa70;">function</span> <span style="color: #fce94f;">caseCircle</span>($<span style="color: #fcaf3e;">circle</span>);
+  <span style="color: #b4fa70;">function</span> <span style="color: #fce94f;">caseSquare</span>($<span style="color: #fcaf3e;">square</span>);
+}
+</pre>
+</div>
+
+</section>
+<section id="slide-org03294c0">
+<h3 id="org03294c0"></h3>
+<p>
+The <code>area</code> implementation now looks like this:
+</p>
+<div class="org-src-container">
+
+<pre  class="src src-php"><span style="color: #b4fa70;">class</span> <span style="color: #8cc4ff;">AreaMatcher</span> <span style="color: #b4fa70;">implements</span> <span style="color: #8cc4ff;">ShapeMatcher</span> {
+
+  <span style="color: #b4fa70;">public</span> <span style="color: #b4fa70;">function</span> <span style="color: #fce94f;">caseCircle</span>($<span style="color: #fcaf3e;">circle</span>) {
+    <span style="color: #b4fa70;">return</span> <span style="color: #eeeeec; background-color: #2e3436;">3</span>.<span style="color: #eeeeec; background-color: #2e3436;">1416</span> * $<span style="color: #fcaf3e;">circle</span>-&gt;<span style="color: #eeeeec; background-color: #2e3436;">getRadius</span>() * $<span style="color: #fcaf3e;">circle</span>-&gt;<span style="color: #eeeeec; background-color: #2e3436;">getRadius</span>()
+  }
+
+  <span style="color: #b4fa70;">public</span> <span style="color: #b4fa70;">function</span> <span style="color: #fce94f;">caseSquare</span>($<span style="color: #fcaf3e;">square</span>) {
+    <span style="color: #b4fa70;">return</span> $<span style="color: #fcaf3e;">square</span>-&gt;<span style="color: #eeeeec; background-color: #2e3436;">getSide</span>() * $<span style="color: #fcaf3e;">square</span>-&gt;<span style="color: #eeeeec; background-color: #2e3436;">getSide</span>();
+  }
+
+  <span style="color: #b4fa70;">public</span> <span style="color: #b4fa70;">function</span> <span style="color: #fce94f;">caseTriangle</span>($<span style="color: #fcaf3e;">triangle</span>) {
+    <span style="color: #73d216;">/* </span><span style="color: #73d216;">The correct implementation </span><span style="color: #73d216;">*/</span>
+  }
+}
+
+$<span style="color: #fcaf3e;">shapeArea</span> = $<span style="color: #fcaf3e;">someShape</span>-&gt;<span style="color: #eeeeec; background-color: #2e3436;">match</span>(<span style="color: #b4fa70;">new</span> <span style="color: #8cc4ff;">AreaMatcher</span>());
+</pre>
+</div>
+
+</section>
+<section id="slide-org65ab0a0">
+<h3 id="org65ab0a0"></h3>
+<p>
+Or using PHP 7's anonymous classes:
+</p>
+<div class="org-src-container">
+
+<pre  class="src src-php">$<span style="color: #fcaf3e;">shapeArea</span> = $<span style="color: #fcaf3e;">someShape</span>-&gt;<span style="color: #eeeeec; background-color: #2e3436;">match</span>(<span style="color: #b4fa70;">new</span> <span style="color: #8cc4ff;">ShapeMatcher</span>() {
+  <span style="color: #b4fa70;">public</span> <span style="color: #b4fa70;">function</span> <span style="color: #fce94f;">caseCircle</span>($<span style="color: #fcaf3e;">circle</span>) {
+    <span style="color: #b4fa70;">return</span> <span style="color: #eeeeec; background-color: #2e3436;">3</span>.<span style="color: #eeeeec; background-color: #2e3436;">1416</span> * $<span style="color: #fcaf3e;">circle</span>-&gt;<span style="color: #eeeeec; background-color: #2e3436;">getRadius</span>() * $<span style="color: #fcaf3e;">circle</span>-&gt;<span style="color: #eeeeec; background-color: #2e3436;">getRadius</span>() }
+  <span style="color: #b4fa70;">public</span> <span style="color: #b4fa70;">function</span> <span style="color: #fce94f;">caseSquare</span>($<span style="color: #fcaf3e;">square</span>) {
+    <span style="color: #b4fa70;">return</span> $<span style="color: #fcaf3e;">square</span>-&gt;<span style="color: #eeeeec; background-color: #2e3436;">getSide</span>() * $<span style="color: #fcaf3e;">square</span>-&gt;<span style="color: #eeeeec; background-color: #2e3436;">getSide</span>(); }
+  <span style="color: #b4fa70;">public</span> <span style="color: #b4fa70;">function</span> <span style="color: #fce94f;">caseTriangle</span>($<span style="color: #fcaf3e;">triangle</span>) {
+    <span style="color: #73d216;">/* </span><span style="color: #73d216;">The correct implementation </span><span style="color: #73d216;">*/</span> }
+  }
+);
+</pre>
+</div>
+
+<p class="fragment appear">
+Compare this to the original Scala version:
+</p>
+<div class="org-src-container">
+
+<pre  class="fragment appear"><span style="color: #b4fa70;">object</span> <span style="color: #e9b2e3;">Shape</span> {
+
+  <span style="color: #b4fa70;">def</span> <span style="color: #fce94f;">area</span>(shape<span style="color: #b4fa70;">:</span> <span style="color: #8cc4ff;">Shape</span>) shape <span style="color: #b4fa70;">match</span> {
+    <span style="color: #b4fa70;">case</span> <span style="color: #8cc4ff;">Circle</span>(<span style="color: #fcaf3e;">r</span>) <span style="color: #b4fa70;">=&gt;</span> <span style="color: #e9b2e3;">Pi</span> * r * r
+    <span style="color: #b4fa70;">case</span> <span style="color: #8cc4ff;">Square</span>(<span style="color: #fcaf3e;">side</span>) <span style="color: #b4fa70;">=&gt;</span> side * side
+    <span style="color: #b4fa70;">case</span> <span style="color: #8cc4ff;">Triangle</span>(<span style="color: #fcaf3e;">p1</span>, <span style="color: #fcaf3e;">p2</span>, <span style="color: #fcaf3e;">p3</span>) <span style="color: #b4fa70;">=&gt;</span> ??? <span style="color: #73d216;">// </span><span style="color: #73d216;">some calculation involving p1, p2 and p3 :)</span>
+  }
+}
+</pre>
+</div>
 </section>
 </section>
 </div>
