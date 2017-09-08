@@ -1,4 +1,4 @@
-#+REVEAL_THEME: night
+#+REVEAL_THEME: league
 #+OPTIONS: toc:1, num:nil, f:t
 #+REVEAL_ROOT: file:///Users/timmciver/Workspace/reveal.js
 

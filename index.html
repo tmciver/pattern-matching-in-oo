@@ -9,7 +9,7 @@
 </style>
 <link rel="stylesheet" href="./reveal.js/css/reveal.css"/>
 
-<link rel="stylesheet" href="./reveal.js/css/theme/night.css" id="theme"/>
+<link rel="stylesheet" href="./reveal.js/css/theme/league.css" id="theme"/>
 
 
 <!-- If the query includes 'print-pdf', include the PDF print sheet -->
@@ -26,17 +26,17 @@
 <body>
 <div class="reveal">
 <div class="slides">
-<section id="sec-title-slide"><h2 class="author">Tim McIver</h2><p class="date">Created: 2017-09-07 Thu 16:59</p>
+<section id="sec-title-slide"><h2 class="author">Tim McIver</h2><p class="date">Created: 2017-09-07 Thu 22:04</p>
 </section>
 <section id="table-of-contents">
 <div id="table-of-contents">
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#/slide-orgbff1715">The Problem Statement</a></li>
-<li><a href="#/slide-orgccd20f3">What is Pattern Matching?</a></li>
-<li><a href="#/slide-orgbdbfb86">Dispatching in OOP</a></li>
-<li><a href="#/slide-orgf629f50">Solutions</a></li>
+<li><a href="#/slide-org1c1b84f">The Problem Statement</a></li>
+<li><a href="#/slide-orge24e7ac">What is Pattern Matching?</a></li>
+<li><a href="#/slide-org96889a9">Dispatching in OOP</a></li>
+<li><a href="#/slide-orgab81b97">Solutions</a></li>
 </ul>
 </div>
 </div>
@@ -45,12 +45,12 @@
 
 
 <section>
-<section id="slide-orgbff1715">
-<h2 id="orgbff1715">The Problem Statement</h2>
-<div class="outline-text-2" id="text-orgbff1715">
+<section id="slide-org1c1b84f">
+<h2 id="org1c1b84f">The Problem Statement</h2>
+<div class="outline-text-2" id="text-org1c1b84f">
 </div></section>
-<section id="slide-org35ef3e8">
-<h3 id="org35ef3e8">Can we attain the same level of generalized dispatch on values of a type using an Object-Oriented language that our friends using functional languages enjoy?</h3>
+<section id="slide-org590ed91">
+<h3 id="org590ed91">Can we attain the same level of generalized dispatch on values of a type using an Object-Oriented language that our friends using functional languages enjoy?</h3>
 <p class="fragment appear">
 Answer: Yes!
 </p>
@@ -62,12 +62,12 @@ Well, almost.
 </section>
 </section>
 <section>
-<section id="slide-orgccd20f3">
-<h2 id="orgccd20f3">What is Pattern Matching?</h2>
-<div class="outline-text-2" id="text-orgccd20f3">
+<section id="slide-orge24e7ac">
+<h2 id="orge24e7ac">What is Pattern Matching?</h2>
+<div class="outline-text-2" id="text-orge24e7ac">
 </div></section>
-<section id="slide-org1df5223">
-<h3 id="org1df5223"></h3>
+<section id="slide-org040ad8e">
+<h3 id="org040ad8e"></h3>
 <p>
 Given the following Scala code:
 </p>
@@ -100,8 +100,8 @@ You can use pattern matching to implement the <code>area</code> function:
 </div>
 
 </section>
-<section id="slide-org1bd2897">
-<h3 id="org1bd2897"></h3>
+<section id="slide-org64c272d">
+<h3 id="org64c272d"></h3>
 <p>
 Underscore matches anything:
 </p>
@@ -118,8 +118,8 @@ Underscore matches anything:
 </div>
 
 </section>
-<section id="slide-org3947a20">
-<h3 id="org3947a20"></h3>
+<section id="slide-org7557a74">
+<h3 id="org7557a74"></h3>
 <p>
 You can match on type:
 </p>
@@ -137,8 +137,8 @@ You can match on type:
 </div>
 
 </section>
-<section id="slide-org2654edd">
-<h3 id="org2654edd"></h3>
+<section id="slide-org1492df8">
+<h3 id="org1492df8"></h3>
 <p>
 It's recursive:
 </p>
@@ -156,8 +156,8 @@ It's recursive:
 </div>
 
 </section>
-<section id="slide-org661e904">
-<h3 id="org661e904"></h3>
+<section id="slide-org0d86fc7">
+<h3 id="org0d86fc7"></h3>
 <p>
 And exhaustive.  The following gives a warning:
 </p>
@@ -178,12 +178,12 @@ And exhaustive.  The following gives a warning:
 </section>
 </section>
 <section>
-<section id="slide-orgbdbfb86">
-<h2 id="orgbdbfb86">Dispatching in OOP</h2>
-<div class="outline-text-2" id="text-orgbdbfb86">
+<section id="slide-org96889a9">
+<h2 id="org96889a9">Dispatching in OOP</h2>
+<div class="outline-text-2" id="text-org96889a9">
 </div></section>
-<section id="slide-org859a508">
-<h3 id="org859a508">Dispatching on Values in PHP</h3>
+<section id="slide-org4a3af18">
+<h3 id="org4a3af18">Dispatching on Values in PHP</h3>
 <div class="org-src-container">
 
 <pre  class="src src-php"><span style="color: #b4fa70;">interface</span> <span style="color: #8cc4ff;">Shape</span> {
@@ -212,8 +212,8 @@ $<span style="color: #fcaf3e;">myShape</span>-&gt;<span style="color: #eeeeec; b
 </div>
 
 </section>
-<section id="slide-orgd70b326">
-<h3 id="orgd70b326"></h3>
+<section id="slide-orgbbe0b2f">
+<h3 id="orgbbe0b2f"></h3>
 <p>
 Similarly for the <code>hasCorners</code> method:
 </p>
@@ -245,8 +245,8 @@ Similarly for the <code>hasCorners</code> method:
 </div>
 
 </section>
-<section id="slide-org06f6b0e">
-<h3 id="org06f6b0e">But if you could, should you?</h3>
+<section id="slide-org758f101">
+<h3 id="org758f101">But if you could, should you?</h3>
 <p>
 Doing this in an OO language has several drawbacks:
 </p>
@@ -258,8 +258,8 @@ Doing this in an OO language has several drawbacks:
 </ul>
 
 </section>
-<section id="slide-org7f94324">
-<h3 id="org7f94324">Use in a Client Application</h3>
+<section id="slide-org32e1908">
+<h3 id="org32e1908">Use in a Client Application</h3>
 <p>
 But what if you can't? How can you implement the <code>hasCorners</code> function if you can't modify the <code>shapes</code> library?
 </p>
@@ -286,12 +286,12 @@ OK, that's not so bad but if new versions of the <code>shape</code> library add 
 </section>
 </section>
 <section>
-<section id="slide-orgf629f50">
-<h2 id="orgf629f50">Solutions</h2>
-<div class="outline-text-2" id="text-orgf629f50">
+<section id="slide-orgab81b97">
+<h2 id="orgab81b97">Solutions</h2>
+<div class="outline-text-2" id="text-orgab81b97">
 </div></section>
-<section id="slide-org3296cf1">
-<h3 id="org3296cf1">First Solution</h3>
+<section id="slide-orgd0d0c38">
+<h3 id="orgd0d0c38">First Solution</h3>
 <p>
 What if <code>Shape</code> looked like the following?
 </p>
@@ -322,8 +322,8 @@ What if <code>Shape</code> looked like the following?
 </div>
 
 </section>
-<section id="slide-orgdbb8c18">
-<h3 id="orgdbb8c18">First Solution</h3>
+<section id="slide-orgfeddcb8">
+<h3 id="orgfeddcb8">First Solution</h3>
 <p>
 Then we define and use a function map:
 </p>
@@ -346,8 +346,8 @@ $<span style="color: #fcaf3e;">hasCorners</span> = $<span style="color: #fcaf3e;
 </div>
 
 </section>
-<section id="slide-orgc126b33">
-<h3 id="orgc126b33">Second Solution</h3>
+<section id="slide-org808e214">
+<h3 id="org808e214">Second Solution</h3>
 <p>
 Instead of a map, let's use an interface
 </p>
@@ -375,8 +375,8 @@ And implement that interface:
 </div>
 
 </section>
-<section id="slide-orgba06363">
-<h3 id="orgba06363">Second Solution (Continued)</h3>
+<section id="slide-orgfb6b645">
+<h3 id="orgfb6b645">Second Solution (Continued)</h3>
 <p>
 And change <code>Shape</code> to the following:
 </p>
@@ -407,8 +407,8 @@ And change <code>Shape</code> to the following:
 </div>
 
 </section>
-<section id="slide-org0e20b93">
-<h3 id="org0e20b93">Second Solution (Continued)</h3>
+<section id="slide-orged78e2b">
+<h3 id="orged78e2b">Second Solution (Continued)</h3>
 <p>
 Finally, use <code>HasCornersFunctions</code>:
 </p>
