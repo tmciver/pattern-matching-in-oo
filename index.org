@@ -354,7 +354,7 @@ Now, the ~area~ implementation looks like this:
     }
   }
 
-  $shapeArea = $someShape->accept(new AreaVisitor());
+  $shapeArea = $shape->accept(new AreaVisitor());
 #+END_SRC
 
 ** 
@@ -368,7 +368,7 @@ Similarly for ~hasCorners~:
     public function visitTriangle($triangle) { return true; }
   }
 
-  $hasCorners = $someShape->accept(new HasCornersVisitor());
+  $hasCorners = $shape->accept(new HasCornersVisitor());
 #+END_SRC
 
 ** 
@@ -378,7 +378,7 @@ In fact, we could implement _all_ of ~Shape~'s behavior as visitors and not add 
 #+ATTR_REVEAL: :frag appear
 This suggests that we have some choices:
 #+ATTR_REVEAL: :frag (appear)
-- Implement all functionality using visitors; no public methods
+- Implement all functionality using visitors; no public methods (other than ~accept~)
 - Implement all functionality using only public methods; no visitors (has the drawbacks mentioned earlier)
 - Something in between (sweet spot!)
 
@@ -428,19 +428,18 @@ The ~area~ implementation now looks like this:
     }
   }
 
-  $shapeArea = $someShape->match(new AreaMatcher());
+  $shapeArea = $shape->match(new AreaMatcher());
 #+END_SRC
 
 ** 
 Or using PHP 7's anonymous classes:
 #+BEGIN_SRC php
-  $shapeArea = $someShape->match(new ShapeMatcher() {
+  $shapeArea = $shape->match(new ShapeMatcher() {
     public function caseCircle($circle) {
       return 3.1416 * $circle->getRadius() * $circle->getRadius() }
     public function caseSquare($square) {
       return $square->getSide() * $square->getSide(); }
-    public function caseTriangle($triangle) {
-      /* The correct implementation */ }
+    public function caseTriangle($triangle) { /* The correct implementation */ }
     }
   );
 #+END_SRC
@@ -449,14 +448,16 @@ Or using PHP 7's anonymous classes:
 Compare this to the original Scala version:
 #+ATTR_REVEAL: :frag appear
 #+BEGIN_SRC scala
-object Shape {
+  object Shape {
 
-  def area(shape: Shape) shape match {
-    case Circle(r) => Pi * r * r
-    case Square(side) => side * side
-    case Triangle(p1, p2, p3) => ??? // some calculation involving p1, p2 and p3 :)
+    def area(shape: Shape) shape match {
+      case Circle(r) =>
+	Pi * r * r
+      case Square(side) =>
+	side * side
+      case Triangle(p1, p2, p3) => ??? // some calculation involving p1, p2 and p3 :)
+    }
   }
-}
 #+END_SRC
 
 ** Mind, Blown!
