@@ -26,31 +26,31 @@
 <body>
 <div class="reveal">
 <div class="slides">
-<section id="sec-title-slide"><h2 class="author">Tim McIver</h2><p class="date">Created: 2017-09-07 Thu 23:52</p>
+<section id="sec-title-slide"><h2 class="author">Tim McIver</h2><p class="date">Created: 2017-09-08 Fri 00:03</p>
 </section>
 <section id="table-of-contents">
 <div id="table-of-contents">
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#/slide-orgdef37f6">The Question</a></li>
-<li><a href="#/slide-orgf726d6b">Dispatch in FP</a></li>
-<li><a href="#/slide-org7576b56">Dispatch in OOP</a></li>
-<li><a href="#/slide-org017eb81">Solutions</a></li>
+<li><a href="#/slide-org94a76aa">The Question</a></li>
+<li><a href="#/slide-org2c5dd87">Dispatch in FP</a></li>
+<li><a href="#/slide-org4a4d856">Dispatch in OOP</a></li>
+<li><a href="#/slide-org6e2d219">Possible Answers</a></li>
+<li><a href="#/slide-org4214c9e">The Answer</a></li>
 </ul>
 </div>
 </div>
 </section>
 
 
-
 <section>
-<section id="slide-orgdef37f6">
-<h2 id="orgdef37f6">The Question</h2>
-<div class="outline-text-2" id="text-orgdef37f6">
+<section id="slide-org94a76aa">
+<h2 id="org94a76aa">The Question</h2>
+<div class="outline-text-2" id="text-org94a76aa">
 </div></section>
-<section id="slide-orgfae88ed">
-<h3 id="orgfae88ed">Can we attain the same level of generalized dispatch on values of a type using an Object-Oriented language that our friends using functional languages enjoy?</h3>
+<section id="slide-orga28df46">
+<h3 id="orga28df46">Can we attain the same level of generalized dispatch on values of a type using an Object-Oriented language that our friends using functional languages enjoy?</h3>
 <p class="fragment appear">
 Answer: Yes!
 </p>
@@ -62,12 +62,12 @@ Well, almost.
 </section>
 </section>
 <section>
-<section id="slide-orgf726d6b">
-<h2 id="orgf726d6b">Dispatch in FP</h2>
-<div class="outline-text-2" id="text-orgf726d6b">
+<section id="slide-org2c5dd87">
+<h2 id="org2c5dd87">Dispatch in FP</h2>
+<div class="outline-text-2" id="text-org2c5dd87">
 </div></section>
-<section id="slide-orge6c10b2">
-<h3 id="orge6c10b2"></h3>
+<section id="slide-orgd7a9deb">
+<h3 id="orgd7a9deb"></h3>
 <p>
 In Functional Programming there are several ways to achieve dispatch:
 </p>
@@ -83,8 +83,8 @@ We're only going to look at pattern matching here.
 </p>
 
 </section>
-<section id="slide-org466f8ac">
-<h3 id="org466f8ac">Pattern Matching 101</h3>
+<section id="slide-org1d6de42">
+<h3 id="org1d6de42">Pattern Matching 101</h3>
 <p>
 Given the following Scala code:
 </p>
@@ -117,8 +117,8 @@ You can use pattern matching to implement the <code>area</code> function:
 </div>
 
 </section>
-<section id="slide-orgdecccc5">
-<h3 id="orgdecccc5">Pattern Matching 101</h3>
+<section id="slide-orge419c7d">
+<h3 id="orge419c7d">Pattern Matching 101</h3>
 <p>
 Underscore matches anything:
 </p>
@@ -135,8 +135,8 @@ Underscore matches anything:
 </div>
 
 </section>
-<section id="slide-org2ead53a">
-<h3 id="org2ead53a">Pattern Matching 101</h3>
+<section id="slide-orgc37732f">
+<h3 id="orgc37732f">Pattern Matching 101</h3>
 <p>
 You can match on type:
 </p>
@@ -154,8 +154,8 @@ You can match on type:
 </div>
 
 </section>
-<section id="slide-org03859f9">
-<h3 id="org03859f9">Pattern Matching 101</h3>
+<section id="slide-org1e4c265">
+<h3 id="org1e4c265">Pattern Matching 101</h3>
 <p>
 It's recursive:
 </p>
@@ -173,8 +173,8 @@ It's recursive:
 </div>
 
 </section>
-<section id="slide-org4233465">
-<h3 id="org4233465">Pattern Matching 101</h3>
+<section id="slide-orgd947d68">
+<h3 id="orgd947d68">Pattern Matching 101</h3>
 <p>
 And exhaustive.  The following gives a warning:
 </p>
@@ -195,12 +195,12 @@ And exhaustive.  The following gives a warning:
 </section>
 </section>
 <section>
-<section id="slide-org7576b56">
-<h2 id="org7576b56">Dispatch in OOP</h2>
-<div class="outline-text-2" id="text-org7576b56">
+<section id="slide-org4a4d856">
+<h2 id="org4a4d856">Dispatch in OOP</h2>
+<div class="outline-text-2" id="text-org4a4d856">
 </div></section>
-<section id="slide-org957d4a1">
-<h3 id="org957d4a1">Dispatching on Values in PHP</h3>
+<section id="slide-orgd95d34c">
+<h3 id="orgd95d34c">Dispatching on Values in PHP</h3>
 <div class="org-src-container">
 
 <pre  class="src src-php"><span style="color: #b4fa70;">interface</span> <span style="color: #8cc4ff;">Shape</span> {
@@ -229,8 +229,8 @@ $<span style="color: #fcaf3e;">myShape</span>-&gt;<span style="color: #eeeeec; b
 </div>
 
 </section>
-<section id="slide-org2a5dfe4">
-<h3 id="org2a5dfe4"></h3>
+<section id="slide-org3db3f52">
+<h3 id="org3db3f52"></h3>
 <p>
 Similarly for the <code>hasCorners</code> method:
 </p>
@@ -262,8 +262,8 @@ Similarly for the <code>hasCorners</code> method:
 </div>
 
 </section>
-<section id="slide-org127303a">
-<h3 id="org127303a">But if you could, should you?</h3>
+<section id="slide-orgb381f5b">
+<h3 id="orgb381f5b">But if you could, should you?</h3>
 <p>
 Doing this in an OO language has several drawbacks:
 </p>
@@ -275,8 +275,8 @@ Doing this in an OO language has several drawbacks:
 </ul>
 
 </section>
-<section id="slide-org2e4423f">
-<h3 id="org2e4423f">Use in a Client Application</h3>
+<section id="slide-orgfe4b32e">
+<h3 id="orgfe4b32e">Use in a Client Application</h3>
 <p>
 But what if you can't? How can you implement the <code>hasCorners</code> function if you can't modify the <code>shapes</code> library?
 </p>
@@ -303,12 +303,12 @@ OK, that's not so bad but if new versions of the <code>shape</code> library add 
 </section>
 </section>
 <section>
-<section id="slide-org017eb81">
-<h2 id="org017eb81">Solutions</h2>
-<div class="outline-text-2" id="text-org017eb81">
+<section id="slide-org6e2d219">
+<h2 id="org6e2d219">Possible Answers</h2>
+<div class="outline-text-2" id="text-org6e2d219">
 </div></section>
-<section id="slide-org9f06cba">
-<h3 id="org9f06cba">First Solution</h3>
+<section id="slide-orgc155d53">
+<h3 id="orgc155d53">First Answer</h3>
 <p>
 What if <code>Shape</code> looked like the following?
 </p>
@@ -339,8 +339,8 @@ What if <code>Shape</code> looked like the following?
 </div>
 
 </section>
-<section id="slide-org89a2d33">
-<h3 id="org89a2d33">First Solution</h3>
+<section id="slide-org9eb92a5">
+<h3 id="org9eb92a5">First Answer (Continued)</h3>
 <p>
 Then we define and use a function map:
 </p>
@@ -363,8 +363,8 @@ $<span style="color: #fcaf3e;">hasCorners</span> = $<span style="color: #fcaf3e;
 </div>
 
 </section>
-<section id="slide-org734222c">
-<h3 id="org734222c">Second Solution</h3>
+<section id="slide-org64aae42">
+<h3 id="org64aae42">Second Answer</h3>
 <p>
 Instead of a map, let's use an interface
 </p>
@@ -392,8 +392,8 @@ And implement that interface:
 </div>
 
 </section>
-<section id="slide-orgc831d3a">
-<h3 id="orgc831d3a">Second Solution (Continued)</h3>
+<section id="slide-orgef23e86">
+<h3 id="orgef23e86">Second Answer (Continued)</h3>
 <p>
 And change <code>Shape</code> to the following:
 </p>
@@ -424,8 +424,8 @@ And change <code>Shape</code> to the following:
 </div>
 
 </section>
-<section id="slide-org283e28d">
-<h3 id="org283e28d">Second Solution (Continued)</h3>
+<section id="slide-orgfcb10eb">
+<h3 id="orgfcb10eb">Second Answer (Continued)</h3>
 <p>
 Finally, use <code>HasCornersFunctions</code>:
 </p>
@@ -434,6 +434,12 @@ Finally, use <code>HasCornersFunctions</code>:
 <pre  class="src src-php">$<span style="color: #fcaf3e;">hasCorners</span> = $<span style="color: #fcaf3e;">shape</span>-&gt;<span style="color: #eeeeec; background-color: #2e3436;">callYourFunction</span>(<span style="color: #b4fa70;">new</span> <span style="color: #8cc4ff;">HasCornersFunctions</span>());
 </pre>
 </div>
+
+</section>
+</section>
+<section>
+<section id="slide-org4214c9e">
+<h2 id="org4214c9e">The Answer</h2>
 </section>
 </section>
 </div>

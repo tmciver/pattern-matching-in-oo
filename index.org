@@ -3,7 +3,6 @@
 #+REVEAL_ROOT: file:///Users/timmciver/Workspace/reveal.js
 
 
-
 * The Question
 
 ** Can we attain the same level of generalized dispatch on values of a type using an Object-Oriented language that our friends using functional languages enjoy?
@@ -182,9 +181,9 @@ No choice but to resort to using ~instanceof~
 OK, that's not so bad but if new versions of the ~shape~ library add shapes with corners, this code will be broken.
 
 
-* Solutions
+* Possible Answers
 
-** First Solution
+** First Answer
 What if ~Shape~ looked like the following?
 #+BEGIN_SRC php
 interface Shape {
@@ -210,7 +209,7 @@ class Triangle implements Shape {
 }
 #+END_SRC
 
-** First Solution
+** First Answer (Continued)
 Then we define and use a function map:
 #+BEGIN_SRC php
   $hasCornersFunctionMap = [
@@ -228,7 +227,7 @@ Then we define and use a function map:
   $hasCorners = $shape->callYourFunction($hasCornersFunctionMap);
 #+END_SRC
 
-** Second Solution
+** Second Answer
 Instead of a map, let's use an interface
 #+BEGIN_SRC php
 interface ShapeFunctions {
@@ -249,7 +248,7 @@ class HasCornersFunctions implements ShapeFunctions {
 }
 #+END_SRC
 
-** Second Solution (Continued)
+** Second Answer (Continued)
 And change ~Shape~ to the following:
 #+BEGIN_SRC php
 interface Shape {
@@ -275,8 +274,10 @@ class Triangle implements Shape {
 }
 #+END_SRC
 
-** Second Solution (Continued)
+** Second Answer (Continued)
 Finally, use ~HasCornersFunctions~:
 #+BEGIN_SRC php
 $hasCorners = $shape->callYourFunction(new HasCornersFunctions());
 #+END_SRC
+
+* The Answer
