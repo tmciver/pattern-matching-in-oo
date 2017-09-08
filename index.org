@@ -281,3 +281,103 @@ $hasCorners = $shape->callYourFunction(new HasCornersFunctions());
 #+END_SRC
 
 * The Answer
+
+** This is a Known Pattern
+#+ATTR_REVEAL: :frag appear
+It's the Visitor Pattern!
+
+** 
+Usually the names are a little different:
+#+BEGIN_SRC php
+  class Element {
+    public function accept($visitor);
+  }
+
+  class ConcreteElement1 extends Element {
+    public function accept($visitor) {
+      return $visitor->visitConcreteElement1($this);
+    }
+  }
+
+  class ConcreteElement2 extends Element {
+    public function accept($visitor) {
+      return $visitor->visitConcreteElement2($this);
+    }
+  }
+
+  interface Visitor {
+    function visitConcreteElement1($concreteElement1);
+    function visitConcreteElement2($concreteElement2);
+  }
+#+END_SRC
+
+** 
+For the case of the ~shapes~ library it looks like this:
+#+BEGIN_SRC php
+  interface Shape {
+    public function accept($visitor);
+  }
+
+  class Circle implements Shape {
+    public function accept($visitor) {
+      return $visitor->visitCircle($this);
+    }
+  }
+
+  class Square implements Shape {
+    public function accept($visitor) {
+      return $visitor->visitSquare($this);
+    }
+  }
+
+  interface ShapeVisitor {
+    function visitCircle($circle);
+    function visitSquare($square);
+  }
+#+END_SRC
+
+** 
+Now, the ~area~ implementation looks like this:
+#+BEGIN_SRC php
+  class AreaVisitor implements ShapeVisitor {
+
+    public function visitCircle($circle) {
+      return 3.1416 * $circle->getRadius() * $circle->getRadius()
+    }
+
+    public function visitSquare($square) {
+      return $square->getSide() * $square->getSide();
+    }
+
+    public function visitTriangle($triangle) {
+      /* The correct implementation */
+    }
+  }
+
+  $shapeArea = $someShape->accept(new AreaVisitor());
+#+END_SRC
+
+** 
+Similarly for ~hasCorners~:
+#+BEGIN_SRC php
+  class HasCornersVisitor implements ShapeVisitor {
+    public function visitCircle($circle) { return false; }
+
+    public function visitSquare($square) { return true; }
+
+    public function visitTriangle($triangle) { return true; }
+  }
+
+  $hasCorners = $someShape->accept(new HasCornersVisitor());
+#+END_SRC
+
+** 
+Notice we implmented _both_ ~area~ and ~hasCorners~ as visitors; ~Shape~ has only one public method: ~accept~!
+#+ATTR_REVEAL: :frag appear
+In fact, we could implement _all_ of ~Shape~'s behavior as visitors and not add a single additional public method!
+#+ATTR_REVEAL: :frag appear
+This suggests that we have some choices:
+#+ATTR_REVEAL: :frag (appear)
+- Implement all functionality using visitors; no public methods
+- Implement all functionality using only public methods; no visitors (has the drawbacks mentioned earlier)
+- Something in between (sweet spot!)
