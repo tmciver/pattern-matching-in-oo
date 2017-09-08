@@ -7,9 +7,9 @@
 <style type="text/css">
 .underline { text-decoration: underline; }
 </style>
-<link rel="stylesheet" href="file:///Users/timmciver/Workspace/reveal.js/css/reveal.css"/>
+<link rel="stylesheet" href="./reveal.js/css/reveal.css"/>
 
-<link rel="stylesheet" href="file:///Users/timmciver/Workspace/reveal.js/css/theme/league.css" id="theme"/>
+<link rel="stylesheet" href="./reveal.js/css/theme/league.css" id="theme"/>
 
 
 <!-- If the query includes 'print-pdf', include the PDF print sheet -->
@@ -18,7 +18,7 @@
         var link = document.createElement( 'link' );
         link.rel = 'stylesheet';
         link.type = 'text/css';
-        link.href = 'file:///Users/timmciver/Workspace/reveal.js/css/print/pdf.css';
+        link.href = './reveal.js/css/print/pdf.css';
         document.getElementsByTagName( 'head' )[0].appendChild( link );
     }
 </script>
@@ -26,11 +26,13 @@
 <body>
 <div class="reveal">
 <div class="slides">
-<section id="sec-title-slide"><h2 class="author">Tim McIver</h2><p class="date">Created: 2017-09-08 Fri 14:05</p>
+  <section id="sec-title-slide">
+    <h2>Pattern Matching in OOP</h2>
+    <h3 class="author">Tim McIver</h3>
 </section>
 <section id="table-of-contents">
 <div id="table-of-contents">
-<h2>Table of Contents</h2>
+<h2>Overview</h2>
 <div id="text-table-of-contents">
 <ul>
 <li><a href="#/slide-org3ebbc68">The Question</a></li>
@@ -718,8 +720,8 @@ Compare this to the original Scala version:
 </section>
 </div>
 </div>
-<script src="file:///Users/timmciver/Workspace/reveal.js/lib/js/head.min.js"></script>
-<script src="file:///Users/timmciver/Workspace/reveal.js/js/reveal.js"></script>
+<script src="./reveal.js/lib/js/head.min.js"></script>
+<script src="./reveal.js/js/reveal.js"></script>
 
 <script>
 // Full list of configuration options available here:
@@ -746,11 +748,11 @@ multiplex: {
 
 // Optional libraries used to extend on reveal.js
 dependencies: [
- { src: 'file:///Users/timmciver/Workspace/reveal.js/lib/js/classList.js', condition: function() { return !document.body.classList; } },
- { src: 'file:///Users/timmciver/Workspace/reveal.js/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
- { src: 'file:///Users/timmciver/Workspace/reveal.js/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
- { src: 'file:///Users/timmciver/Workspace/reveal.js/plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
- { src: 'file:///Users/timmciver/Workspace/reveal.js/plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }]
+ { src: './reveal.js/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+ { src: './reveal.js/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+ { src: './reveal.js/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+ { src: './reveal.js/plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+ { src: './reveal.js/plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }]
 });
 </script>
 </body>
