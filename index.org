@@ -459,5 +459,5 @@ object Shape {
 }
 #+END_SRC
 
-** Mind Blown!
-
+** Mind, Blown!
+[[./img/mind-blown.gif]]
